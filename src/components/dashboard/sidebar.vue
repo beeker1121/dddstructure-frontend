@@ -1,3 +1,34 @@
+<script setup lang="ts">
+import { onMounted } from 'vue'
+import { useRouter } from 'vue-router';
+
+import { clearJWT } from '../../helpers/auth'
+
+// Constants.
+const router = useRouter()
+
+// Props.
+// const props = defineProps({
+//     prop1: String
+// })
+
+// Data.
+
+// Mounted.
+onMounted(() => {})
+
+// Computed.
+
+// Watchers.
+
+// Methods.
+const logout = () => {
+    clearJWT()
+
+    router.push({ name: 'Login' })
+}
+</script>
+
 <template>
     <div class="sidebar">
         <div class="logo">
@@ -5,6 +36,7 @@
         </div>
         <router-link to="/dashboard">Dashboard</router-link>
         <router-link to="/dashboard/invoices">Invoices</router-link>
+        <a href="#" @click.prevent="logout">Logout</a>
     </div>
 </template>
 

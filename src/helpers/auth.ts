@@ -28,3 +28,8 @@ export const getJWT = (): string | null => {
 export const setJWT = (jwt: string) => {
     sessionStorage.setItem('jwt', jwt)
 }
+
+// clearJWT handles clearing the JWT from session storage.
+export const clearJWT = () => {
+    sessionStorage.removeItem('jwt')
+}

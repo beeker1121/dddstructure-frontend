@@ -49,7 +49,7 @@ const signup = () => {
         setJWT(res.data)
 
         // Redirect to dashboard.
-        router.push('/dashboard')
+        router.push({ name: 'Dashboard' })
     }).catch((err) => {
         console.log('error: ' + err)
     })
