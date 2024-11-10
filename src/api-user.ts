@@ -1,7 +1,7 @@
 import { getJWT } from "./helpers/auth"
 
 // apiURL defines the API URL.
-const apiURL = 'http://localhost:5157/api'
+const apiURL = 'http://localhost:5173/api/v1'
 
 // api defines the main API calls.
 const api = {

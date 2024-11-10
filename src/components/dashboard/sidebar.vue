@@ -1,0 +1,31 @@
+<template>
+    <div class="sidebar">
+        <div class="logo">
+            <span>Simple</span>Invoicing
+        </div>
+        <router-link to="/dashboard">Dashboard</router-link>
+        <router-link to="/dashboard/invoices">Invoices</router-link>
+    </div>
+</template>
+
+<style scoped>
+.sidebar {
+    box-shadow: 2px 0 3px 0 rgb(37, 37, 37, 0.2);
+    z-index: 2;
+
+    .logo {
+        margin: 0;
+        font-size: 1.7em;
+        font-weight: 600;
+        text-shadow: 2px 2px 0.7px #ddd;
+
+        span {
+            color:rgb(53, 131, 235);
+        }
+    }
+
+    a {
+        display: block;
+    }
+}
+</style>

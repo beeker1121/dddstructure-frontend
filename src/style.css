@@ -60,9 +60,34 @@
   }
 
   #app {
+    min-width: 100vh;
+    min-height: 100vh;
+  }
+
+  .home-container {
     display: flex;
     flex-direction: column;
+    min-width: 100vh;
     min-height: 100vh;
+
+    .content {
+      display: flex;
+      flex: 1 1 100%;
+      background: linear-gradient(45deg, #3583eb 0%,#6ba2ea 100%);
+    }
+  }
+
+  .dashboard-container {
+    display: flex;
+    flex-direction: row;
+    min-width: 100vh;
+    min-height: 100vh;
+
+    .content {
+      display: flex;
+      flex: 1 1 100%;
+      background: linear-gradient(45deg, #3583eb 0%,#6ba2ea 100%);
+    }
   }
   
   @media (prefers-color-scheme: light) {

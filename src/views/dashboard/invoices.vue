@@ -7,8 +7,8 @@ import Sidebar from '../../components/dashboard/sidebar.vue'
         <Sidebar />
 
         <div class="content">
-            <div class="dashboard">
-                <h1>Dashboard</h1>
+            <div class="invoices">
+                <h1>Invoices</h1>
             </div>
         </div>
     </div>

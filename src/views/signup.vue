@@ -28,7 +28,7 @@ onMounted(() => {
 // Watchers.
 
 // Methods.
-const login = () => {
+const signup = () => {
     // Build the payload.
     const payload = {
         email: email.value,
@@ -36,7 +36,7 @@ const login = () => {
     }
 
     // Call the API.
-    api.login(payload)
+    api.signup(payload)
     .then(res => res.json()).then((res) => {
         // Handle errors.
         if (res.errors) {
@@ -61,8 +61,8 @@ const login = () => {
         <Header />
 
         <div class="content">
-            <div class="login">
-                <div class="login-container">
+            <div class="signup">
+                <div class="signup-container">
                     <div class="logo">
                         <span>Simple</span>Invoicing
                     </div>
@@ -79,7 +79,7 @@ const login = () => {
                             <input id="password" type="password" placeholder="" v-model="password" />
                         </div>
 
-                        <button class="submit" @click="login">Login</button>
+                        <button class="submit" @click="signup">Signup</button>
                     </div>
                 </div>
             </div>
@@ -88,12 +88,12 @@ const login = () => {
 </template>
 
 <style scoped>
-.login {
+.signup {
     display: flex;
     width: 100%;
     place-items: center;
 
-    .login-container {
+    .signup-container {
         margin: 0 auto;
         padding: 14px 42px 26px 42px;
         background-color: #fff;
