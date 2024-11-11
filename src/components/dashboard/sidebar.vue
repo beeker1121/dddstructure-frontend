@@ -66,7 +66,7 @@ const logout = () => {
 
     a {
         display: block;
-        margin: 8px 0;
+        margin: 10px 0;
         font-weight: 300;
         color: #333;
 
