@@ -116,7 +116,7 @@ const signup = () => {
         hr {
             margin: 14px 0;
             border: 0;
-            border-top: 1px solid #eee;
+            border-top: 1px solid #f4f4f4;
         }
 
         .form {

@@ -8,7 +8,9 @@ import Sidebar from '../../components/dashboard/sidebar.vue'
 
         <div class="content">
             <div class="dashboard">
-                <h1>Dashboard</h1>
+                <div class="header">
+                    <h1>Dashboard</h1>
+                </div>
 
                 <div class="cards">
                     <div class="card">
@@ -29,13 +31,17 @@ import Sidebar from '../../components/dashboard/sidebar.vue'
 .dashboard {
     width: 100%;
 
-    h1 {
+    .header {
         margin: 0 0 20px 0;
-        padding: 0;
-        color: #fff;
-        font-size: 2.6em;
-        font-weight: 700;
-        text-transform: uppercase;
+
+        h1 {
+            margin: 0;
+            padding: 0;
+            color: #fff;
+            font-size: 2.6em;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
     }
 
     .cards {
@@ -53,10 +59,10 @@ import Sidebar from '../../components/dashboard/sidebar.vue'
 
             span:first-child {
                 display: block;
+                color: #999;
                 font-size: 0.82em;
                 font-weight: 300;
                 text-transform: uppercase;
-                opacity: 0.4;
             }
 
             span:last-child {

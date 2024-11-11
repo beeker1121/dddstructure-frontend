@@ -41,6 +41,9 @@ const logout = () => {
         <router-link to="/dashboard/invoices">
             <font-awesome-icon class="icon" icon="file-invoice-dollar" />Invoices
         </router-link>
+        <router-link to="/dashboard/account">
+            <font-awesome-icon class="icon" icon="user" />Account
+        </router-link>
         <a href="#" @click.prevent="logout">
             <font-awesome-icon class="icon" icon="right-from-bracket" />Logout
         </a>

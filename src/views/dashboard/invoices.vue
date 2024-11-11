@@ -1,11 +1,12 @@
 <script setup lang="ts">
 import { onMounted } from 'vue'
+import { useRouter } from 'vue-router';
 
 import Sidebar from '../../components/dashboard/sidebar.vue'
 import { useInvoicesStore } from '../../stores/invoices'
 
 // Constants.
-// const router = useRouter()
+const router = useRouter()
 
 // Props.
 // const props = defineProps({
@@ -29,6 +30,12 @@ onMounted(() => {
 // Computed.
 
 // Watchers.
+
+// Methods.
+const createInvoice = () => {
+    // Redirect to create invoice.
+    router.push({ name: 'Invoice' })
+}
 </script>
 
 <template>
@@ -37,7 +44,10 @@ onMounted(() => {
 
         <div class="content">
             <div class="invoices">
-                <h1>Invoices</h1>
+                <div class="header">
+                    <h1>Invoices</h1>
+                    <button class="green" @click="createInvoice">New Invoice</button>
+                </div>
 
                 <div v-if="invoicesStore.invoices.length" class="invoices-list">
                     <table>
@@ -73,13 +83,25 @@ onMounted(() => {
 .invoices {
     width: 100%;
 
-    h1 {
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
         margin: 0 0 20px 0;
-        padding: 0;
-        color: #fff;
-        font-size: 2.6em;
-        font-weight: 700;
-        text-transform: uppercase;
+
+        h1 {
+            margin: 0;
+            padding: 0;
+            color: #fff;
+            font-size: 2.6em;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        button {
+            margin: 0;
+            width: auto;
+        }
     }
 
     .invoices-list {
@@ -95,10 +117,11 @@ onMounted(() => {
             thead {
                 th {
                     padding: 12px;
+                    color: #999;
                     font-size: 0.76em;
-                    font-weight: 500;
+                    font-weight: 300;
                     text-transform: uppercase;
-                    border-bottom: 1px solid #eee;
+                    border-bottom: 1px solid #f4f4f4;
                 }
             }
 
