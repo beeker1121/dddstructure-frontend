@@ -43,6 +43,7 @@ onMounted(() => {
                     <table>
                         <thead>
                             <tr>
+                                <th>Actions</th>
                                 <th>ID</th>
                                 <th>Amount Paid</th>
                                 <th>Amount Due</th>
@@ -50,6 +51,11 @@ onMounted(() => {
                         </thead>
                         <tbody>
                             <tr v-for="invoice in invoicesStore.invoices">
+                                <td>
+                                    <button class="action">Edit</button>
+                                    <button class="action green">View</button>
+                                    <button class="action red">Delete</button>
+                                </td>
                                 <td>{{ invoice.id }}</td>
                                 <td>$0.00</td>
                                 <td class="amount-due">${{ invoice.amount_due }}</td>

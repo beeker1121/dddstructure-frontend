@@ -6,3 +6,16 @@
         <router-link to="/login">Login</router-link>
     </div>
 </template>
+
+<style scoped>
+.header {
+    text-align: center;
+
+    a {
+        display: inline-block;
+        margin: 8px 20px;
+        font-weight: 300;
+        color: #333;
+    }
+}
+</style>

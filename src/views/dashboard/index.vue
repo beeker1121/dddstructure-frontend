@@ -61,6 +61,7 @@ import Sidebar from '../../components/dashboard/sidebar.vue'
 
             span:last-child {
                 display: block;
+                margin: 6px 0 0 0;
                 font-size: 1.8em;
             }
         }
