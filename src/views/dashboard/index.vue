@@ -53,10 +53,10 @@ import Sidebar from '../../components/dashboard/sidebar.vue'
 
             span:first-child {
                 display: block;
-                font-size: 0.9em;
+                font-size: 0.82em;
                 font-weight: 300;
                 text-transform: uppercase;
-                opacity: 0.6;
+                opacity: 0.4;
             }
 
             span:last-child {
