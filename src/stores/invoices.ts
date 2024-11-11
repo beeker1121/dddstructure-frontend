@@ -1,5 +1,7 @@
 import { defineStore } from 'pinia'
 
+import apiUser from '../api-user'
+
 export const useInvoicesStore = defineStore('invoices', {
     state: () => {
         return {
@@ -10,12 +12,20 @@ export const useInvoicesStore = defineStore('invoices', {
         getInvoices() {
             console.log('calling getInvoices...')
 
-            this.invoices.push({
-                id: 1,
-                user_id: 1,
-                amount_due: 100,
-                amount_paid: 0,
-                status: 'pending'
+            // Call the API.
+            apiUser.getInvoices()
+            .then(res => res.json()).then((res) => {
+                // Handle errors.
+                if (res.errors) {
+                    console.log('errors: ' + res.errors)
+                    return
+                }
+
+                // Set invoices.
+                this.invoices = res.data
+                console.log(this.invoices)
+            }).catch((err) => {
+                console.log('error: ' + err)
             })
         }
     }

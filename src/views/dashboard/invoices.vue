@@ -17,13 +17,13 @@ import { useInvoicesStore } from '../../stores/invoices'
 // const password = ref<String>('')
 
 // Stores.
-const invoices = useInvoicesStore()
+const invoicesStore = useInvoicesStore()
 
 // Mounted.
 onMounted(() => {
     console.log('mounted')
 
-    invoices.getInvoices()
+    invoicesStore.getInvoices()
 })
 
 // Computed.
@@ -39,9 +39,25 @@ onMounted(() => {
             <div class="invoices">
                 <h1>Invoices</h1>
 
-                <div class="invoices-list">
-                    <div class="invoice">this will be an invoice</div>
+                <div v-if="invoicesStore.invoices.length" class="invoices-list">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Amount Paid</th>
+                                <th>Amount Due</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="invoice in invoicesStore.invoices">
+                                <td>{{ invoice.id }}</td>
+                                <td>$0.00</td>
+                                <td class="amount-due">${{ invoice.amount_due }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
+                <div v-else></div>
             </div>
         </div>
     </div>
@@ -65,6 +81,31 @@ onMounted(() => {
         background-color: #fff;
         border-radius: 4px;
         box-shadow: 2px 1px 3px 0 rgba(37, 37, 37, 0.2);
+
+        table {
+            width: 100%;
+            text-align: center;
+
+            thead {
+                th {
+                    padding: 12px;
+                    font-size: 0.76em;
+                    font-weight: 500;
+                    text-transform: uppercase;
+                    border-bottom: 1px solid #eee;
+                }
+            }
+
+            tbody {
+                font-weight: 300;
+
+                .amount-due {
+                    color: #5bb32a;
+                    font-size: 1.8em;
+                    font-weight: 400;
+                }
+            }
+        }
     }
 }
 </style>

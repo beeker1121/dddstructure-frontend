@@ -14,6 +14,14 @@ const api = {
                 'Authorization': 'Bearer ' + getJWT()
             }
         })
+    },
+    getInvoices: () => {
+        return fetch(apiURL + '/invoice', {
+            method: 'GET',
+            headers: {
+                'Authorization': 'Bearer ' + getJWT()
+            }
+        })
     }
 }
 

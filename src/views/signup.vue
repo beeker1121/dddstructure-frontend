@@ -127,8 +127,8 @@ const signup = () => {
             label {
                 display: block;
                 margin: 0 0 2px 0;
-                font-size: 0.76em;
-                font-weight: 500;
+                font-size: 0.74em;
+                font-weight: 400;
                 text-transform: uppercase;
             }
 
