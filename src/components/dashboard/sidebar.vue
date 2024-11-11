@@ -34,6 +34,7 @@ const logout = () => {
         <div class="logo">
             <span>Simple</span>Invoicing
         </div>
+
         <router-link to="/dashboard">Dashboard</router-link>
         <router-link to="/dashboard/invoices">Invoices</router-link>
         <a href="#" @click.prevent="logout">Logout</a>
@@ -42,12 +43,13 @@ const logout = () => {
 
 <style scoped>
 .sidebar {
+    padding: 5px 28px;
     box-shadow: 2px 0 3px 0 rgb(37, 37, 37, 0.2);
     z-index: 2;
 
     .logo {
-        margin: 0;
-        font-size: 1.7em;
+        margin: 24px 0 34px 0;
+        font-size: 1.5em;
         font-weight: 600;
         text-shadow: 2px 2px 0.7px #ddd;
 
@@ -58,6 +60,8 @@ const logout = () => {
 
     a {
         display: block;
+        font-weight: 300;
+        color: #333;
     }
 }
 </style>

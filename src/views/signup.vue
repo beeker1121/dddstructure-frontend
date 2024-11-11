@@ -102,7 +102,7 @@ const signup = () => {
 
         .logo {
             margin: 0;
-            font-size: 2em;
+            font-size: 2.4em;
             font-weight: 600;
             text-shadow: 2px 2px 0.7px #ddd;
 
@@ -125,7 +125,7 @@ const signup = () => {
             label {
                 display: block;
                 margin: 0 0 2px 0;
-                font-size: 0.72em;
+                font-size: 0.76em;
                 font-weight: 500;
                 text-transform: uppercase;
             }

@@ -1,5 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100..900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+
 :root {
-    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    font-family: "Lexend Deca", sans-serif;
     line-height: 1.5;
     font-weight: 400;
   
@@ -54,10 +56,6 @@
     opacity: 0.92;
     box-shadow: 0px 1px 2px 0px rgba(34, 34, 34, 0.26);
   }
-  
-  .card {
-    padding: 2em;
-  }
 
   #app {
     min-width: 100vh;
@@ -86,6 +84,7 @@
     .content {
       display: flex;
       flex: 1 1 100%;
+      padding: 28px 80px;
       background: linear-gradient(45deg, #3583eb 0%,#6ba2ea 100%);
     }
   }
