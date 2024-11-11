@@ -1,5 +1,34 @@
 <script setup lang="ts">
+import { onMounted } from 'vue'
+
 import Sidebar from '../../components/dashboard/sidebar.vue'
+import { useInvoicesStore } from '../../stores/invoices'
+
+// Constants.
+// const router = useRouter()
+
+// Props.
+// const props = defineProps({
+//     prop1: String
+// })
+
+// Data.
+// const email = ref<String>('')
+// const password = ref<String>('')
+
+// Stores.
+const invoices = useInvoicesStore()
+
+// Mounted.
+onMounted(() => {
+    console.log('mounted')
+
+    invoices.getInvoices()
+})
+
+// Computed.
+
+// Watchers.
 </script>
 
 <template>

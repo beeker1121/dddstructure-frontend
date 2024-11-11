@@ -18,6 +18,8 @@ const router = useRouter()
 const email = ref<String>('')
 const password = ref<String>('')
 
+// Stores.
+
 // Mounted.
 onMounted(() => {
     console.log('mounted')
