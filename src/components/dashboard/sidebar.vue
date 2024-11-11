@@ -35,9 +35,15 @@ const logout = () => {
             <span>Simple</span>Invoicing
         </div>
 
-        <router-link to="/dashboard">Dashboard</router-link>
-        <router-link to="/dashboard/invoices">Invoices</router-link>
-        <a href="#" @click.prevent="logout">Logout</a>
+        <router-link to="/dashboard">
+            <font-awesome-icon class="icon" icon="chart-simple" />Dashboard
+        </router-link>
+        <router-link to="/dashboard/invoices">
+            <font-awesome-icon class="icon" icon="file-invoice-dollar" />Invoices
+        </router-link>
+        <a href="#" @click.prevent="logout">
+            <font-awesome-icon class="icon" icon="right-from-bracket" />Logout
+        </a>
     </div>
 </template>
 
@@ -48,7 +54,7 @@ const logout = () => {
     z-index: 2;
 
     .logo {
-        margin: 32px 0 14px 0;
+        margin: 20px 0 26px 0;
         font-size: 1.5em;
         font-weight: 600;
         text-shadow: 2px 2px 0.7px #ddd;
@@ -63,6 +69,11 @@ const logout = () => {
         margin: 8px 0;
         font-weight: 300;
         color: #333;
+
+        .icon {
+            margin: 0 12px 0 0;
+            color: rgb(53, 131, 235);
+        }
     }
 }
 </style>
