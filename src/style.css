@@ -4,38 +4,39 @@
     font-family: "Lexend Deca", sans-serif;
     line-height: 1.5;
     font-weight: 400;
-  
-    color-scheme: light dark;
+
+    /* color-scheme: light dark;
     color: rgba(255, 255, 255, 0.87);
-    background-color: #242424;
-  
+    background-color: #242424; */
+
     font-synthesis: none;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-  }
+}
   
-  a {
+a {
     font-weight: 500;
     color: #646cff;
     text-decoration: inherit;
-  }
-  a:hover {
+}
+
+a:hover {
     color: #535bf2;
-  }
+}
   
-  body {
+body {
     margin: 0;
     min-width: 320px;
     min-height: 100vh;
-  }
+}
   
-  h1 {
+h1 {
     font-size: 3.2em;
     line-height: 1.1;
-  }
+}
   
-  button {
+button {
     position: relative;
     top: 0;
     margin: 16px 0 0 0;
@@ -49,70 +50,70 @@
     border-radius: 4px;
     border: 1px solid transparent;
     cursor: pointer;
-  }
+}
 
-  button:hover {
+button:hover {
     top: -1px;
     opacity: 0.92;
     box-shadow: 0px 1px 2px 0px rgba(34, 34, 34, 0.26);
-  }
+}
 
-  button.action {
+button.action {
     margin: 0 6px 0 0;
     padding: 0.3em 1em;
     width: auto;
     font-size: 0.74em;
     font-weight: 400;
     text-transform: uppercase;
-  }
+}
 
-  button.green {
+button.green {
     background-color: #5bb32a;
-  }
+}
 
-  button.red {
+button.red {
     background-color: #ff3e2b;
-  }
+}
 
-  #app {
+#app {
     min-width: 100vh;
     min-height: 100vh;
-  }
+}
 
-  .home-container {
+.home-container {
     display: flex;
     flex-direction: column;
     min-width: 100vh;
     min-height: 100vh;
 
     .content {
-      display: flex;
-      flex: 1 1 100%;
-      background: linear-gradient(45deg, #3583eb 0%,#6ba2ea 100%);
+        display: flex;
+        flex: 1 1 100%;
+        background: linear-gradient(45deg, #3583eb 0%,#6ba2ea 100%);
     }
-  }
+}
 
-  .dashboard-container {
+.dashboard-container {
     display: flex;
     flex-direction: row;
     min-width: 100vh;
     min-height: 100vh;
 
     .content {
-      display: flex;
-      flex: 1 1 100%;
-      padding: 28px 80px;
-      background: linear-gradient(45deg, #3583eb 0%,#6ba2ea 100%);
+        display: flex;
+        flex: 1 1 100%;
+        padding: 28px 80px;
+        background: linear-gradient(45deg, #3583eb 0%,#6ba2ea 100%);
     }
-  }
+}
   
-  @media (prefers-color-scheme: light) {
+@media (prefers-color-scheme: light) {
     :root {
-      color: #213547;
-      background-color: #ffffff;
+        color: #213547;
+        background-color: #ffffff;
     }
     a:hover {
-      color: #747bff;
+        color: #747bff;
     }
-  }
+}
   
