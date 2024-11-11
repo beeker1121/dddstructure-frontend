@@ -48,7 +48,7 @@ const logout = () => {
     z-index: 2;
 
     .logo {
-        margin: 24px 0 34px 0;
+        margin: 32px 0 14px 0;
         font-size: 1.5em;
         font-weight: 600;
         text-shadow: 2px 2px 0.7px #ddd;
@@ -60,6 +60,7 @@ const logout = () => {
 
     a {
         display: block;
+        margin: 8px 0;
         font-weight: 300;
         color: #333;
     }
