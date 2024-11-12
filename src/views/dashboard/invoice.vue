@@ -111,9 +111,13 @@ const create = () => {
                         </div>
                     </div>
 
-                    <div class="field">
-                        <label for="amount-due">Amount Due</label>
-                        $<input id="amount-due" type="number" placeholder="" v-model="invoice.amount_due" />
+                    <div class="details">
+                        <h3>Details</h3>
+
+                        <div class="field">
+                            <label for="amount-due">Amount Due</label>
+                            <input id="amount-due" type="number" placeholder="" v-model="invoice.amount_due" />
+                        </div>
                     </div>
 
                     <button class="green" @click="create">Submit</button>
@@ -154,7 +158,7 @@ const create = () => {
         border-radius: 4px;
         box-shadow: 2px 1px 3px 0 rgba(37, 37, 37, 0.2);
 
-        .bill-to, .pay-to {
+        .bill-to, .pay-to, .details {
             margin: 0 0 12px 0;
 
             h3 {
