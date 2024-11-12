@@ -1,13 +1,20 @@
 <script setup lang="ts">
-import { onMounted } from 'vue'
+import { ref, onMounted } from 'vue'
 
+import apiUser from '../../api-user'
 import Sidebar from '../../components/dashboard/sidebar.vue'
+import { getParamError } from '../../helpers/errors';
+import { capitalize } from '../../helpers/strings';
 
 // Constants.
 
 // Props.
 
 // Data.
+const email = ref<String>('')
+const password = ref<String>('')
+
+const errors = ref<any>([])
 
 // Stores.
 
@@ -19,6 +26,30 @@ onMounted(() => {
 // Computed.
 
 // Watchers.
+
+// Methods.
+const update = () => {
+    // Reset errors.
+    errors.value = []
+
+    // Build the payload.
+    const payload = {
+        email: email.value,
+        password: password.value
+    }
+
+    // Call the API.
+    apiUser.createInvoice(payload)
+    .then(res => res.json()).then((res) => {
+        // Handle errors.
+        if (res.errors) {
+            errors.value = res.errors
+            return
+        }
+    }).catch((err) => {
+        console.log('error: ' + err)
+    })
+}
 </script>
 
 <template>
@@ -32,7 +63,23 @@ onMounted(() => {
                 </div>
 
                 <div class="account-form">
-                    Edit
+                    <div class="field">
+                        <label for="email">Email Address</label>
+                        <input id="email" type="email" placeholder="email@example.com" v-model="email" />
+                        <span v-if="getParamError(errors, 'email')" class="error">
+                            {{ capitalize(getParamError(errors, 'email').detail) }}
+                        </span>
+                    </div>
+
+                    <div class="field">
+                        <label for="password">Password</label>
+                        <input id="password" type="password" placeholder="" v-model="password" />
+                        <span v-if="getParamError(errors, 'password')" class="error">
+                            {{ capitalize(getParamError(errors, 'password').detail) }}
+                        </span>
+                    </div>
+
+                    <button class="green" @click="update">Update</button>
                 </div>
             </div>
         </div>

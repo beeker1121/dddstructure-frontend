@@ -78,15 +78,16 @@ const signup = () => {
                     <hr />
 
                     <div class="form">
-                        <div class="field email">
+                        <div class="field">
                             <label for="email">Email Address</label>
                             <input id="email" type="email" placeholder="email@example.com" v-model="email" />
                             <span v-if="getParamError(errors, 'email')" class="error">
                                 {{ capitalize(getParamError(errors, 'email').detail) }}
                             </span>
                         </div>
-                        <div class="field password">
-                            <label for="password">password</label>
+
+                        <div class="field">
+                            <label for="password">Password</label>
                             <input id="password" type="password" placeholder="" v-model="password" />
                             <span v-if="getParamError(errors, 'password')" class="error">
                                 {{ capitalize(getParamError(errors, 'password').detail) }}
