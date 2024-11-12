@@ -50,6 +50,8 @@ const createInvoice = () => {
                             <tr>
                                 <th>Actions</th>
                                 <th>ID</th>
+                                <th>Bill To</th>
+                                <th>Pay To</th>
                                 <th>Amount Paid</th>
                                 <th>Amount Due</th>
                             </tr>
@@ -62,6 +64,8 @@ const createInvoice = () => {
                                     <button class="action red">Delete</button>
                                 </td>
                                 <td>{{ invoice.id }}</td>
+                                <td>{{ invoice.bill_to.first_name }} {{ invoice.bill_to.last_name }}</td>
+                                <td>{{ invoice.pay_to.first_name }} {{ invoice.pay_to.last_name }}</td>
                                 <td>$0.00</td>
                                 <td class="amount-due">${{ invoice.amount_due }}</td>
                             </tr>
@@ -127,10 +131,20 @@ const createInvoice = () => {
                     text-transform: uppercase;
                     border-bottom: 1px solid #f4f4f4;
                 }
+
+                th:first-child {
+                    padding-left: 0;
+                    text-align: left;
+                }
             }
 
             tbody {
+                font-size: 0.76em;
                 font-weight: 300;
+
+                td:first-child {
+                    text-align: left;
+                }
 
                 .amount-due {
                     color: #5bb32a;
