@@ -96,6 +96,14 @@ button.red {
     }
 }
 
+.error {
+    display: block;
+    margin: 3px 0 0 0;
+    color: #ff3e2b;
+    font-size: 0.7em;
+    font-weight: 300;
+}
+
 #app {
     min-width: 100vh;
     min-height: 100vh;

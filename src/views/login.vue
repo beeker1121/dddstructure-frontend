@@ -5,6 +5,8 @@ import { useRouter } from 'vue-router';
 import api from '../api'
 import { setJWT } from '../helpers/auth'
 import Header from '../components/header.vue'
+import { getParamError, getSingleError } from '../helpers/errors';
+import { capitalize } from '../helpers/strings';
 
 // Constants.
 const router = useRouter()
@@ -17,6 +19,8 @@ const router = useRouter()
 // Data.
 const email = ref<String>('')
 const password = ref<String>('')
+
+const errors = ref<any>([])
 
 // Stores.
 
@@ -31,6 +35,9 @@ onMounted(() => {
 
 // Methods.
 const login = () => {
+    // Reset errors.
+    errors.value = []
+
     // Build the payload.
     const payload = {
         email: email.value,
@@ -42,12 +49,11 @@ const login = () => {
     .then(res => res.json()).then((res) => {
         // Handle errors.
         if (res.errors) {
-            console.log('errors: ' + res.errors)
+            errors.value = res.errors
             return
         }
 
         // Set JWT.
-        console.log('setting data: ' + res.data)
         setJWT(res.data)
 
         // Redirect to dashboard.
@@ -75,11 +81,18 @@ const login = () => {
                         <div class="field email">
                             <label for="email">Email Address</label>
                             <input id="email" type="email" placeholder="email@example.com" v-model="email" />
+                            <span v-if="getParamError(errors, 'email')" class="error">
+                                {{ capitalize(getParamError(errors, 'email').detail) }}
+                            </span>
                         </div>
                         <div class="field password">
                             <label for="password">password</label>
                             <input id="password" type="password" placeholder="" v-model="password" />
                         </div>
+
+                        <span v-if="getSingleError(errors)" class="error">
+                            {{ capitalize(getSingleError(errors).detail) }}
+                        </span>
 
                         <button class="submit" @click="login">Login</button>
                     </div>
