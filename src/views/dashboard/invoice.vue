@@ -27,7 +27,7 @@ type Invoice = {
     amount_due: number
 }
 
-let invoice = ref<Invoice>({
+const invoice = ref<Invoice>({
     bill_to: {
         first_name: "",
         last_name: ""
@@ -60,7 +60,6 @@ const create = () => {
     .then(res => res.json()).then((res) => {
         // Handle errors.
         if (res.errors) {
-            console.log('errors: ' + res.errors)
             return
         }
 
