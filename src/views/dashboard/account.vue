@@ -4,16 +4,10 @@ import { onMounted } from 'vue'
 import Sidebar from '../../components/dashboard/sidebar.vue'
 
 // Constants.
-// const router = useRouter()
 
 // Props.
-// const props = defineProps({
-//     prop1: String
-// })
 
 // Data.
-// const email = ref<String>('')
-// const password = ref<String>('')
 
 // Stores.
 
@@ -71,7 +65,7 @@ onMounted(() => {
     }
 
     .account-form {
-        padding: 8px 14px;
+        padding: 20px 24px;
         background-color: #fff;
         border-radius: 4px;
         box-shadow: 2px 1px 3px 0 rgba(37, 37, 37, 0.2);

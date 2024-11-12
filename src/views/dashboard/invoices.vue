@@ -9,13 +9,8 @@ import { useInvoicesStore } from '../../stores/invoices'
 const router = useRouter()
 
 // Props.
-// const props = defineProps({
-//     prop1: String
-// })
 
 // Data.
-// const email = ref<String>('')
-// const password = ref<String>('')
 
 // Stores.
 const invoicesStore = useInvoicesStore()
@@ -73,7 +68,13 @@ const createInvoice = () => {
                         </tbody>
                     </table>
                 </div>
-                <div v-else></div>
+                <div v-else class="no-invoices">
+                    <div class="invoice-image">
+                        <font-awesome-icon class="icon" icon="file-invoice-dollar" />
+                    </div>
+
+                    <h3>No invoices!</h3>
+                </div>
             </div>
         </div>
     </div>
@@ -81,9 +82,12 @@ const createInvoice = () => {
 
 <style scoped>
 .invoices {
+    display: flex;
+    flex-direction: column;
     width: 100%;
 
     .header {
+        flex: 0 1 auto;
         display: flex;
         justify-content: space-between;
         align-items: flex-end;
@@ -105,7 +109,7 @@ const createInvoice = () => {
     }
 
     .invoices-list {
-        padding: 8px 14px;
+        padding: 20px 24px;
         background-color: #fff;
         border-radius: 4px;
         box-shadow: 2px 1px 3px 0 rgba(37, 37, 37, 0.2);
@@ -133,6 +137,22 @@ const createInvoice = () => {
                     font-size: 1.8em;
                     font-weight: 400;
                 }
+            }
+        }
+    }
+
+    .no-invoices {
+        flex: 1 1 auto;
+        align-content: center;
+        color: #fff;
+        text-align: center;
+
+        .invoice-image {
+            margin: 0 auto;
+
+            svg {
+                width: 100px;
+                height: 100px;
             }
         }
     }

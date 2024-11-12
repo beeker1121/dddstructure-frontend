@@ -118,29 +118,6 @@ const login = () => {
             border: 0;
             border-top: 1px solid #f4f4f4;
         }
-
-        .form {
-            .field {
-                margin: 12px 0 0 0;
-            }
-
-            label {
-                display: block;
-                margin: 0 0 2px 0;
-                font-size: 0.74em;
-                font-weight: 400;
-                text-transform: uppercase;
-            }
-
-            input {
-                margin: 0;
-                padding: 10px 8px;
-                width: 100%;
-                border: 1px solid #e3e3e3;
-                border-radius: 4px;
-                box-sizing: border-box;
-            }
-        }
     }
 }
 </style>
