@@ -5,6 +5,7 @@ import apiUser from '../../api-user'
 import Sidebar from '../../components/dashboard/sidebar.vue'
 import { getParamError } from '../../helpers/errors';
 import { capitalize } from '../../helpers/strings';
+import { useUserStore } from '../../stores/user';
 
 // Constants.
 
@@ -17,10 +18,14 @@ const password = ref<String>('')
 const errors = ref<any>([])
 
 // Stores.
+const userStore = useUserStore()
 
 // Mounted.
 onMounted(() => {
     console.log('mounted')
+
+    // Set user email.
+    email.value = userStore.user.email
 })
 
 // Computed.
@@ -33,13 +38,17 @@ const update = () => {
     errors.value = []
 
     // Build the payload.
-    const payload = {
+    let payload = {
         email: email.value,
-        password: password.value
+    } as any
+
+    // Handle password.
+    if (password.value) {
+        payload.password = password.value
     }
 
     // Call the API.
-    apiUser.createInvoice(payload)
+    apiUser.updateUser(payload)
     .then(res => res.json()).then((res) => {
         // Handle errors.
         if (res.errors) {

@@ -7,6 +7,7 @@ import { setJWT } from '../helpers/auth'
 import Header from '../components/header.vue'
 import { getParamError, getSingleError } from '../helpers/errors';
 import { capitalize } from '../helpers/strings';
+import { useUserStore } from '../stores/user';
 
 // Constants.
 const router = useRouter()
@@ -23,6 +24,7 @@ const password = ref<String>('')
 const errors = ref<any>([])
 
 // Stores.
+const userStore = useUserStore()
 
 // Mounted.
 onMounted(() => {
@@ -55,6 +57,9 @@ const login = () => {
 
         // Set JWT.
         setJWT(res.data)
+
+        // Set user in store.
+        userStore.getUser()
 
         // Redirect to dashboard.
         router.push({ name: 'Dashboard' })

@@ -22,6 +22,24 @@ const api = {
                 'Authorization': 'Bearer ' + getJWT()
             }
         })
+    },
+    getUser: () => {
+        return fetch(apiURL + '/user', {
+            method: 'GET',
+            headers: {
+                'Authorization': 'Bearer ' + getJWT()
+            }
+        })
+    },
+    updateUser: (payload: object) => {
+        return fetch(apiURL + '/user', {
+            method: 'POST',
+            body: JSON.stringify(payload),
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + getJWT()
+            }
+        })
     }
 }
 
