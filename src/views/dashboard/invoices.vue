@@ -61,7 +61,7 @@ const createInvoice = () => {
                                 <td>
                                     <button class="action">Edit</button>
                                     <button class="action">View</button>
-                                    <button class="action red">Delete</button>
+                                    <button class="action red"><font-awesome-icon class="icon" icon="trash-can" /></button>
                                 </td>
                                 <td>{{ invoice.id }}</td>
                                 <td>{{ invoice.bill_to.first_name }} {{ invoice.bill_to.last_name }}</td>
