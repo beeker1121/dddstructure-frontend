@@ -88,7 +88,7 @@ const update = () => {
                         </span>
                     </div>
 
-                    <button @click="update">Update</button>
+                    <button class="green-bg" @click="update">Update</button>
                 </div>
             </div>
         </div>

@@ -72,11 +72,21 @@ button.action {
 }
 
 button.green {
-    color: #5bb32a;
+    color: #61a839;
 }
 
 button.red {
     color: #ff3e2b;
+}
+
+button.green-bg {
+    color: #fff;
+    background-color: #61a839;
+}
+
+button.blue-bg {
+    color: #fff;
+    background-color: rgb(91, 144, 215);
 }
 
 .field {

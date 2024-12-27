@@ -100,7 +100,7 @@ const login = () => {
                             {{ capitalize(getSingleError(errors).detail) }}
                         </span>
 
-                        <button class="submit" @click="login">Login</button>
+                        <button class="submit blue-bg" @click="login">Login</button>
                     </div>
                 </div>
             </div>
@@ -135,7 +135,7 @@ const login = () => {
         hr {
             margin: 14px 0;
             border: 0;
-            border-top: 1px solid #f4f4f4;
+            border-top: 1px solid #ddd;
         }
     }
 }

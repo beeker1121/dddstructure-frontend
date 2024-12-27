@@ -119,7 +119,7 @@ const create = () => {
                         </div>
                     </div>
 
-                    <button @click="create">Create Invoice</button>
+                    <button class="green-bg" @click="create">Create Invoice</button>
                 </div>
             </div>
         </div>

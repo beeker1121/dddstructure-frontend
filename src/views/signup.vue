@@ -94,7 +94,7 @@ const signup = () => {
                             </span>
                         </div>
 
-                        <button class="submit" @click="signup">Signup</button>
+                        <button class="submit blue-bg" @click="signup">Signup</button>
                     </div>
                 </div>
             </div>
@@ -129,7 +129,7 @@ const signup = () => {
         hr {
             margin: 14px 0;
             border: 0;
-            border-top: 1px solid #f4f4f4;
+            border-top: 1px solid #ddd;
         }
     }
 }

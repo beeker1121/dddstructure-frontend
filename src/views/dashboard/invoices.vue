@@ -171,7 +171,7 @@ const createInvoice = () => {
                 }
 
                 .amount-due {
-                    color: #5bb32a;
+                    color: #61a839;
                     font-weight: 600;
                     text-align: right;
                 }

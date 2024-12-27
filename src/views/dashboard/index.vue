@@ -75,7 +75,7 @@ import Sidebar from '../../components/dashboard/sidebar.vue'
 
         .revenue {
             span:last-child {
-                color: #5bb32a;
+                color: #61a839;
             }
         }
     }
