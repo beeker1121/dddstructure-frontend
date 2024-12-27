@@ -38,7 +38,7 @@ import Sidebar from '../../components/dashboard/sidebar.vue'
             margin: 0;
             padding: 0;
             color: #fff;
-            font-size: 2.6em;
+            font-size: 2.2em;
             font-weight: 700;
             text-transform: uppercase;
         }
@@ -59,16 +59,17 @@ import Sidebar from '../../components/dashboard/sidebar.vue'
 
             span:first-child {
                 display: block;
-                color: #999;
+                color: #555;
                 font-size: 0.82em;
                 font-weight: 300;
-                text-transform: uppercase;
+                /* text-transform: uppercase; */
             }
 
             span:last-child {
                 display: block;
                 margin: 6px 0 0 0;
                 font-size: 1.8em;
+                font-weight: 600;
             }
         }
 

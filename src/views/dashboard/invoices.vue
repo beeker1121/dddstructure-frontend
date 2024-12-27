@@ -41,7 +41,7 @@ const createInvoice = () => {
             <div class="invoices">
                 <div class="header">
                     <h1>Invoices</h1>
-                    <button class="green" @click="createInvoice">New Invoice</button>
+                    <button @click="createInvoice">New Invoice</button>
                 </div>
 
                 <div v-if="invoicesStore.invoices.length" class="invoices-list">
@@ -52,22 +52,22 @@ const createInvoice = () => {
                                 <th>ID</th>
                                 <th>Bill To</th>
                                 <th>Pay To</th>
-                                <th>Amount Paid</th>
-                                <th>Amount Due</th>
+                                <th class="amount-paid-header">Amount Paid</th>
+                                <th class="amount-due-header">Amount Due</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr v-for="invoice in invoicesStore.invoices">
                                 <td>
                                     <button class="action">Edit</button>
-                                    <button class="action green">View</button>
+                                    <button class="action">View</button>
                                     <button class="action red">Delete</button>
                                 </td>
                                 <td>{{ invoice.id }}</td>
                                 <td>{{ invoice.bill_to.first_name }} {{ invoice.bill_to.last_name }}</td>
                                 <td>{{ invoice.pay_to.first_name }} {{ invoice.pay_to.last_name }}</td>
-                                <td>$0.00</td>
-                                <td class="amount-due">${{ invoice.amount_due }}</td>
+                                <td class="amount-paid">$0.00 <span class="currency">USD</span></td>
+                                <td class="amount-due">${{ invoice.amount_due }}.00 <span class="currency">USD</span></td>
                             </tr>
                         </tbody>
                     </table>
@@ -94,14 +94,13 @@ const createInvoice = () => {
         flex: 0 1 auto;
         display: flex;
         justify-content: space-between;
-        align-items: flex-end;
         margin: 0 0 20px 0;
 
         h1 {
             margin: 0;
             padding: 0;
             color: #fff;
-            font-size: 2.6em;
+            font-size: 2.2em;
             font-weight: 700;
             text-transform: uppercase;
         }
@@ -113,7 +112,7 @@ const createInvoice = () => {
     }
 
     .invoices-list {
-        padding: 20px 24px;
+        padding: 8px 26px;
         background-color: #fff;
         border-radius: 4px;
         box-shadow: 2px 1px 3px 0 rgba(37, 37, 37, 0.2);
@@ -124,11 +123,9 @@ const createInvoice = () => {
 
             thead {
                 th {
-                    padding: 12px;
-                    color: #999;
-                    font-size: 0.76em;
-                    font-weight: 300;
-                    text-transform: uppercase;
+                    padding: 12px 0;
+                    /* color: #999; */
+                    font-weight: 600;
                     border-bottom: 1px solid #f4f4f4;
                 }
 
@@ -136,20 +133,45 @@ const createInvoice = () => {
                     padding-left: 0;
                     text-align: left;
                 }
+
+                .amount-paid-header {
+                    text-align: right;
+                }
+
+                .amount-due-header {
+                    text-align: right;
+                }
             }
 
             tbody {
-                font-size: 0.76em;
-                font-weight: 300;
+                td {
+                    padding: 10px 0;
+                    border-bottom: 1px solid #eee;
+
+                    .currency {
+                        color: #ccc;
+                        font-size: 0.64em;
+                        font-weight: 400;
+                    }
+                }
 
                 td:first-child {
                     text-align: left;
                 }
 
+                tr:last-child td {
+                    border-bottom: 0;
+                }
+
+                .amount-paid {
+                    font-weight: 600;
+                    text-align: right;
+                }
+
                 .amount-due {
                     color: #5bb32a;
-                    font-size: 1.8em;
-                    font-weight: 400;
+                    font-weight: 600;
+                    text-align: right;
                 }
             }
         }

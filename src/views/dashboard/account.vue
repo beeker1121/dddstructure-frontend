@@ -88,7 +88,7 @@ const update = () => {
                         </span>
                     </div>
 
-                    <button class="green" @click="update">Update</button>
+                    <button @click="update">Update</button>
                 </div>
             </div>
         </div>
@@ -102,14 +102,13 @@ const update = () => {
     .header {
         display: flex;
         justify-content: space-between;
-        align-items: flex-end;
         margin: 0 0 20px 0;
 
         h1 {
             margin: 0;
             padding: 0;
             color: #fff;
-            font-size: 2.6em;
+            font-size: 2.2em;
             font-weight: 700;
             text-transform: uppercase;
         }

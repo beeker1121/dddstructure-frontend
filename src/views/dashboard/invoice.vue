@@ -119,7 +119,7 @@ const create = () => {
                         </div>
                     </div>
 
-                    <button class="green" @click="create">Submit</button>
+                    <button @click="create">Create Invoice</button>
                 </div>
             </div>
         </div>
@@ -133,14 +133,13 @@ const create = () => {
     .header {
         display: flex;
         justify-content: space-between;
-        align-items: flex-end;
         margin: 0 0 20px 0;
 
         h1 {
             margin: 0;
             padding: 0;
             color: #fff;
-            font-size: 2.6em;
+            font-size: 2.2em;
             font-weight: 700;
             text-transform: uppercase;
         }
@@ -163,8 +162,8 @@ const create = () => {
             h3 {
                 margin: 0;
                 padding: 0;
-                font-size: 1.4em;
-                font-weight: 700;
+                font-size: 1.2em;
+                font-weight: 600;
             }
         }
     }

@@ -1,8 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100..900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap');
 
 :root {
-    font-family: "Lexend Deca", sans-serif;
-    line-height: 1.5;
+    color: #555;
+    font-family: "Figtree", sans-serif;
+    font-optical-sizing: auto;
     font-weight: 400;
 
     /* color-scheme: light dark;
@@ -42,11 +46,11 @@ button {
     margin: 16px 0 0 0;
     padding: 0.6em 1.2em;
     width: 100%;
+    color: #555;
     font-size: 1em;
     font-weight: 500;
     font-family: inherit;
-    color: #f9f9f9;
-    background-color: rgb(53, 131, 235);
+    background-color: rgb(244, 244, 244);
     border-radius: 4px;
     border: 1px solid transparent;
     cursor: pointer;
@@ -55,44 +59,52 @@ button {
 button:hover {
     top: -1px;
     opacity: 0.92;
-    box-shadow: 0px 1px 2px 0px rgba(34, 34, 34, 0.26);
+    box-shadow: 0px 1px 2px 0px rgba(34, 34, 34, 0.16);
 }
 
 button.action {
     margin: 0 6px 0 0;
     padding: 0.3em 1em;
     width: auto;
-    font-size: 0.74em;
-    font-weight: 400;
-    text-transform: uppercase;
+    font-size: 0.82em;
+    font-weight: 600;
 }
 
 button.green {
-    background-color: #5bb32a;
+    color: #5bb32a;
 }
 
 button.red {
-    background-color: #ff3e2b;
+    color: #ff3e2b;
 }
 
 .field {
-    margin: 12px 0 0 0;
+    margin: 8px 0 0 0;
 
     label {
         display: block;
-        margin: 0 0 2px 0;
-        font-size: 0.74em;
-        font-weight: 400;
-        text-transform: uppercase;
+        margin: 0 0 4px 0;
+        color: #888;
+        font-size: 0.78em;
+        font-weight: 500;
+        /* text-transform: uppercase; */
     }
 
     input {
         margin: 0;
-        padding: 10px 8px;
+        padding: 8px 8px;
         width: 100%;
+        font-family: "Figtree", sans-serif;
+        font-optical-sizing: auto;
+        font-size: 0.8em;
+        font-weight: 500;
         border: 1px solid #e3e3e3;
         border-radius: 4px;
         box-sizing: border-box;
+    }
+
+    input::placeholder {
+        opacity: 0.4;
     }
 }
 
@@ -138,7 +150,7 @@ button.red {
   
 @media (prefers-color-scheme: light) {
     :root {
-        color: #213547;
+        /* color: #213547; */
         background-color: #ffffff;
     }
     a:hover {
