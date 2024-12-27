@@ -124,8 +124,10 @@ const createInvoice = () => {
             thead {
                 th {
                     padding: 12px 0;
-                    /* color: #999; */
+                    color: #bbb;
+                    font-size: 0.8em;
                     font-weight: 600;
+                    text-transform: uppercase;
                     border-bottom: 1px solid #f4f4f4;
                 }
 
