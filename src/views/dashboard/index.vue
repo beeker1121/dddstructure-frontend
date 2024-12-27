@@ -51,7 +51,7 @@ import Sidebar from '../../components/dashboard/sidebar.vue'
 
         .card {
             flex: 1 0 auto;
-            padding: 8px 14px;
+            padding: 12px 14px;
             background-color: #fff;
             border-radius: 4px;
             box-shadow: 2px 1px 3px 0 rgba(37, 37, 37, 0.2);
