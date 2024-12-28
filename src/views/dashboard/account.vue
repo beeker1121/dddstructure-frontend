@@ -108,9 +108,8 @@ const update = () => {
             margin: 0;
             padding: 0;
             color: #fff;
-            font-size: 2.2em;
-            font-weight: 700;
-            text-transform: uppercase;
+            font-size: 1.8em;
+            font-weight: 500;
         }
 
         button {
