@@ -524,7 +524,6 @@ const create = () => {
                             color: #bbb;
                             /* font-size: 0.8em; */
                             font-weight: 500;
-                            text-transform: uppercase;
                             border-bottom: 1px solid #e3e3e3;
                         }
 
@@ -575,18 +574,18 @@ const create = () => {
 
                         .total {
                             padding: 0 0 0 8px;
-                            color: #61a839;
                             font-weight: 600;
                             text-align: right;
 
                             .field {
                                 position: relative;
-                                top: 6px;
+                                top: 4px;
+                                font-size: 0.9em;
 
                                 .currency {
                                     display: block;
                                     position: relative;
-                                    top: -4px;
+                                    top: -3px;
                                 }
                             }
                         }

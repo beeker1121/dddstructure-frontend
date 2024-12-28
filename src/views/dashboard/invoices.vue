@@ -128,7 +128,6 @@ const createInvoice = () => {
                     color: #bbb;
                     /* font-size: 0.8em; */
                     font-weight: 500;
-                    text-transform: uppercase;
                     border-bottom: 1px solid #e3e3e3;
                 }
 
