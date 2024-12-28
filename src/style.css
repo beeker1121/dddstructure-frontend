@@ -157,7 +157,7 @@ button.blue-bg {
     .content {
         display: flex;
         flex: 1 1 100%;
-        padding: 28px 80px;
+        padding: 28px 60px;
         /* background: linear-gradient(45deg, #3583eb 0%,#6ba2ea 100%); */
         background: linear-gradient(45deg, #3371c6 0%,#72a2e1 100%);
     }

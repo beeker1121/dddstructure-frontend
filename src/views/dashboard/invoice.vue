@@ -276,7 +276,7 @@ const create = () => {
                                         </td>
                                         <td class="quantity">
                                             <div class="field">
-                                                <input type="text" placeholder="0" />
+                                                <input type="number" placeholder="0" />
                                             </div>
                                         </td>
                                         <td class="price">
@@ -295,6 +295,9 @@ const create = () => {
                                             <div class="field">
                                                 <input type="text" placeholder="Description" />
                                             </div>
+                                        </td>
+                                        <td class="remove">
+                                            <button class="action red"><font-awesome-icon class="icon" icon="trash-can" /></button>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -581,6 +584,14 @@ const create = () => {
                                     position: relative;
                                     top: -4px;
                                 }
+                            }
+                        }
+
+                        .remove {
+                            text-align: right;
+
+                            button {
+                                margin: 8px 0 0 0;
                             }
                         }
                     }
