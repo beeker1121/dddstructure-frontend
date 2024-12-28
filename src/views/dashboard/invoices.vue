@@ -119,17 +119,18 @@ const createInvoice = () => {
 
         table {
             width: 100%;
-            font-size: 0.78em;
             text-align: center;
 
             thead {
+                font-size: 0.78em;
+
                 th {
                     padding: 12px 0;
                     color: #bbb;
                     /* font-size: 0.8em; */
                     font-weight: 600;
                     text-transform: uppercase;
-                    border-bottom: 1px solid #f4f4f4;
+                    border-bottom: 1px solid #e3e3e3;
                 }
 
                 th:first-child {
@@ -147,6 +148,8 @@ const createInvoice = () => {
             }
 
             tbody {
+                font-size: 0.88em;
+
                 td {
                     padding: 10px 0;
                     border-bottom: 1px solid #eee;

@@ -1,7 +1,7 @@
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faPhone, faChartSimple, faFileInvoiceDollar, faRightFromBracket, faUser, faTrashCan } from '@fortawesome/free-solid-svg-icons'
+import { faPhone, faChartSimple, faFileInvoiceDollar, faRightFromBracket, faUser, faTrashCan, faCreditCard, faMoneyBillTransfer, faBuildingColumns } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 import App from './App.vue'
@@ -17,7 +17,10 @@ library.add(
     faFileInvoiceDollar,
     faRightFromBracket,
     faUser,
-    faTrashCan
+    faTrashCan,
+    faCreditCard,
+    faMoneyBillTransfer,
+    faBuildingColumns
 )
 
 // Create app.
