@@ -31,6 +31,12 @@ const createInvoice = () => {
     // Redirect to create invoice.
     router.push({ name: 'Invoice' })
 }
+
+const editInvoice = (id: number) => {
+    // Redirect to edit invoice.
+    console.log('going')
+    router.push({ name: 'InvoiceEdit', params: { id } })
+}
 </script>
 
 <template>
@@ -59,7 +65,7 @@ const createInvoice = () => {
                         <tbody>
                             <tr v-for="invoice in invoicesStore.invoices">
                                 <td>
-                                    <button class="action">Edit</button>
+                                    <button class="action" @click="editInvoice(invoice.id)">Edit</button>
                                     <button class="action">View</button>
                                     <button class="action red"><font-awesome-icon class="icon" icon="trash-can" /></button>
                                 </td>
@@ -119,6 +125,7 @@ const createInvoice = () => {
         table {
             width: 100%;
             text-align: center;
+            border-spacing: 0;
 
             thead {
                 font-size: 0.78em;

@@ -5,6 +5,7 @@ const apiURL = 'http://localhost:5173/api/v1'
 
 // api defines the main API calls.
 const api = {
+    // Invoice
     createInvoice: (payload: object) => {
         return fetch(apiURL + '/invoice', {
             method: 'POST',
@@ -23,6 +24,26 @@ const api = {
             }
         })
     },
+    getInvoice: (id: number) => {
+        return fetch(apiURL + '/invoice/' + id, {
+            method: 'GET',
+            headers: {
+                'Authorization': 'Bearer ' + getJWT()
+            }
+        })
+    },
+    updateInvoice: (id: number, payload: object) => {
+        return fetch(apiURL + '/invoice/' + id, {
+            method: 'POST',
+            body: JSON.stringify(payload),
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + getJWT()
+            }
+        })
+    },
+
+    // User
     getUser: () => {
         return fetch(apiURL + '/user', {
             method: 'GET',

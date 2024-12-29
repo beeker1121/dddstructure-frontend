@@ -1,12 +1,13 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
-import { useRouter } from 'vue-router';
+import { useRouter, useRoute } from 'vue-router';
 
 import apiUser from '../../api-user'
 import Sidebar from '../../components/dashboard/sidebar.vue'
 
 // Constants.
 const router = useRouter()
+const route = useRoute()
 
 // Props.
 
@@ -45,7 +46,7 @@ type Invoice = {
     amount_due: number
 }
 
-const invoice = ref<Invoice>({
+let invoice = ref<Invoice>({
     bill_to: {
         first_name: "",
         last_name: "",
@@ -80,6 +81,14 @@ const invoice = ref<Invoice>({
 // Mounted.
 onMounted(() => {
     console.log('mounted')
+
+    // Load invoice if editing.
+    if (route.params.id) {
+        apiUser.getInvoice(parseInt(route.params.id as string))
+        .then(res => res.json()).then(res => {
+            invoice.value = res.data
+        })
+    }
 })
 
 // Computed.
@@ -93,7 +102,7 @@ const create = () => {
 
     // Call the API.
     apiUser.createInvoice(payload)
-    .then(res => res.json()).then((res) => {
+    .then(res => res.json()).then(res => {
         // Handle errors.
         if (res.errors) {
             return
@@ -104,6 +113,34 @@ const create = () => {
     }).catch((err) => {
         console.log('error: ' + err)
     })
+}
+
+const update = (id: number) => {
+    // Build the payload.
+    const payload = { ...invoice.value }
+
+    // Call the API.
+    apiUser.updateInvoice(id, payload)
+    .then(res => res.json()).then(res => {
+        // Handle errors.
+        if (res.errors) {
+            return
+        }
+
+        // Redirect to invoices.
+        router.push({ name: 'Invoices' })
+    }).catch((err) => {
+        console.log('error: ' + err)
+    })
+}
+
+const save = () => {
+    if (route.params.id) {
+        update(parseInt(route.params.id as string))
+        return
+    }
+
+    create()
 }
 </script>
 
@@ -411,7 +448,7 @@ const create = () => {
                             </div>
                         </div>
 
-                        <button class="green-bg" @click="create">Create Invoice</button>
+                        <button class="green-bg" @click="save">{{ route.params.id ? 'Update' : 'Create' }} Invoice</button>
                     </div>
                 </div>
             </div>

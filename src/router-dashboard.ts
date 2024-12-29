@@ -27,6 +27,12 @@ const routes = [
         beforeEnter: initialAuthCheck
     },
     {
+        path: '/dashboard/invoice/:id',
+        name: 'InvoiceEdit',
+        component: Invoice,
+        beforeEnter: initialAuthCheck
+    },
+    {
         path: '/dashboard/account',
         name: 'Account',
         component: Account,
