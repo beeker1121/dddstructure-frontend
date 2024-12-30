@@ -41,12 +41,23 @@ type PayTo = {
 }
 
 type Invoice = {
+    invoice_number: string
+    po_number: string
+    currency: string
+    due_date: string
+    message: string
     bill_to: BillTo,
     pay_to: PayTo,
+    tax_rate: string
     amount_due: number
 }
 
 let invoice = ref<Invoice>({
+    invoice_number: "",
+    po_number: "",
+    currency: "",
+    due_date: "",
+    message: "",
     bill_to: {
         first_name: "",
         last_name: "",
@@ -73,6 +84,7 @@ let invoice = ref<Invoice>({
         email: "",
         phone: ""
     },
+    tax_rate: "",
     amount_due: 0
 })
 
@@ -376,30 +388,30 @@ const save = () => {
                             <div class="invoice-po-number">
                                 <div class="field">
                                     <label for="invoice-number">Invoice Number</label>
-                                    <input id="invoice-number" type="text" placeholder="" />
+                                    <input id="invoice-number" type="text" placeholder="" v-model="invoice.invoice_number" />
                                 </div>
 
                                 <div class="field">
                                     <label for="po-number">PO Number</label>
-                                    <input id="po-number" type="text" placeholder="" />
+                                    <input id="po-number" type="text" placeholder="" v-model="invoice.po_number" />
                                 </div>
                             </div>
 
                             <div class="currency-due-date">
                                 <div class="field">
                                     <label for="currency">Currency</label>
-                                    <input id="currency" type="text" placeholder="USD" />
+                                    <input id="currency" type="text" placeholder="USD" v-model="invoice.currency" />
                                 </div>
 
                                 <div class="field">
                                     <label for="due-date">Due Date</label>
-                                    <input id="due-date" type="text" placeholder="" />
+                                    <input id="due-date" type="text" placeholder="" v-model="invoice.due_date" />
                                 </div>
                             </div>
 
                             <div class="field">
                                 <label for="message">Message</label>
-                                <input id="message" type="text" placeholder="Thank you!" />
+                                <input id="message" type="text" placeholder="Thank you!" v-model="invoice.message" />
                             </div>
                         </div>
 
@@ -429,7 +441,7 @@ const save = () => {
                                         <td>Tax Rate</td>
                                         <td>
                                             <div class="field">
-                                                <input id="tax-rate" class="tax-rate" type="text" placeholder="7.25" /><span class="percentage">%</span>
+                                                <input id="tax-rate" class="tax-rate" type="text" placeholder="7.25" v-model="invoice.tax_rate" /><span class="percentage">%</span>
                                             </div>
                                         </td>
                                     </tr>
