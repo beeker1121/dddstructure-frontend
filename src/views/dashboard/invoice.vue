@@ -497,6 +497,7 @@ const save = () => {
         gap: 20px;
 
         .invoice-form {
+            flex: 1 1 auto;
             padding: 20px 24px;
             background-color: #fff;
             border-radius: 4px;
@@ -519,6 +520,7 @@ const save = () => {
             .bill-to, .pay-to {
                 display: flex;
                 flex-direction: column;
+                flex: 1 1 auto;
 
                 .name {
                     display: flex;
