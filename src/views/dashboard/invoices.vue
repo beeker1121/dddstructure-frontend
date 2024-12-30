@@ -51,7 +51,7 @@ const editInvoice = (id: number) => {
                 </div>
 
                 <div v-if="invoicesStore.invoices.length" class="invoices-list">
-                    <table>
+                    <table class="table-general">
                         <thead>
                             <tr>
                                 <th>Actions</th>
@@ -122,27 +122,8 @@ const editInvoice = (id: number) => {
         border-radius: 4px;
         box-shadow: 2px 1px 3px 0 rgba(37, 37, 37, 0.2);
 
-        table {
-            width: 100%;
-            text-align: center;
-            border-spacing: 0;
-
+        .table-general {
             thead {
-                font-size: 0.78em;
-
-                th {
-                    padding: 12px 0;
-                    color: #bbb;
-                    /* font-size: 0.8em; */
-                    font-weight: 500;
-                    border-bottom: 1px solid #e3e3e3;
-                }
-
-                th:first-child {
-                    padding-left: 0;
-                    text-align: left;
-                }
-
                 .amount-paid-header {
                     text-align: right;
                 }
@@ -157,21 +138,6 @@ const editInvoice = (id: number) => {
 
                 td {
                     padding: 10px 0;
-                    border-bottom: 1px solid #eee;
-
-                    .currency {
-                        color: #bbb;
-                        font-size: 0.64em;
-                        font-weight: 400;
-                    }
-                }
-
-                td:first-child {
-                    text-align: left;
-                }
-
-                tr:last-child td {
-                    border-bottom: 0;
                 }
 
                 .amount-paid {

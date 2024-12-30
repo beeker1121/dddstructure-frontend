@@ -307,7 +307,7 @@ const save = () => {
                         <div class="line-items">
                             <h3>Line Items</h3>
 
-                            <table>
+                            <table class="table-general">
                                 <thead>
                                     <tr>
                                         <th>Name &amp; Description</th>
@@ -560,55 +560,9 @@ const save = () => {
             .line-items {
                 margin: 24px 0 0 0;
 
-                table {
-                    width: 100%;
-                    text-align: center;
-                    border-spacing: 0;
-
-                    thead {
-                        font-size: 0.78em;
-
-                        th {
-                            padding: 12px 0;
-                            color: #bbb;
-                            /* font-size: 0.8em; */
-                            font-weight: 500;
-                            border-bottom: 1px solid #e3e3e3;
-                        }
-
-                        th:first-child {
-                            padding-left: 0;
-                            text-align: left;
-                        }
-                        
-                        th:last-child {
-                            padding-left: 0;
-                            text-align: right;
-                        }
-
-                        .amount-paid-header {
-                            text-align: right;
-                        }
-
-                        .amount-due-header {
-                            text-align: right;
-                        }
-                    }
-
+                .table-general {
                     tbody {
                         td {
-                            .currency {
-                                color: #bbb;
-                                font-size: 0.64em;
-                                font-weight: 400;
-                            }
-                        }
-
-                        td:first-child {
-                            text-align: left;
-                        }
-
-                        tr:last-child td {
                             border-bottom: 0;
                         }
 

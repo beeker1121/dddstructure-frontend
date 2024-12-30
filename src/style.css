@@ -89,6 +89,53 @@ button.blue-bg {
     background-color: rgb(91, 144, 215);
 }
 
+.table-general {
+    width: 100%;
+    text-align: center;
+    border-spacing: 0;
+
+    thead {
+        font-size: 0.78em;
+
+        th {
+            padding: 12px 0;
+            color: #bbb;
+            font-weight: 500;
+            border-bottom: 1px solid #e3e3e3;
+        }
+
+        th:first-child {
+            padding-left: 0;
+            text-align: left;
+        }
+
+        th:last-child {
+            padding-left: 0;
+            text-align: right;
+        }
+    }
+
+    tbody {
+        td {
+            border-bottom: 1px solid #eee;
+
+            .currency {
+                color: #bbb;
+                font-size: 0.64em;
+                font-weight: 400;
+            }
+        }
+
+        td:first-child {
+            text-align: left;
+        }
+
+        tr:last-child td {
+            border-bottom: 0;
+        }
+    }
+}
+
 .field {
     margin: 8px 0 0 0;
 
