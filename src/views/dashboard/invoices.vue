@@ -158,6 +158,11 @@ const editInvoice = (id: number) => {
                     padding: 10px 0;
                 }
 
+                button.action {
+                    font-size: 0.88em;
+                    font-weight: 600;
+                }
+
                 .bill-to-td, .pay-to-td {
                     vertical-align: top;
                 }
