@@ -70,8 +70,26 @@ const editInvoice = (id: number) => {
                                     <button class="action red"><font-awesome-icon class="icon" icon="trash-can" /></button>
                                 </td>
                                 <td>{{ invoice.id }}</td>
-                                <td>{{ invoice.bill_to.first_name }} {{ invoice.bill_to.last_name }}</td>
-                                <td>{{ invoice.pay_to.first_name }} {{ invoice.pay_to.last_name }}</td>
+                                <td class="bill-to-td">
+                                    <div class="bill-to">
+                                        <div v-if="invoice.bill_to.first_name !== '' && invoice.bill_to.last_name !== ''">
+                                            <div class="first-last-name">{{ invoice.bill_to.first_name }} {{ invoice.bill_to.last_name }}</div>
+                                            <div v-if="invoice.bill_to.company !== ''" class="company">{{ invoice.bill_to.company }}</div>
+                                        </div>
+                                        <div v-else-if="invoice.bill_to.company !== ''" class="company">{{ invoice.bill_to.company }}</div>
+                                        <div class="state-country">{{ invoice.bill_to.city }} {{ invoice.bill_to.state }}, {{ invoice.bill_to.country }}</div>
+                                    </div>
+                                </td>
+                                <td class="pay-to-td">
+                                    <div class="pay-to">
+                                        <div v-if="invoice.pay_to.first_name !== '' && invoice.pay_to.last_name !== ''">
+                                            <div class="first-last-name">{{ invoice.pay_to.first_name }} {{ invoice.pay_to.last_name }}</div>
+                                            <div v-if="invoice.pay_to.company !== ''" class="company">{{ invoice.pay_to.company }}</div>
+                                        </div>
+                                        <div v-else-if="invoice.pay_to.company !== ''" class="company">{{ invoice.pay_to.company }}</div>
+                                        <div class="state-country">{{ invoice.pay_to.city }} {{ invoice.pay_to.state }}, {{ invoice.pay_to.country }}</div>
+                                    </div>
+                                </td>
                                 <td class="amount-paid">$0.00 <span class="currency">USD</span></td>
                                 <td class="amount-due">${{ invoice.amount_due }}.00 <span class="currency">USD</span></td>
                             </tr>
@@ -140,13 +158,29 @@ const editInvoice = (id: number) => {
                     padding: 10px 0;
                 }
 
+                .bill-to-td, .pay-to-td {
+                    vertical-align: top;
+                }
+
+                .bill-to, .pay-to {
+                    display: inline-block;
+                    text-align: center;
+
+                    .state-country {
+                        font-size: 0.88em;
+                        font-weight: 600;
+                    }
+                }
+
                 .amount-paid {
+                    font-size: 1.3em;
                     font-weight: 600;
                     text-align: right;
                 }
 
                 .amount-due {
                     color: #61a839;
+                    font-size: 1.3em;
                     font-weight: 600;
                     text-align: right;
                 }
