@@ -166,9 +166,13 @@ const editInvoice = (id: number) => {
                     display: inline-block;
                     text-align: center;
 
+                    .company {
+                        color: #999;
+                        font-size: 0.8em;
+                    }
+
                     .state-country {
-                        font-size: 0.88em;
-                        font-weight: 600;
+                        font-size: 0.8em;
                     }
                 }
 
