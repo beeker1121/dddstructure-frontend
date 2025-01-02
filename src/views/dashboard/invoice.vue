@@ -40,6 +40,14 @@ type PayTo = {
     phone: string
 }
 
+type LineItem = {
+    name: string
+    description: string
+    quantity: number
+    price: number | string
+    subtotal: number
+}
+
 type Invoice = {
     invoice_number: string
     po_number: string
@@ -48,6 +56,7 @@ type Invoice = {
     message: string
     bill_to: BillTo,
     pay_to: PayTo,
+    line_items: LineItem[]
     tax_rate: string
     amount_due: number
 }
@@ -84,6 +93,13 @@ let invoice = ref<Invoice>({
         email: "",
         phone: ""
     },
+    line_items: [{
+        name: "",
+        description: "",
+        quantity: 0,
+        price: 0,
+        subtotal: 0
+    }],
     tax_rate: "",
     amount_due: 0
 })
@@ -112,6 +128,11 @@ const create = () => {
     // Build the payload.
     const payload = { ...invoice.value }
 
+    // Sanitize line items.
+    for (let lineItem of payload.line_items) {
+        lineItem.price = parseInt(lineItem.price as string)
+    }
+
     // Call the API.
     apiUser.createInvoice(payload)
     .then(res => res.json()).then(res => {
@@ -130,6 +151,11 @@ const create = () => {
 const update = (id: number) => {
     // Build the payload.
     const payload = { ...invoice.value }
+
+    // Sanitize line items.
+    for (let lineItem of payload.line_items) {
+        lineItem.price = parseInt(lineItem.price as string)
+    }
 
     // Call the API.
     apiUser.updateInvoice(id, payload)
@@ -153,6 +179,22 @@ const save = () => {
     }
 
     create()
+}
+
+const addItem = () => {
+    const newItem = {
+        name: "",
+        description: "",
+        quantity: 0,
+        price: 0,
+        subtotal: 0
+    }
+
+    invoice.value.line_items.push(newItem)
+}
+
+const removeItem = (index: number) => {
+    invoice.value.line_items.splice(index, 1)
 }
 </script>
 
@@ -317,38 +359,40 @@ const save = () => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td class="name">
-                                            <div class="field">
-                                                <input type="text" placeholder="Name" />
-                                            </div>
-                                        </td>
-                                        <td class="quantity">
-                                            <div class="field">
-                                                <input type="number" placeholder="0" />
-                                            </div>
-                                        </td>
-                                        <td class="price">
-                                            <div class="field">
-                                                <input type="text" placeholder="0" />
-                                            </div>
-                                        </td>
-                                        <td class="total">
-                                            <div class="field">
-                                                $100.00 <span class="currency">USD</span>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="description" colspan="3">
-                                            <div class="field">
-                                                <input type="text" placeholder="Description" />
-                                            </div>
-                                        </td>
-                                        <td class="remove">
-                                            <button class="action red"><font-awesome-icon class="icon" icon="trash-can" /></button>
-                                        </td>
-                                    </tr>
+                                    <template v-for="(lineItem, index) in invoice.line_items">
+                                        <tr>
+                                            <td class="name">
+                                                <div class="field">
+                                                    <input type="text" placeholder="Name" v-model="lineItem.name" />
+                                                </div>
+                                            </td>
+                                            <td class="quantity">
+                                                <div class="field">
+                                                    <input type="number" placeholder="0" v-model="lineItem.quantity" />
+                                                </div>
+                                            </td>
+                                            <td class="price">
+                                                <div class="field">
+                                                    <input type="text" placeholder="0" v-model="lineItem.price" />
+                                                </div>
+                                            </td>
+                                            <td class="total">
+                                                <div class="field">
+                                                    ${{ lineItem.quantity * lineItem.price }} <span class="currency">USD</span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="description" colspan="3">
+                                                <div class="field">
+                                                    <input type="text" placeholder="Description" v-model="lineItem.description" />
+                                                </div>
+                                            </td>
+                                            <td class="remove">
+                                                <button class="action red" @click="removeItem(index)"><font-awesome-icon class="icon" icon="trash-can" /></button>
+                                            </td>
+                                        </tr>
+                                    </template>
                                 </tbody>
                             </table>
 
@@ -377,7 +421,7 @@ const save = () => {
                                 </div>
                             </div> -->
 
-                            <div class="add-item">+ Add Item</div>
+                            <div class="add-item" @click="addItem">+ Add Item</div>
                         </div>
                     </div>
 
@@ -595,11 +639,25 @@ const save = () => {
                             }
                         }
 
-                        .remove {
-                            text-align: right;
+                        tr {
+                            .description, .remove {
+                                padding: 0 0 8px 0;
+                                border-bottom: 1px solid #eee;
+                            }
 
-                            button {
-                                margin: 8px 0 0 0;
+                            .remove {
+                                text-align: right;
+
+                                button {
+                                    margin: 8px 0 0 0;
+                                }
+                            }
+                        }
+
+                        tr:last-child {
+                            .description, .remove {
+                                padding: 0;
+                                border-bottom: 0;
                             }
                         }
                     }
