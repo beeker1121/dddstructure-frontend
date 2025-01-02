@@ -202,6 +202,7 @@ const editInvoice = (id: number) => {
         align-content: center;
         color: #fff;
         text-align: center;
+        text-shadow: 2px 1px 3px rgba(37, 37, 37, 0.2);
 
         .invoice-image {
             margin: 0 auto;
@@ -209,6 +210,7 @@ const editInvoice = (id: number) => {
             svg {
                 width: 100px;
                 height: 100px;
+                filter: drop-shadow(2px 1px 3px rgba(37, 37, 37, 0.2));
             }
         }
     }
