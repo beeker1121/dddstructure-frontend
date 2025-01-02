@@ -608,40 +608,44 @@ const removeItem = (index: number) => {
 
                 .table-general {
                     tbody {
-                        td {
-                            border-bottom: 0;
-                        }
+                        tr {
+                            td {
+                                border-bottom: 0;
+                            }
 
-                        .name {
-                            padding: 0 8px 0 0;
-                            width: 60%;
-                        }
+                            .name {
+                                padding: 8px 8px 0 0;
+                                width: 60%;
+                            }
 
-                        .quantity {
-                            padding: 0 8px 0 0;
-                        }
+                            .quantity {
+                                padding: 8px 8px 0 0;
+                            }
 
-                        .total {
-                            padding: 0 0 0 8px;
-                            font-weight: 600;
-                            text-align: right;
+                            .price {
+                                padding: 8px 0 0 0;
+                            }
 
-                            .field {
-                                position: relative;
-                                top: 4px;
-                                font-size: 0.9em;
+                            .total {
+                                padding: 0 0 0 8px;
+                                font-weight: 600;
+                                text-align: right;
 
-                                .currency {
-                                    display: block;
+                                .field {
                                     position: relative;
-                                    top: -3px;
+                                    top: 4px;
+                                    font-size: 0.9em;
+
+                                    .currency {
+                                        display: block;
+                                        position: relative;
+                                        top: -3px;
+                                    }
                                 }
                             }
-                        }
 
-                        tr {
                             .description, .remove {
-                                padding: 0 0 8px 0;
+                                padding: 0 0 16px 0;
                                 border-bottom: 1px solid #eee;
                             }
 
@@ -656,7 +660,7 @@ const removeItem = (index: number) => {
 
                         tr:last-child {
                             .description, .remove {
-                                padding: 0;
+                                padding: 0 0 8px 0;
                                 border-bottom: 0;
                             }
                         }
