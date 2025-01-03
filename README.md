@@ -25,3 +25,6 @@ Learn more about the recommended Project Setup and IDE Support in the [Vue Docs 
 - Site footer.
 - Finish homepage and about page.
 - ToS and user agreement documents.
+- Make mobile friendly.
+  - Sidebar should be collapsible or a dropdown.
+  - At the very least, make the invoice payment page mobile friendly.

@@ -65,7 +65,7 @@ type Invoice = {
 let invoice = ref<Invoice>({
     invoice_number: "",
     po_number: "",
-    currency: "",
+    currency: "USD",
     due_date: "",
     message: "",
     bill_to: {
@@ -458,7 +458,10 @@ const togglePaymentMethod = (method: string) => {
                             <div class="currency-due-date">
                                 <div class="field">
                                     <label for="currency">Currency</label>
-                                    <input id="currency" type="text" placeholder="USD" v-model="invoice.currency" />
+                                    <select id="currency" v-model="invoice.currency">
+                                        <option value="USD">USD</option>
+                                        <option value="CAD">CAD</option>
+                                    </select>
                                 </div>
 
                                 <div class="field">
@@ -729,6 +732,11 @@ const togglePaymentMethod = (method: string) => {
 
                     div:first-child {
                         flex: 1 1 35%;
+                        max-width: 35%;
+
+                        select {
+                            width: 100%;
+                        }
                     }
                 }
             }
