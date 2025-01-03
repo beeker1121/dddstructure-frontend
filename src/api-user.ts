@@ -42,6 +42,14 @@ const api = {
             }
         })
     },
+    deleteInvoice: (id: number) => {
+        return fetch(apiURL + '/invoice/' + id, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': 'Bearer ' + getJWT()
+            }
+        })
+    },
 
     // User
     getUser: () => {

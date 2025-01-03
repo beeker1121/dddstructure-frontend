@@ -2,6 +2,7 @@
 import { onMounted } from 'vue'
 import { useRouter } from 'vue-router';
 
+import apiUser from '../../api-user'
 import Sidebar from '../../components/dashboard/sidebar.vue'
 import { useInvoicesStore } from '../../stores/invoices'
 
@@ -37,6 +38,25 @@ const editInvoice = (id: number) => {
     console.log('going')
     router.push({ name: 'InvoiceEdit', params: { id } })
 }
+
+const deleteInvoice = (id: number) => {
+    // Call the API.
+    apiUser.deleteInvoice(id)
+    .then(res => {
+        // Handle errors.
+        if (res.status !== 200) {
+            res.json().then(res => {
+                if (res.errors) {
+                    return
+                }
+            })
+        }
+
+        invoicesStore.getInvoices()
+    }).catch((err) => {
+        console.log('error: ' + err)
+    })
+}
 </script>
 
 <template>
@@ -67,7 +87,7 @@ const editInvoice = (id: number) => {
                                 <td>
                                     <button class="action" @click="editInvoice(invoice.id)">Edit</button>
                                     <button class="action">View</button>
-                                    <button class="action red"><font-awesome-icon class="icon" icon="trash-can" /></button>
+                                    <button class="action red" @click="deleteInvoice(invoice.id)"><font-awesome-icon class="icon" icon="trash-can" /></button>
                                 </td>
                                 <td>{{ invoice.id }}</td>
                                 <td class="bill-to-td">
