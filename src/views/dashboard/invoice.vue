@@ -644,13 +644,15 @@ const removeItem = (index: number) => {
                                 }
                             }
 
-                            .description, .remove {
+                            .description {
                                 padding: 0 0 16px 0;
                                 border-bottom: 1px solid #eee;
                             }
 
                             .remove {
+                                padding: 0 0 16px 8px;
                                 text-align: right;
+                                border-bottom: 1px solid #eee;
 
                                 button {
                                     margin: 8px 0 0 0;
@@ -659,8 +661,12 @@ const removeItem = (index: number) => {
                         }
 
                         tr:last-child {
-                            .description, .remove {
-                                padding: 0 0 8px 0;
+                            .description {
+                                padding: 0 0 16px 0;
+                                border-bottom: 0;
+                            }
+
+                            .remove {
                                 border-bottom: 0;
                             }
                         }
