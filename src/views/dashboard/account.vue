@@ -22,10 +22,10 @@ const userStore = useUserStore()
 
 // Mounted.
 onMounted(() => {
-    console.log('mounted')
-
-    // Set user email.
-    email.value = userStore.user.email
+    userStore.getUser().then(() => {
+        // Set user email.
+        email.value = userStore.user.email
+    })
 })
 
 // Computed.
@@ -38,9 +38,12 @@ const update = () => {
     errors.value = []
 
     // Build the payload.
-    let payload = {
-        email: email.value,
-    } as any
+    let payload = {} as any
+
+    // Handle email.
+    if (email.value) {
+        payload.email = email.value
+    }
 
     // Handle password.
     if (password.value) {
@@ -97,7 +100,9 @@ const update = () => {
 
 <style scoped>
 .account {
+    margin: 0 auto;
     width: 100%;
+    max-width: 500px;
 
     .header {
         display: flex;

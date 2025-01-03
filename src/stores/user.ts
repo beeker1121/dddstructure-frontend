@@ -11,7 +11,7 @@ export const useUserStore = defineStore('user', {
     actions: {
         getUser() {
             // Call the API.
-            apiUser.getUser()
+            return apiUser.getUser()
             .then(res => res.json()).then((res) => {
                 // Handle errors.
                 if (res.errors) {

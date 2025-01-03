@@ -11,7 +11,7 @@ export const useInvoicesStore = defineStore('invoices', {
     actions: {
         getInvoices() {
             // Call the API.
-            apiUser.getInvoices()
+            return apiUser.getInvoices()
             .then(res => res.json()).then((res) => {
                 // Handle errors.
                 if (res.errors) {
