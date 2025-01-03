@@ -57,6 +57,7 @@ type Invoice = {
     bill_to: BillTo,
     pay_to: PayTo,
     line_items: LineItem[]
+    payment_methods: string[]
     tax_rate: string
     amount_due: number
 }
@@ -100,6 +101,7 @@ let invoice = ref<Invoice>({
         price: 0,
         subtotal: 0
     }],
+    payment_methods: ['card'],
     tax_rate: "",
     amount_due: 0
 })
@@ -195,6 +197,18 @@ const addItem = () => {
 
 const removeItem = (index: number) => {
     invoice.value.line_items.splice(index, 1)
+}
+
+const togglePaymentMethod = (method: string) => {
+    if (invoice.value.payment_methods.includes(method)) {
+        invoice.value.payment_methods = invoice.value.payment_methods.filter((value) => {
+            return value !== method
+        })
+
+        return
+    }
+
+    invoice.value.payment_methods.push(method)
 }
 </script>
 
@@ -463,10 +477,10 @@ const removeItem = (index: number) => {
                             <h3>Payment Methods</h3>
 
                             <div class="methods">
-                                <div class="method card selected">
+                                <div :class="{'method': true, 'card': true, 'selected': invoice.payment_methods.includes('card')}" @click="togglePaymentMethod('card')">
                                     <font-awesome-icon class="icon" icon="credit-card" />Card
                                 </div>
-                                <div class="method ach">
+                                <div :class="{'method': true, 'ach': true, 'selected': invoice.payment_methods.includes('ach')}" @click="togglePaymentMethod('ach')">
                                     <font-awesome-icon class="icon" icon="building-columns" />ACH
                                 </div>
                             </div>
