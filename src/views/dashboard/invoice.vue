@@ -676,11 +676,12 @@ const togglePaymentMethod = (method: string) => {
 
                         tr:last-child {
                             .description {
-                                padding: 0 0 16px 0;
+                                padding: 0;
                                 border-bottom: 0;
                             }
 
                             .remove {
+                                padding: 0 0 0 8px;
                                 border-bottom: 0;
                             }
                         }
@@ -688,7 +689,7 @@ const togglePaymentMethod = (method: string) => {
                 }
 
                 .add-item {
-                    margin: 0 0 0 6px;
+                    margin: 16px 0 0 6px;
                     color: rgb(91, 144, 215);
                     font-size: 0.8em;
                     font-weight: 600;
