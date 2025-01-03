@@ -674,7 +674,7 @@ const removeItem = (index: number) => {
                 }
 
                 .add-item {
-                    margin: 8px 0 0 6px;
+                    margin: 0 0 0 6px;
                     color: rgb(91, 144, 215);
                     font-size: 0.8em;
                     font-weight: 600;
