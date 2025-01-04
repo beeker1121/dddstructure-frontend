@@ -124,7 +124,7 @@ const datePickerFormat = (date: [Date, Date]) => {
                     <button @click="createInvoice">New Invoice</button>
                 </div>
 
-                <div v-if="invoicesStore.invoices.length" class="invoices-list">
+                <div class="invoices-list">
                     <div class="search-wrapper">
                         <div class="field">
                             <input id="search" type="text" placeholder="Search by ID, name, amount..." v-model="search" />
@@ -180,13 +180,14 @@ const datePickerFormat = (date: [Date, Date]) => {
                             </tr>
                         </tbody>
                     </table>
-                </div>
-                <div v-else class="no-invoices">
-                    <div class="invoice-image">
-                        <font-awesome-icon class="icon" icon="file-invoice-dollar" />
-                    </div>
 
-                    <h3>No invoices!</h3>
+                    <div v-if="!invoicesStore.invoices.length" class="no-invoices">
+                        <div class="invoice-image">
+                            <font-awesome-icon class="icon" icon="file-invoice-dollar" />
+                        </div>
+
+                        <h3>No invoices!</h3>
+                    </div>
                 </div>
             </div>
         </div>
@@ -227,6 +228,7 @@ const datePickerFormat = (date: [Date, Date]) => {
 
         .search-wrapper {
             display: flex;
+            margin: 0 0 8px 0;
             justify-content: flex-start;
             gap: 8px;
 
@@ -297,22 +299,23 @@ const datePickerFormat = (date: [Date, Date]) => {
                 }
             }
         }
-    }
 
-    .no-invoices {
-        flex: 1 1 auto;
-        align-content: center;
-        color: #fff;
-        text-align: center;
-        text-shadow: 2px 1px 3px rgba(37, 37, 37, 0.2);
+        .no-invoices {
+            margin: 24px 0 0 0;
+            flex: 1 1 auto;
+            align-content: center;
+            color: #555;
+            text-align: center;
+            text-shadow: 2px 1px 3px rgba(37, 37, 37, 0.2);
 
-        .invoice-image {
-            margin: 0 auto;
+            .invoice-image {
+                margin: 0 auto;
 
-            svg {
-                width: 100px;
-                height: 100px;
-                filter: drop-shadow(2px 1px 3px rgba(37, 37, 37, 0.2));
+                svg {
+                    width: 50px;
+                    height: 50px;
+                    filter: drop-shadow(2px 1px 3px rgba(37, 37, 37, 0.2));
+                }
             }
         }
     }
