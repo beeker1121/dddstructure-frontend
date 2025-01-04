@@ -226,6 +226,10 @@ button.blue-bg {
         --dp-text-color: #555;
     }
 
+    .dp__input_icon {
+        color: rgb(53, 131, 235);
+    }
+
     .dp__input_focus {
         border-color: #e3e3e3;
     }
