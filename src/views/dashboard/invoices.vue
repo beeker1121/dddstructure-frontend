@@ -1,10 +1,13 @@
 <script setup lang="ts">
-import { onMounted } from 'vue'
+import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router';
 
 import apiUser from '../../api-user'
 import Sidebar from '../../components/dashboard/sidebar.vue'
 import { useInvoicesStore } from '../../stores/invoices'
+
+import VueDatePicker from '@vuepic/vue-datepicker';
+import '@vuepic/vue-datepicker/dist/main.css'
 
 // Constants.
 const router = useRouter()
@@ -12,15 +15,16 @@ const router = useRouter()
 // Props.
 
 // Data.
+let search = ref('')
+
+let dueDate = ref([new Date(Date.now()), new Date(Date.now())])
 
 // Stores.
 const invoicesStore = useInvoicesStore()
 
 // Mounted.
 onMounted(() => {
-    console.log('mounted')
-
-    invoicesStore.getInvoices()
+    searchInvoices()
 })
 
 // Computed.
@@ -28,6 +32,20 @@ onMounted(() => {
 // Watchers.
 
 // Methods.
+const searchInvoices = () => {
+    // Set created at start and end times.
+    dueDate.value[0].setHours(0, 0, 0, 0)
+    dueDate.value[1].setHours(23, 59, 59, 0)
+
+    // Search invoices.
+    invoicesStore.getInvoices({
+        created_at: {
+            start_date: dueDate.value[0],
+            end_date: dueDate.value[1]
+        }
+    })
+}
+
 const createInvoice = () => {
     // Redirect to create invoice.
     router.push({ name: 'Invoice' })
@@ -35,7 +53,6 @@ const createInvoice = () => {
 
 const editInvoice = (id: number) => {
     // Redirect to edit invoice.
-    console.log('going')
     router.push({ name: 'InvoiceEdit', params: { id } })
 }
 
@@ -52,10 +69,47 @@ const deleteInvoice = (id: number) => {
             })
         }
 
-        invoicesStore.getInvoices()
+        searchInvoices()
     }).catch((err) => {
         console.log('error: ' + err)
     })
+}
+
+const datePickerFormat = (date: [Date, Date]) => {
+    const getSuffix = (num: number): any => {
+        const suffixes = {
+            '1': 'st',
+            '21': 'st',
+            '31': 'st',
+            '2': 'nd',
+            '22': 'nd',
+            '3': 'rd',
+            '23': 'rd'
+        } as any
+
+        return suffixes[num] || 'th'
+    }
+
+    let monthNames = [
+        "Jan", "Feb", "Mar",
+        "Apr", "May", "Jun",
+        "Jul", "Aug", "Sep",
+        "Oct", "Nov", "Dec"
+    ];
+
+    // Handle start date.
+    const startDate = date[0]
+    const startDateStr = monthNames[startDate.getMonth()] + ' ' +
+        startDate.getDate() + getSuffix(startDate.getDate()) + ', ' +
+        startDate.getFullYear();
+    
+    // Handle end date.
+    const endDate = date[1]
+    const endDateStr = monthNames[endDate.getMonth()] + ' ' +
+        endDate.getDate() + getSuffix(endDate.getDate()) + ', ' +
+        endDate.getFullYear();
+
+    return startDateStr + ' to ' + endDateStr
 }
 </script>
 
@@ -71,6 +125,17 @@ const deleteInvoice = (id: number) => {
                 </div>
 
                 <div v-if="invoicesStore.invoices.length" class="invoices-list">
+                    <div class="search-wrapper">
+                        <div class="field">
+                            <input id="search" type="text" placeholder="Search by ID, name, amount..." v-model="search" />
+                        </div>
+
+                        <div class="field-datepicker">
+                            <VueDatePicker v-model="dueDate" :enable-time-picker="false" :format="datePickerFormat" :clearable="false" range auto-apply />
+                        </div>
+
+                        <button class="green-bg" @click="searchInvoices">Search</button>
+                    </div>
                     <table class="table-general">
                         <thead>
                             <tr>
@@ -159,6 +224,23 @@ const deleteInvoice = (id: number) => {
         background-color: #fff;
         border-radius: 4px;
         box-shadow: 2px 1px 3px 0 rgba(37, 37, 37, 0.2);
+
+        .search-wrapper {
+            display: flex;
+            justify-content: flex-start;
+            gap: 8px;
+
+            .field-datepicker {
+                min-width: 240px;
+            }
+
+            button {
+                flex: 0 1;
+                margin: 8px 0 0 0;
+                padding: 4px 8px;
+                font-size: 0.8em;
+            }
+        }
 
         .table-general {
             thead {

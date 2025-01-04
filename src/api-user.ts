@@ -16,8 +16,8 @@ const api = {
             }
         })
     },
-    getInvoices: () => {
-        return fetch(apiURL + '/invoice', {
+    getInvoices: (query: string) => {
+        return fetch(apiURL + '/invoice' + query, {
             method: 'GET',
             headers: {
                 'Authorization': 'Bearer ' + getJWT()
