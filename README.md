@@ -28,3 +28,4 @@ Learn more about the recommended Project Setup and IDE Support in the [Vue Docs 
 - Make mobile friendly.
   - Sidebar should be collapsible or a dropdown.
   - At the very least, make the invoice payment page mobile friendly.
+- Add keypress watcher for all forms so users can just press enter to submit, such as on signup and login pages.

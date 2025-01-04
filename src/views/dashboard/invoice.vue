@@ -122,7 +122,8 @@ onMounted(() => {
             invoice.value = res.data
 
             // Set due date.
-            dueDate.value = new Date(Date.parse(invoice.value.due_date))
+            dueDate.value = new Date(invoice.value.due_date)
+            dueDate.value.setHours(23, 59, 59, 999)
         })
     }
 })
@@ -143,7 +144,9 @@ const create = () => {
 
     // Set due date.
     // payload.due_date = dueDate.value.toJSON().slice(0, 10)
-    payload.due_date = dueDate.value.toISOString().split('T')[0]
+    let d = dueDate.value
+    d.setHours(23, 59, 59, 999)
+    payload.due_date = d.toISOString().split('T')[0]
 
     // Call the API.
     apiUser.createInvoice(payload)
