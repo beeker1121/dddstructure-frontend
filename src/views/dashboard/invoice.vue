@@ -5,6 +5,9 @@ import { useRouter, useRoute } from 'vue-router';
 import apiUser from '../../api-user'
 import Sidebar from '../../components/dashboard/sidebar.vue'
 
+import VueDatePicker from '@vuepic/vue-datepicker';
+import '@vuepic/vue-datepicker/dist/main.css'
+
 // Constants.
 const router = useRouter()
 const route = useRoute()
@@ -105,6 +108,8 @@ let invoice = ref<Invoice>({
     tax_rate: "",
     amount_due: 0
 })
+
+let dueDate = ref(new Date())
 
 // Stores.
 
@@ -464,9 +469,10 @@ const togglePaymentMethod = (method: string) => {
                                     </select>
                                 </div>
 
-                                <div class="field">
+                                <div class="field-datepicker">
                                     <label for="due-date">Due Date</label>
-                                    <input id="due-date" type="text" placeholder="" v-model="invoice.due_date" />
+                                    <VueDatePicker v-model="dueDate" :enable-time-picker="false" :clearable="false" />
+                                    <!-- <input id="due-date" type="text" placeholder="" v-model="invoice.due_date" /> -->
                                 </div>
                             </div>
 

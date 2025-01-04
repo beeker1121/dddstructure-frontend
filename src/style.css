@@ -184,7 +184,46 @@ button.blue-bg {
         border: 1px solid #e3e3e3 !important;
         border-radius: 4px;
         outline: 0;
-      }
+    }
+}
+
+.field-datepicker {
+    margin: 8px 0 0 0;
+    --dp-font-family: "Figtree", sans-serif;
+    --dp-font-size: 0.8em;
+    --dp-border-color: #e3e3e3;
+    --dp-border-color-hover: #e3e3e3;
+    --dp-border-color-focus: #e3e3e3;
+    --dp-input-padding: 8px;
+
+    label {
+        display: block;
+        margin: 0 0 4px 0;
+        color: #888;
+        font-size: 0.78em;
+        font-weight: 500;
+        /* text-transform: uppercase; */
+    }
+
+    input {
+        font-weight: 600;
+    }
+
+    input:hover, input:focus {
+        border: 1px solid #e3e3e3 !important;
+    }
+
+    .dp__theme_dark {
+        --dp-text-color: #555;
+    }
+
+    .dp__theme_light {
+        --dp-text-color: #555;
+    }
+
+    .dp__input_focus {
+        border-color: #e3e3e3;
+    }
 }
 
 .error {
