@@ -224,6 +224,35 @@ const togglePaymentMethod = (method: string) => {
 
     invoice.value.payment_methods.push(method)
 }
+
+const datePickerFormat = (date: Date) => {
+    const getSuffix = (num: number): any => {
+        const suffixes = {
+            '1': 'st',
+            '21': 'st',
+            '31': 'st',
+            '2': 'nd',
+            '22': 'nd',
+            '3': 'rd',
+            '23': 'rd'
+        } as any
+
+        return suffixes[num] || 'th'
+    }
+
+    let monthNames = [
+        "Jan", "Feb", "Mar",
+        "Apr", "May", "Jun",
+        "Jul", "Aug", "Sep",
+        "Oct", "Nov", "Dec"
+    ];
+
+    let dayIndex = date.getDate();
+    let monthIndex = date.getMonth();
+    let year = date.getFullYear();
+
+    return monthNames[monthIndex] + ' ' + dayIndex + getSuffix(dayIndex) + ', ' + year;
+}
 </script>
 
 <template>
@@ -480,7 +509,7 @@ const togglePaymentMethod = (method: string) => {
 
                                 <div class="field-datepicker">
                                     <label for="due-date">Due Date</label>
-                                    <VueDatePicker v-model="dueDate" :enable-time-picker="false" :clearable="false" auto-apply />
+                                    <VueDatePicker v-model="dueDate" :enable-time-picker="false" :format="datePickerFormat" :clearable="false" auto-apply />
                                 </div>
                             </div>
 
