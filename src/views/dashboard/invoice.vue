@@ -509,7 +509,7 @@ const datePickerFormat = (date: Date) => {
 
                                 <div class="field-datepicker">
                                     <label for="due-date">Due Date</label>
-                                    <VueDatePicker v-model="dueDate" :enable-time-picker="false" :format="datePickerFormat" :clearable="false" auto-apply />
+                                    <VueDatePicker v-model="dueDate" :enable-time-picker="false" :format="datePickerFormat" :clearable="false" auto-apply utc />
                                 </div>
                             </div>
 

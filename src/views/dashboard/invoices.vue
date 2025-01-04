@@ -131,7 +131,7 @@ const datePickerFormat = (date: [Date, Date]) => {
                         </div>
 
                         <div class="field-datepicker">
-                            <VueDatePicker v-model="dueDate" :enable-time-picker="false" :format="datePickerFormat" :clearable="false" range auto-apply />
+                            <VueDatePicker v-model="dueDate" :enable-time-picker="false" :format="datePickerFormat" :clearable="false" range auto-apply utc />
                         </div>
 
                         <button class="green-bg" @click="searchInvoices">Search</button>
