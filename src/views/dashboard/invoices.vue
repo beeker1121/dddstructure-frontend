@@ -34,8 +34,8 @@ onMounted(() => {
 // Methods.
 const searchInvoices = () => {
     // Set created at start and end times.
-    dueDate.value[0].setHours(0, 0, 0, 0)
-    dueDate.value[1].setHours(23, 59, 59, 0)
+    dueDate.value[0].setUTCHours(0, 0, 0, 0)
+    dueDate.value[1].setUTCHours(23, 59, 59, 0)
 
     // Search invoices.
     invoicesStore.getInvoices({
