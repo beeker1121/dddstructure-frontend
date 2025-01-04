@@ -195,6 +195,7 @@ button.blue-bg {
     --dp-border-color-hover: #e3e3e3;
     --dp-border-color-focus: #e3e3e3;
     --dp-input-padding: 8px;
+    --dp-input-icon-padding: 28px;
 
     label {
         display: block;
@@ -207,6 +208,10 @@ button.blue-bg {
 
     input {
         font-weight: 600;
+    }
+
+    svg {
+        padding: 0 0 0 8px;
     }
 
     input:hover, input:focus {
