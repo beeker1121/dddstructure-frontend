@@ -115,13 +115,14 @@ let dueDate = ref(new Date())
 
 // Mounted.
 onMounted(() => {
-    console.log('mounted')
-
     // Load invoice if editing.
     if (route.params.id) {
         apiUser.getInvoice(parseInt(route.params.id as string))
         .then(res => res.json()).then(res => {
             invoice.value = res.data
+
+            // Set due date.
+            dueDate.value = new Date(Date.parse(invoice.value.due_date))
         })
     }
 })
@@ -139,6 +140,10 @@ const create = () => {
     for (let lineItem of payload.line_items) {
         lineItem.price = parseInt(lineItem.price as string)
     }
+
+    // Set due date.
+    // payload.due_date = dueDate.value.toJSON().slice(0, 10)
+    payload.due_date = dueDate.value.toISOString().split('T')[0]
 
     // Call the API.
     apiUser.createInvoice(payload)
@@ -163,6 +168,10 @@ const update = (id: number) => {
     for (let lineItem of payload.line_items) {
         lineItem.price = parseInt(lineItem.price as string)
     }
+
+    // Set due date.
+    // payload.due_date = dueDate.value.toJSON().slice(0, 10)
+    payload.due_date = dueDate.value.toISOString().split('T')[0]
 
     // Call the API.
     apiUser.updateInvoice(id, payload)
@@ -471,8 +480,7 @@ const togglePaymentMethod = (method: string) => {
 
                                 <div class="field-datepicker">
                                     <label for="due-date">Due Date</label>
-                                    <VueDatePicker v-model="dueDate" :enable-time-picker="false" :clearable="false" />
-                                    <!-- <input id="due-date" type="text" placeholder="" v-model="invoice.due_date" /> -->
+                                    <VueDatePicker v-model="dueDate" :enable-time-picker="false" :clearable="false" auto-apply />
                                 </div>
                             </div>
 
