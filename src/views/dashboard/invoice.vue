@@ -122,8 +122,10 @@ onMounted(() => {
             invoice.value = res.data
 
             // Set due date.
-            dueDate.value = new Date(invoice.value.due_date)
-            dueDate.value.setHours(23, 59, 59, 999)
+            const end = new Date()
+            end.setHours(23, 59, 59, 999)
+            const endTimeUTC = end.toISOString().split('T')[1].split('.')[0]
+            dueDate.value = new Date(invoice.value.due_date + ' ' + endTimeUTC + 'Z')
         })
     }
 })
