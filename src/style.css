@@ -68,6 +68,12 @@ button.action {
     width: auto;
     font-size: 0.7em;
     font-weight: 500;
+    background-color: #fff;
+    border: 1px solid #e3e3e3;
+}
+
+button.action:hover {
+        box-shadow: none;
 }
 
 button.green {
