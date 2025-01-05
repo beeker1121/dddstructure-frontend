@@ -181,6 +181,16 @@ const datePickerFormat = (date: [Date, Date]) => {
                         </tbody>
                     </table>
 
+                    <div v-if="invoicesStore.invoices.length" class="pagination-two">
+                        <div class="prev">< Prev</div>
+                        <div class="page selected">1</div>
+                        <div class="page">2</div>
+                        <div class="ellipsis">...</div>
+                        <div class="page">6</div>
+                        <div class="page">7</div>
+                        <div class="next">Next ></div>
+                    </div>
+
                     <div v-if="!invoicesStore.invoices.length" class="no-invoices">
                         <div class="invoice-image">
                             <font-awesome-icon class="icon" icon="file-invoice-dollar" />
@@ -229,7 +239,7 @@ const datePickerFormat = (date: [Date, Date]) => {
 
         .search-wrapper {
             display: flex;
-            margin: 0 0 8px 0;
+            margin: 0 0 16px 0;
             justify-content: flex-start;
             gap: 8px;
 
@@ -297,6 +307,28 @@ const datePickerFormat = (date: [Date, Date]) => {
                     font-size: 1.3em;
                     font-weight: 600;
                     text-align: right;
+                }
+            }
+        }
+
+        .pagination-two {
+            display: flex;
+            justify-content: center;
+            gap: 4px;
+            margin: 32px auto 16px auto;
+
+            div {
+                padding: 8px 16px;
+                font-size: 0.8em;
+                font-weight: 600;
+                background-color: #fff;
+                border: 1px solid #e3e3e3;
+                border-radius: 4px;
+                cursor: pointer;
+
+                &.selected {
+                    background-color: #61a839;
+                    color: #fff;
                 }
             }
         }
