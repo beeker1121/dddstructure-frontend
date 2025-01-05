@@ -121,7 +121,7 @@ const datePickerFormat = (date: [Date, Date]) => {
             <div class="invoices">
                 <div class="header">
                     <h1>Invoices</h1>
-                    <button @click="createInvoice">New Invoice</button>
+                    <button class="green-bg" @click="createInvoice">+ New Invoice</button>
                 </div>
 
                 <div class="invoices-list">
@@ -204,7 +204,8 @@ const datePickerFormat = (date: [Date, Date]) => {
         flex: 0 1 auto;
         display: flex;
         justify-content: space-between;
-        margin: 0 0 20px 0;
+        align-items: flex-end;
+        margin: -8px 0 20px 0;
 
         h1 {
             margin: 0;
