@@ -275,7 +275,6 @@ const datePickerFormat = (date: [Date, Date]) => {
 
                 button.action {
                     font-size: 0.88em;
-                    font-weight: 600;
                 }
 
                 .bill-to-td, .pay-to-td {
@@ -297,14 +296,12 @@ const datePickerFormat = (date: [Date, Date]) => {
                 }
 
                 .amount-paid {
-                    font-size: 1.3em;
                     font-weight: 600;
                     text-align: right;
                 }
 
                 .amount-due {
                     color: #61a839;
-                    font-size: 1.3em;
                     font-weight: 600;
                     text-align: right;
                 }
