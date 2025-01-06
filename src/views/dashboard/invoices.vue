@@ -393,8 +393,8 @@ const displayStateCountry = (address: any): string => {
                 cursor: pointer;
 
                 &.selected {
-                    background-color: #61a839;
                     color: #fff;
+                    background-color: #61a839;
                     border: 1px solid #61a839;
                 }
             }
