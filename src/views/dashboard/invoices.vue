@@ -111,6 +111,77 @@ const datePickerFormat = (date: [Date, Date]) => {
 
     return startDateStr + ' to ' + endDateStr
 }
+
+const displayFirstLastName = (address: any): string => {
+    let name = ''
+    if (address.first_name !== '') {
+        name = address.first_name
+    }
+
+    if (address.last_name !== '') {
+        if (name !== '') {
+            name += ' '
+        }
+
+        name += address.last_name
+    }
+
+    return name
+}
+
+const displayStateCountry = (address: any): string => {
+    let ret = ''
+    if (address.city) {
+        ret = address.city
+    }
+
+    if (address.state) {
+        if (ret !== '') {
+            ret += ' '
+        }
+
+        ret += address.state
+    }
+
+    if (address.country) {
+        if (ret !== '') {
+            ret += ', '
+        }
+
+        ret += address.country
+    }
+
+    return ret
+}
+
+// const displayStateCountry = (address: any): string => {
+//     let ret = ''
+//     if (address.city) {
+//         ret = address.city
+//     }
+
+//     if (address.state) {
+//         if (ret !== '') {
+//             ret += ', '
+//         }
+
+//         ret += address.state
+//     }
+
+//     if (address.country) {
+//         if (ret !== '' &&
+//             (address.city === '' || address.state === '')
+//         ) {
+//             ret += ', '
+//         } else if (ret !== '') {
+//             ret += ' '
+//         }
+
+//         ret += address.country
+//     }
+
+//     return ret
+// }
 </script>
 
 <template>
@@ -157,22 +228,20 @@ const datePickerFormat = (date: [Date, Date]) => {
                                 <td>{{ invoice.id }}</td>
                                 <td class="bill-to-td">
                                     <div class="bill-to">
-                                        <div v-if="invoice.bill_to.first_name !== '' && invoice.bill_to.last_name !== ''">
-                                            <div class="first-last-name">{{ invoice.bill_to.first_name }} {{ invoice.bill_to.last_name }}</div>
-                                            <div v-if="invoice.bill_to.company !== ''" class="company">{{ invoice.bill_to.company }}</div>
+                                        <div v-if="displayFirstLastName(invoice.bill_to) !== ''">
+                                            <div class="first-last-name">{{ displayFirstLastName(invoice.bill_to) }}</div>
                                         </div>
-                                        <div v-else-if="invoice.bill_to.company !== ''" class="company">{{ invoice.bill_to.company }}</div>
-                                        <div class="state-country">{{ invoice.bill_to.city }} {{ invoice.bill_to.state }}, {{ invoice.bill_to.country }}</div>
+                                        <div v-if="invoice.bill_to.company !== ''" class="company">{{ invoice.bill_to.company }}</div>
+                                        <div v-if="displayStateCountry(invoice.bill_to) !== ''" class="state-country">{{ displayStateCountry(invoice.bill_to) }}</div>
                                     </div>
                                 </td>
                                 <td class="pay-to-td">
                                     <div class="pay-to">
-                                        <div v-if="invoice.pay_to.first_name !== '' && invoice.pay_to.last_name !== ''">
-                                            <div class="first-last-name">{{ invoice.pay_to.first_name }} {{ invoice.pay_to.last_name }}</div>
-                                            <div v-if="invoice.pay_to.company !== ''" class="company">{{ invoice.pay_to.company }}</div>
+                                        <div v-if="displayFirstLastName(invoice.pay_to) !== ''">
+                                            <div class="first-last-name">{{ displayFirstLastName(invoice.pay_to) }}</div>
                                         </div>
-                                        <div v-else-if="invoice.pay_to.company !== ''" class="company">{{ invoice.pay_to.company }}</div>
-                                        <div class="state-country">{{ invoice.pay_to.city }} {{ invoice.pay_to.state }}, {{ invoice.pay_to.country }}</div>
+                                        <div v-if="invoice.pay_to.company !== ''" class="company">{{ invoice.pay_to.company }}</div>
+                                        <div v-if="displayStateCountry(invoice.pay_to) !== ''" class="state-country">{{ displayStateCountry(invoice.pay_to) }}</div>
                                     </div>
                                 </td>
                                 <td class="amount-paid">$0.00 <span class="currency">USD</span></td>
