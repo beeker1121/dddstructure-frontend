@@ -250,7 +250,7 @@ const displayStateCountry = (address: any): string => {
                         </tbody>
                     </table>
 
-                    <div v-if="invoicesStore.invoices.length" class="pagination-two">
+                    <div v-if="invoicesStore.invoices.length" class="pagination">
                         <div class="prev">< Prev</div>
                         <div class="page selected">1</div>
                         <div class="page">2</div>
@@ -377,7 +377,7 @@ const displayStateCountry = (address: any): string => {
             }
         }
 
-        .pagination-two {
+        .pagination {
             display: flex;
             justify-content: center;
             gap: 4px;
@@ -395,6 +395,7 @@ const displayStateCountry = (address: any): string => {
                 &.selected {
                     background-color: #61a839;
                     color: #fff;
+                    border: 1px solid #61a839;
                 }
             }
         }
