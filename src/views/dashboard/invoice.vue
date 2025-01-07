@@ -5,6 +5,7 @@ import { useRouter, useRoute } from 'vue-router'
 import apiUser from '../../api-user'
 import Sidebar from '../../components/dashboard/sidebar.vue'
 import Money from '../../components/dashboard/money.vue'
+import { displayMoneyFormat } from '../../utils/currency'
 
 import VueDatePicker from '@vuepic/vue-datepicker';
 import '@vuepic/vue-datepicker/dist/main.css'
@@ -141,9 +142,9 @@ const create = () => {
     const payload = { ...invoice.value }
 
     // Sanitize line items.
-    for (let lineItem of payload.line_items) {
-        lineItem.price = lineItem.price
-    }
+    // for (let lineItem of payload.line_items) {
+    //     lineItem.price = lineItem.price
+    // }
 
     // Set due date.
     // payload.due_date = dueDate.value.toJSON().slice(0, 10)
@@ -171,9 +172,9 @@ const update = (id: number) => {
     const payload = { ...invoice.value }
 
     // Sanitize line items.
-    for (let lineItem of payload.line_items) {
-        lineItem.price = lineItem.price
-    }
+    // for (let lineItem of payload.line_items) {
+    //     lineItem.price = lineItem.price
+    // }
 
     // Set due date.
     // payload.due_date = dueDate.value.toJSON().slice(0, 10)
@@ -433,7 +434,7 @@ const datePickerFormat = (date: Date) => {
                                             </td>
                                             <td class="quantity">
                                                 <div class="field">
-                                                    <input type="number" placeholder="0" v-model="lineItem.quantity" />
+                                                    <input type="number" placeholder="0" step="1" v-model="lineItem.quantity" />
                                                 </div>
                                             </td>
                                             <td class="price">
@@ -443,7 +444,7 @@ const datePickerFormat = (date: Date) => {
                                             </td>
                                             <td class="total">
                                                 <div class="field">
-                                                    ${{ lineItem.quantity * lineItem.price }} <span class="currency">USD</span>
+                                                    {{ displayMoneyFormat(lineItem.quantity * lineItem.price, invoice.currency) }} <span class="currency">USD</span>
                                                 </div>
                                             </td>
                                         </tr>
