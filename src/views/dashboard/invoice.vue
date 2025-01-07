@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
-import { useRouter, useRoute } from 'vue-router';
+import { useRouter, useRoute } from 'vue-router'
 
 import apiUser from '../../api-user'
 import Sidebar from '../../components/dashboard/sidebar.vue'
+import Money from '../../components/dashboard/money.vue'
 
 import VueDatePicker from '@vuepic/vue-datepicker';
 import '@vuepic/vue-datepicker/dist/main.css'
@@ -47,7 +48,7 @@ type LineItem = {
     name: string
     description: string
     quantity: number
-    price: number | string
+    price: number
     subtotal: number
 }
 
@@ -141,7 +142,7 @@ const create = () => {
 
     // Sanitize line items.
     for (let lineItem of payload.line_items) {
-        lineItem.price = parseInt(lineItem.price as string)
+        lineItem.price = lineItem.price
     }
 
     // Set due date.
@@ -171,7 +172,7 @@ const update = (id: number) => {
 
     // Sanitize line items.
     for (let lineItem of payload.line_items) {
-        lineItem.price = parseInt(lineItem.price as string)
+        lineItem.price = lineItem.price
     }
 
     // Set due date.
@@ -437,7 +438,7 @@ const datePickerFormat = (date: Date) => {
                                             </td>
                                             <td class="price">
                                                 <div class="field">
-                                                    <input type="text" placeholder="0" v-model="lineItem.price" />
+                                                    <Money v-model="lineItem.price" :currency="invoice.currency" />
                                                 </div>
                                             </td>
                                             <td class="total">
