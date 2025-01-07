@@ -11,9 +11,9 @@ Learn more about the recommended Project Setup and IDE Support in the [Vue Docs 
 - :heavy_check_mark: Need a date selection dropdown.
 - :heavy_check_mark: Need a currency selection dropdown.
 - Need a country selection dropdown (ideally with flags).
-- Money input and masking.
+- :heavy_check_mark: Money input and masking.
 - Phone input masking.
-- Subtotal calculation for line items.
+- :heavy_check_mark: Subtotal calculation for line items.
 - Total calculations for overall invoice.
 - Invoice public payment page.
   - Accepts payments.
