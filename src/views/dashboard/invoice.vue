@@ -271,7 +271,7 @@ const datePickerFormat = (date: Date) => {
         <div class="content">
             <div class="invoice">
                 <div class="header">
-                    <h1>New Invoice</h1>
+                    <h1>{{ route.params.id ? 'Update' : 'New' }} Invoice</h1>
                 </div>
 
                 <div class="invoice-form-wrap">

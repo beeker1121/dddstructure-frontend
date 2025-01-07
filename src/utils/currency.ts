@@ -40,8 +40,13 @@ export const displayMoneyFormat = (amount: number, currency: any): string => {
 
     // Get currency format.
     const f = (currencies as any)[currency]
+    let ret = f.format.format(intToFloat(amount, f.precision))
 
-    return f.format.format(intToFloat(amount, f.precision))
+    // Remove any alphanumeric country designations
+    // from the beginning (ie the 'CA' in 'CA$1.23').
+    ret = ret.replace(/[A-Z]{2,3}/g, '')
+
+    return ret
 }
 
 // intoToFloat take the given integer and precision and returns a float.
