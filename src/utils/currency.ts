@@ -1,3 +1,4 @@
+// currencies stores a list of currencies and their given Intl.NumberFormat.
 export const currencies = {
     'USD': {
         format: new Intl.NumberFormat('en-US', {
@@ -29,6 +30,8 @@ export const currencies = {
     }
 }
 
+// displayMoneyFormat takes the given integer amount and currency and returns a
+// string in the given currency format.
 export const displayMoneyFormat = (amount: number, currency: any): string => {
     // Handle currency.
     if (!currency) {
@@ -41,6 +44,7 @@ export const displayMoneyFormat = (amount: number, currency: any): string => {
     return f.format.format(intToFloat(amount, f.precision))
 }
 
+// intoToFloat take the given integer and precision and returns a float.
 export const intToFloat = (i: number, precision: number): number => {
     // Convert amount from integer to float.
     let s = i.toString()
