@@ -9,12 +9,15 @@ export interface getParamsCreatedAt {
 
 export interface getParams {
     created_at: getParamsCreatedAt | null
+    offset: number
+    limit: number
 }
 
 export const useInvoicesStore = defineStore('invoices', {
     state: () => {
         return {
-            invoices: [] as any
+            invoices: [] as any,
+            totalCount: 0 as number
         }
     },
     actions: {
@@ -46,6 +49,15 @@ export const useInvoicesStore = defineStore('invoices', {
                         query += 'created_at_end=' + params.created_at.end_date.toISOString().slice(0, 19).replace('T', ' ');
                     }
                 }
+
+                if (query === '') {
+                    query += '?'
+                } else {
+                    query += '&'
+                }
+    
+                query += 'offset=' + params.offset.toString()
+                query += '&limit=' + params.limit.toString()
             }
 
             // Call the API.
@@ -58,6 +70,7 @@ export const useInvoicesStore = defineStore('invoices', {
 
                 // Set invoices.
                 this.invoices = res.data
+                this.totalCount = res.meta.total
             }).catch((err) => {
                 console.log('error: ' + err)
             })

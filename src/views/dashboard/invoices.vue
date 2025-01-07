@@ -12,10 +12,13 @@ import '@vuepic/vue-datepicker/dist/main.css'
 // Constants.
 const router = useRouter()
 
+const limit = 10
+
 // Props.
 
 // Data.
 let search = ref('')
+let currentPage = ref(1)
 
 let dueDate = ref([new Date(Date.now()), new Date(Date.now())])
 
@@ -32,18 +35,50 @@ onMounted(() => {
 // Watchers.
 
 // Methods.
-const searchInvoices = () => {
+const searchInvoices = (page?: number) => {
     // Set created at start and end times.
     dueDate.value[0].setHours(0, 0, 0, 0)
     dueDate.value[1].setHours(23, 59, 59, 0)
 
-    // Search invoices.
-    invoicesStore.getInvoices({
+    // Build params.
+    let params = {
         created_at: {
             start_date: dueDate.value[0],
             end_date: dueDate.value[1]
+        },
+        offset: 0,
+        limit: limit
+    }
+
+    if (page && page > 1) {
+        params.offset = (page-1) * limit
+    }
+
+    // Search invoices.
+    invoicesStore.getInvoices(params)
+    .then(() => {
+        if (page) {
+            currentPage.value = page
+        } else {
+            currentPage.value = 1
         }
     })
+}
+
+const nextPage = () => {
+    if (currentPage.value >= getTotalPagesCount()) {
+        return
+    }
+
+    searchInvoices(currentPage.value+1)
+}
+
+const prevPage = () => {
+    if (currentPage.value <= 1) {
+        return
+    }
+
+    searchInvoices(currentPage.value-1)
 }
 
 const createInvoice = () => {
@@ -154,34 +189,196 @@ const displayStateCountry = (address: any): string => {
     return ret
 }
 
-// const displayStateCountry = (address: any): string => {
-//     let ret = ''
-//     if (address.city) {
-//         ret = address.city
-//     }
+const getTotalPagesCount = (): number => {
+    return Math.ceil(invoicesStore.totalCount/limit)
+}
 
-//     if (address.state) {
-//         if (ret !== '') {
-//             ret += ', '
-//         }
+const getPages = (curPage: number, totalPages: number): Array<string> => {
+    let result = []
 
-//         ret += address.state
-//     }
+    // Create a map that holds the previous
+    // and following two page numbers.
+    let surroundingPages = {} as any
+    for (let i = curPage; i > 0; i--) {
+        // Break if we're at 2 entries added.
+        if (curPage-i > 2) {
+            break
+        }
 
-//     if (address.country) {
-//         if (ret !== '' &&
-//             (address.city === '' || address.state === '')
-//         ) {
-//             ret += ', '
-//         } else if (ret !== '') {
-//             ret += ' '
-//         }
+        surroundingPages[i] = true
+    }
 
-//         ret += address.country
-//     }
+    for (let i = curPage; i <= totalPages; i++) {
+        // Break if we're at 2 entries added.
+        if (i-curPage > 2) {
+            break
+        }
 
-//     return ret
-// }
+        surroundingPages[i] = true
+    }
+
+    // Create variable to store the last string
+    // type added, so we can add an ellipsis
+    // when needed.
+    let lastStringType = ''
+
+    // Start the loop.
+    for (let i = 1; i <= totalPages; i++) {
+        // If this is the first iteration.
+        if (i === 1) {
+            result.push('1')
+            lastStringType = 'number'
+            continue
+        }
+
+        // Handle first three pages.
+        if (i <= 3) {
+            result.push(i.toString())
+            lastStringType = 'number'
+            continue
+        }
+
+        // Handle surrounding pages.
+        if (surroundingPages[i]) {
+            result.push(i.toString())
+            lastStringType = 'number'
+            continue
+        }
+
+        // If the current iter is divisible by skip amount.
+        if (i%10 === 0) {
+            result.push(i.toString())
+            lastStringType = 'number'
+            continue
+        }
+
+        // If we're within 3 iterations of the last page.
+        if (i+2 >= totalPages) {
+            result.push(i.toString())
+            lastStringType = 'number'
+            continue
+        }
+
+        // If we got here, we're 'ghosting' in between
+        // the pages or skip amounts, so let's see if
+        // we should output an ellipsis.
+        if (lastStringType === 'number') {
+            result.push('...')
+            lastStringType = 'ellipsis'
+            continue
+        }
+    }
+
+    return result
+}
+
+/* const getPagesString = (curPage: number, totalPages: number): string => {
+    let result = ''
+
+    // Create a map that holds the previous
+    // and following two page numbers.
+    let surroundingPages = {} as any
+    for (let i = curPage; i > 0; i--) {
+        // Break if we're at 2 entries added.
+        if (curPage-i > 2) {
+            break
+        }
+
+        surroundingPages[i] = true
+    }
+
+    for (let i = curPage; i <= totalPages; i++) {
+        // Break if we're at 2 entries added.
+        if (i-curPage > 2) {
+            break
+        }
+
+        surroundingPages[i] = true
+    }
+
+    // Create variable to store the last string
+    // type added, so we can add an ellipsis
+    // when needed.
+    let lastStringType = ''
+
+    // Start the loop.
+    for (let i = 1; i <= totalPages; i++) {
+        // If this is the first iteration.
+        if (i === 1) {
+            result = '1'
+            lastStringType = 'number'
+            continue
+        }
+
+        // Handle first three pages.
+        if (i <= 3) {
+            result += '  ' + i.toString()
+            lastStringType = 'number'
+            continue
+        }
+
+        // Handle surrounding pages.
+        if (surroundingPages[i]) {
+            result += '  ' + i.toString()
+            lastStringType = 'number'
+            continue
+        }
+
+        // If the current iter is divisible by skip amount.
+        if (i%10 === 0) {
+            result += '  ' + i.toString()
+            lastStringType = 'number'
+            continue
+        }
+
+        // If we're within 3 iterations of the last page.
+        if (i+2 >= totalPages) {
+            result += '  ' + i.toString()
+            lastStringType = 'number'
+            continue
+        }
+
+        // If we got here, we're 'ghosting' in between
+        // the pages or skip amounts, so let's see if
+        // we should output an ellipsis.
+        if (lastStringType === 'number') {
+            result += '  ...'
+            lastStringType = 'ellipsis'
+            continue
+        }
+    }
+
+    return result
+} */
+
+/* const displayStateCountry = (address: any): string => {
+    let ret = ''
+    if (address.city) {
+        ret = address.city
+    }
+
+    if (address.state) {
+        if (ret !== '') {
+            ret += ', '
+        }
+
+        ret += address.state
+    }
+
+    if (address.country) {
+        if (ret !== '' &&
+            (address.city === '' || address.state === '')
+        ) {
+            ret += ', '
+        } else if (ret !== '') {
+            ret += ' '
+        }
+
+        ret += address.country
+    }
+
+    return ret
+} */
 </script>
 
 <template>
@@ -205,7 +402,7 @@ const displayStateCountry = (address: any): string => {
                             <VueDatePicker v-model="dueDate" :enable-time-picker="false" :format="datePickerFormat" :clearable="false" range auto-apply />
                         </div>
 
-                        <button class="green-bg" @click="searchInvoices">Search</button>
+                        <button class="green-bg" @click="searchInvoices()">Search</button>
                     </div>
                     <table class="table-general">
                         <thead>
@@ -251,13 +448,17 @@ const displayStateCountry = (address: any): string => {
                     </table>
 
                     <div v-if="invoicesStore.invoices.length" class="pagination">
-                        <div class="prev">< Prev</div>
-                        <div class="page selected">1</div>
-                        <div class="page">2</div>
-                        <div class="ellipsis">...</div>
-                        <div class="page">6</div>
-                        <div class="page">7</div>
-                        <div class="next">Next ></div>
+                        <div class="prev" @click="prevPage">< Prev</div>
+
+                        <template v-for="page in getPages(currentPage, getTotalPagesCount())">
+                            <div v-if="page !== '...'"
+                                :class="{ 'page': true, 'selected': parseInt(page) === currentPage }"
+                                @click="searchInvoices(parseInt(page))"
+                            >{{ page }}</div>
+                            <div v-else class="ellipsis">...</div>
+                        </template>
+
+                        <div class="next" @click="nextPage">Next ></div>
                     </div>
 
                     <div v-if="!invoicesStore.invoices.length" class="no-invoices">
@@ -391,6 +592,20 @@ const displayStateCountry = (address: any): string => {
                 border: 1px solid #e3e3e3;
                 border-radius: 4px;
                 cursor: pointer;
+
+                &.page:hover,
+                &.prev:hover,
+                &.next:hover {
+                    color: #fff;
+                    background-color: #61a839;
+                    border: 1px solid #61a839;
+                }
+
+                &.ellipsis {
+                    padding: 8px 8px;
+                    border: 0;
+                    cursor: default;
+                }
 
                 &.selected {
                     color: #fff;
