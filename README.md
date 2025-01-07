@@ -6,10 +6,10 @@ Learn more about the recommended Project Setup and IDE Support in the [Vue Docs 
 
 # TODO
 
-- Fix bottom spacing of 'Invoices' header on invoices page, button causing spacing issues.
-- Fix name, company, city, country display for bill to and pay to on invoices page. Currently just shows a comma (,) below the person's name if there's no city and country.
-- Need a date selection dropdown.
-- Need a currency selection dropdown.
+- :heavy_check_mark: Fix bottom spacing of 'Invoices' header on invoices page, button causing spacing issues.
+- :heavy_check_mark: Fix name, company, city, country display for bill to and pay to on invoices page. Currently just shows a comma (,) below the person's name if there's no city and country.
+- :heavy_check_mark: Need a date selection dropdown.
+- :heavy_check_mark: Need a currency selection dropdown.
 - Need a country selection dropdown (ideally with flags).
 - Money input and masking.
 - Phone input masking.
@@ -18,10 +18,11 @@ Learn more about the recommended Project Setup and IDE Support in the [Vue Docs 
 - Invoice public payment page.
   - Accepts payments.
   - Updates invoice status.
+  - Mobile friendly.
 - Status on invoices search page.
 - Finish invoices search page.
   - Need search filters.
-  - Need pagination.
+  - :heavy_check_mark: Need pagination.
 - Site footer.
 - Finish homepage and about page.
 - ToS and user agreement documents.
