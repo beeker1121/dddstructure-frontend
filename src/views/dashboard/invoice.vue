@@ -328,7 +328,11 @@ const datePickerFormat = (date: Date) => {
 
                                     <div class="field">
                                         <label for="bill-to-country">Country</label>
-                                        <input id="bill-to-country" type="text" placeholder="" v-model="invoice.bill_to.country" />
+                                        <select id="bill-to-country" v-model="invoice.bill_to.country">
+                                            <option value="" selected>Select country...</option>
+                                            <option value="US">United States</option>
+                                            <option value="CA">Canada</option>
+                                        </select>
                                     </div>
                                 </div>
 
@@ -395,7 +399,11 @@ const datePickerFormat = (date: Date) => {
 
                                     <div class="field">
                                         <label for="pay-to-country">Country</label>
-                                        <input id="pay-to-country" type="text" placeholder="" v-model="invoice.pay_to.country" />
+                                        <select id="pay-to-country" v-model="invoice.pay_to.country">
+                                            <option value="" selected>Select country...</option>
+                                            <option value="US">United States</option>
+                                            <option value="CA">Canada</option>
+                                        </select>
                                     </div>
                                 </div>
 
