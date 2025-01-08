@@ -62,3 +62,59 @@ export const intToFloat = (i: number, precision: number): number => {
 
     return parseFloat(s)
 }
+
+// RoundingType defines a rounding algorithm.
+export enum RoundingType {
+    Round = 'round',
+    Floor = 'floor',
+    Ceil = 'ceil',
+    Bankers = 'bankers'
+}
+
+// percentageFromInt takes the given amount and percentage and calculates the
+// result to the given fraction. The round parameter determines which type of
+// rounding algorithm to use for the final number.
+export const percentageFromInt = (amount: number, percentage: number, fraction: number, round: RoundingType) => {
+    // Calculate percentage.
+    let val = amount * percentage
+    val = val / 100
+  
+    // Remove potential rounding errors by moving decimal
+    // two places past desired fraction and truncating.
+    val = Math.trunc(val*Math.pow(10, fraction+2)) / Math.pow(10, fraction+2)
+  
+    // Handle rounding.
+    switch (round) {
+        case RoundingType.Round:
+            val = Math.round(val*Math.pow(10, fraction)) / Math.pow(10, fraction)
+            break
+        case RoundingType.Floor:
+            val = Math.floor(val*Math.pow(10, fraction)) / Math.pow(10, fraction)
+            break
+        case RoundingType.Ceil:
+            val = Math.ceil(val*Math.pow(10, fraction)) / Math.pow(10, fraction)
+            break
+        case RoundingType.Bankers:
+            val = roundToEven(val*Math.pow(10, fraction)) / Math.pow(10, fraction)
+            break
+        default:
+            val = Math.round(val*Math.pow(10, fraction)) / Math.pow(10, fraction)
+    }
+
+    return val
+}
+
+// roundToEven rounds the given number using banker's rounding.
+const roundToEven = (num: number) => {
+    const decimalPart = num % 1;
+    const integerPart = Math.floor(num);
+
+    if (decimalPart < 0.5) {
+        return Math.floor(num);
+    } else if (decimalPart > 0.5) {
+        return Math.ceil(num);
+    } else {
+        // If exactly 0.5, round to the nearest even integer.
+        return integerPart % 2 === 0 ? integerPart : integerPart + 1;
+    }
+}

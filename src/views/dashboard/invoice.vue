@@ -5,7 +5,7 @@ import { useRouter, useRoute } from 'vue-router'
 import apiUser from '../../api-user'
 import Sidebar from '../../components/dashboard/sidebar.vue'
 import Money from '../../components/dashboard/money.vue'
-import { displayMoneyFormat } from '../../utils/currency'
+import { displayMoneyFormat, percentageFromInt, RoundingType } from '../../utils/currency'
 
 import VueDatePicker from '@vuepic/vue-datepicker';
 import '@vuepic/vue-datepicker/dist/main.css'
@@ -146,6 +146,10 @@ const totals = computed(() => {
     })
 
     // Calculate tax.
+    const taxRate = parseFloat(invoice.value.tax_rate)
+    if (!isNaN(taxRate)) {
+        ret.tax = percentageFromInt(ret.subtotal, taxRate, 0, RoundingType.Bankers)
+    }
 
     // Calculate total.
     ret.total = ret.subtotal + ret.tax
@@ -280,6 +284,10 @@ const datePickerFormat = (date: Date) => {
     let year = date.getFullYear();
 
     return monthNames[monthIndex] + ' ' + dayIndex + getSuffix(dayIndex) + ', ' + year;
+}
+
+const sanitizeFloat = (field: string) => {
+    (invoice.value as any)[field] = (invoice.value as any)[field].replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1')
 }
 </script>
 
@@ -581,12 +589,12 @@ const datePickerFormat = (date: Date) => {
                                         <td>Tax Rate</td>
                                         <td>
                                             <div class="field">
-                                                <input id="tax-rate" class="tax-rate" type="text" placeholder="7.25" v-model="invoice.tax_rate" /><span class="percentage">%</span>
+                                                <input id="tax-rate" class="tax-rate" type="text" placeholder="7.25" v-model="invoice.tax_rate" @input="sanitizeFloat('tax_rate')" /><span class="percentage">%</span>
                                             </div>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Tax (7.25%)</td>
+                                        <td>Tax ({{ invoice.tax_rate }}%)</td>
                                         <td>{{ displayMoneyFormat(totals.tax, invoice.currency) }} <span class="currency">{{ invoice.currency }}</span></td>
                                     </tr>
                                 </tbody>
