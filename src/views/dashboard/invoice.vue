@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 
 import apiUser from '../../api-user'
@@ -134,6 +134,24 @@ onMounted(() => {
 })
 
 // Computed.
+const totals = computed(() => {
+    let ret = {
+        subtotal: 0,
+        tax: 0,
+        total: 0
+    }
+
+    invoice.value.line_items.forEach((lineItem) => {
+        ret.subtotal += lineItem.quantity * lineItem.price
+    })
+
+    // Calculate tax.
+
+    // Calculate total.
+    ret.total = ret.subtotal + ret.tax
+
+    return ret
+})
 
 // Watchers.
 
@@ -557,7 +575,7 @@ const datePickerFormat = (date: Date) => {
                                 <tbody>
                                     <tr>
                                         <td>Subtotal</td>
-                                        <td>$100.00 <span class="currency">{{ invoice.currency }}</span></td>
+                                        <td>{{ displayMoneyFormat(totals.subtotal, invoice.currency) }} <span class="currency">{{ invoice.currency }}</span></td>
                                     </tr>
                                     <tr>
                                         <td>Tax Rate</td>
@@ -569,7 +587,7 @@ const datePickerFormat = (date: Date) => {
                                     </tr>
                                     <tr>
                                         <td>Tax (7.25%)</td>
-                                        <td>$7.25 <span class="currency">{{ invoice.currency }}</span></td>
+                                        <td>{{ displayMoneyFormat(totals.tax, invoice.currency) }} <span class="currency">{{ invoice.currency }}</span></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -578,7 +596,7 @@ const datePickerFormat = (date: Date) => {
 
                             <div class="total">
                                 <div>Total</div>
-                                <div>$107.25 <span class="currency">{{ invoice.currency }}</span></div>
+                                <div>{{ displayMoneyFormat(totals.total, invoice.currency) }} <span class="currency">{{ invoice.currency }}</span></div>
                             </div>
                         </div>
 
