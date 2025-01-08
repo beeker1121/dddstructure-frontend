@@ -621,7 +621,7 @@ const getPages = (curPage: number, totalPages: number): Array<string> => {
             align-content: center;
             color: #555;
             text-align: center;
-            text-shadow: 2px 1px 3px rgba(37, 37, 37, 0.2);
+            text-shadow: 1px 1px 0px rgba(37, 37, 37, 0.2);
 
             .invoice-image {
                 margin: 0 auto;
@@ -629,7 +629,7 @@ const getPages = (curPage: number, totalPages: number): Array<string> => {
                 svg {
                     width: 50px;
                     height: 50px;
-                    filter: drop-shadow(2px 1px 3px rgba(37, 37, 37, 0.2));
+                    filter: drop-shadow(2px 2px 0px rgba(37, 37, 37, 0.2));
                 }
             }
         }
