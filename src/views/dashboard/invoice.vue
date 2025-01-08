@@ -444,7 +444,7 @@ const datePickerFormat = (date: Date) => {
                                             </td>
                                             <td class="total">
                                                 <div class="field">
-                                                    {{ displayMoneyFormat(lineItem.quantity * lineItem.price, invoice.currency) }} <span class="currency">USD</span>
+                                                    {{ displayMoneyFormat(lineItem.quantity * lineItem.price, invoice.currency) }} <span class="currency">{{ invoice.currency }}</span>
                                                 </div>
                                             </td>
                                         </tr>
@@ -548,7 +548,7 @@ const datePickerFormat = (date: Date) => {
                                 <tbody>
                                     <tr>
                                         <td>Subtotal</td>
-                                        <td>$100.00 <span class="currency">USD</span></td>
+                                        <td>$100.00 <span class="currency">{{ invoice.currency }}</span></td>
                                     </tr>
                                     <tr>
                                         <td>Tax Rate</td>
@@ -560,7 +560,7 @@ const datePickerFormat = (date: Date) => {
                                     </tr>
                                     <tr>
                                         <td>Tax (7.25%)</td>
-                                        <td>$7.25 <span class="currency">USD</span></td>
+                                        <td>$7.25 <span class="currency">{{ invoice.currency }}</span></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -569,7 +569,7 @@ const datePickerFormat = (date: Date) => {
 
                             <div class="total">
                                 <div>Total</div>
-                                <div>$107.25 <span class="currency">USD</span></div>
+                                <div>$107.25 <span class="currency">{{ invoice.currency }}</span></div>
                             </div>
                         </div>
 
@@ -703,6 +703,7 @@ const datePickerFormat = (date: Date) => {
                                 .field {
                                     position: relative;
                                     top: 4px;
+                                    min-width: 70px;
                                     font-size: 0.9em;
 
                                     .currency {
