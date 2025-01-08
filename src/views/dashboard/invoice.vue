@@ -880,9 +880,9 @@ const sanitizeFloat = (field: string) => {
                     }
 
                     td:first-child {
-                        color: #bbb;
-                        font-size: 0.8em;
-                        font-weight: 600;
+                        color: #888;
+                        font-size: 0.78em;
+                        font-weight: 500;
                     }
 
                     td:last-child {
