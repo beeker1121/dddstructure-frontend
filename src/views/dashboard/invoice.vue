@@ -9,6 +9,7 @@ import { displayMoneyFormat } from '../../utils/currency'
 
 import VueDatePicker from '@vuepic/vue-datepicker';
 import '@vuepic/vue-datepicker/dist/main.css'
+import Maska from '../../components/dashboard/maska.vue'
 
 // Constants.
 const router = useRouter()
@@ -339,7 +340,7 @@ const datePickerFormat = (date: Date) => {
 
                                     <div class="field">
                                         <label for="bill-to-phone">Phone</label>
-                                        <input id="bill-to-phone" type="text" placeholder="(555) 555-5555" v-model="invoice.bill_to.phone" />
+                                        <Maska id="bill-to-phone" v-model="invoice.bill_to.phone" mask="(###) ###-####" placeholder="(555) 555-5555" />
                                     </div>
                                 </div>
                             </div>
@@ -406,7 +407,7 @@ const datePickerFormat = (date: Date) => {
 
                                     <div class="field">
                                         <label for="pay-to-phone">Phone</label>
-                                        <input id="pay-to-phone" type="text" placeholder="(555) 555-5555" v-model="invoice.pay_to.phone" />
+                                        <Maska id="pay-to-phone" v-model="invoice.pay_to.phone" mask="(###) ###-####" placeholder="(555) 555-5555" />
                                     </div>
                                 </div>
                             </div>
