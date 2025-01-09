@@ -847,6 +847,7 @@ const sanitizeFloat = (field: string) => {
                         text-align: center;
                         opacity: 0.4;
                         cursor: pointer;
+                        user-select: none;
 
                         svg {
                             margin: 0 8px 0 0;
