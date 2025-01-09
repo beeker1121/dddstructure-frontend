@@ -2,6 +2,7 @@
 import { ref, onMounted, computed } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 
+import { Invoice } from '../../proto/invoice'
 import apiUser from '../../api-user'
 import Sidebar from '../../components/dashboard/sidebar.vue'
 import Money from '../../components/dashboard/money.vue'
@@ -18,57 +19,8 @@ const route = useRoute()
 // Props.
 
 // Data.
-type BillTo = {
-    first_name: string
-    last_name: string
-    company: string
-    address_line_1: string
-    address_line_2: string
-    city: string
-    state: string
-    postal_code: string
-    country: string
-    email: string
-    phone: string
-}
-
-type PayTo = {
-    first_name: string
-    last_name: string
-    company: string
-    address_line_1: string
-    address_line_2: string
-    city: string
-    state: string
-    postal_code: string
-    country: string
-    email: string
-    phone: string
-}
-
-type LineItem = {
-    name: string
-    description: string
-    quantity: number
-    price: number
-    subtotal: number
-}
-
-type Invoice = {
-    invoice_number: string
-    po_number: string
-    currency: string
-    due_date: string
-    message: string
-    bill_to: BillTo,
-    pay_to: PayTo,
-    line_items: LineItem[]
-    payment_methods: string[]
-    tax_rate: string
-    amount_due: number
-}
-
 let invoice = ref<Invoice>({
+    id: 0,
     invoice_number: "",
     po_number: "",
     currency: "USD",
@@ -109,7 +61,8 @@ let invoice = ref<Invoice>({
     }],
     payment_methods: ['card'],
     tax_rate: "",
-    amount_due: 0
+    amount_due: 0,
+    amount_paid: 0
 })
 
 let dueDate = ref(new Date())

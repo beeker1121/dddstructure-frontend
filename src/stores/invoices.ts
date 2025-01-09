@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 
+import { Invoice } from '../proto/invoice'
 import apiUser from '../api-user'
 
 export interface getParamsCreatedAt {
@@ -13,11 +14,16 @@ export interface getParams {
     limit: number
 }
 
+interface State {
+    invoices: Invoice[]
+    totalCount: number
+}
+
 export const useInvoicesStore = defineStore('invoices', {
-    state: () => {
+    state: (): State => {
         return {
-            invoices: [] as any,
-            totalCount: 0 as number
+            invoices: [],
+            totalCount: 0
         }
     },
     actions: {
