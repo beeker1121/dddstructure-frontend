@@ -5,6 +5,7 @@ import { useRouter } from 'vue-router';
 import apiUser from '../../api-user'
 import Sidebar from '../../components/dashboard/sidebar.vue'
 import { useInvoicesStore } from '../../stores/invoices'
+import { displayMoneyFormat } from '../../utils/currency'
 
 import VueDatePicker from '@vuepic/vue-datepicker';
 import '@vuepic/vue-datepicker/dist/main.css'
@@ -441,8 +442,8 @@ const getPages = (curPage: number, totalPages: number): Array<string> => {
                                         <div v-if="displayStateCountry(invoice.pay_to) !== ''" class="state-country">{{ displayStateCountry(invoice.pay_to) }}</div>
                                     </div>
                                 </td>
-                                <td class="amount-paid">$0.00 <span class="currency">USD</span></td>
-                                <td class="amount-due">${{ invoice.amount_due }}.00 <span class="currency">USD</span></td>
+                                <td class="amount-paid">{{ displayMoneyFormat(invoice.amount_paid, invoice.currency) }} <span class="currency">USD</span></td>
+                                <td class="amount-due">{{ displayMoneyFormat(invoice.amount_due, invoice.currency) }} <span class="currency">USD</span></td>
                             </tr>
                         </tbody>
                     </table>
