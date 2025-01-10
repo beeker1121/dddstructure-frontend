@@ -32,3 +32,5 @@ Learn more about the recommended Project Setup and IDE Support in the [Vue Docs 
 - Add keypress watcher for all forms so users can just press enter to submit, such as on signup and login pages.
 - !IMPORTANT - Need to handle all places where we console log errors.
   - Could have a notification slide down middle top of browser window.
+- Modal for general use.
+- :heavy_check_mark: Notifications

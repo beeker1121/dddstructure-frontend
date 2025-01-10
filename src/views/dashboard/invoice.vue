@@ -7,6 +7,7 @@ import apiUser from '../../api-user'
 import Sidebar from '../../components/dashboard/sidebar.vue'
 import Money from '../../components/dashboard/money.vue'
 import { displayMoneyFormat, percentageFromInt, RoundingType } from '../../utils/currency'
+import { useNotificationsStore } from '../../stores/notifications'
 
 import VueDatePicker from '@vuepic/vue-datepicker';
 import '@vuepic/vue-datepicker/dist/main.css'
@@ -68,6 +69,7 @@ let invoice = ref<Invoice>({
 let dueDate = ref(new Date())
 
 // Stores.
+const notificationsStore = useNotificationsStore()
 
 // Mounted.
 onMounted(() => {
@@ -136,6 +138,8 @@ const create = () => {
             return
         }
 
+        notificationsStore.notify('success', 'Success!', 'Invoice created!')
+
         // Redirect to invoices.
         router.push({ name: 'Invoices' })
     }).catch((err) => {
@@ -165,6 +169,8 @@ const update = (id: number) => {
         if (res.errors) {
             return
         }
+
+        notificationsStore.notify('success', 'Success!', 'Invoice updated!')
 
         // Redirect to invoices.
         router.push({ name: 'Invoices' })
