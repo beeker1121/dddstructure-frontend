@@ -841,7 +841,7 @@ const sanitizeFloat = (field: string) => {
 
                     td:last-child {
                         font-size: 0.88em;
-                        font-weight: 500;
+                        font-weight: 600;
                         text-align: right;
                     }
 

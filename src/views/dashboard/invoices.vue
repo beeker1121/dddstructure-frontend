@@ -567,13 +567,10 @@ const getPages = (curPage: number, totalPages: number): Array<string> => {
                 }
 
                 .amount-paid {
-                    font-weight: 600;
                     text-align: right;
                 }
 
                 .amount-due {
-                    color: #61a839;
-                    font-weight: 600;
                     text-align: right;
                 }
             }
