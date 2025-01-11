@@ -1,6 +1,7 @@
 import { createApp } from 'vue'
 
 import Notifications from './views/dashboard/notifications.vue'
+import Modal from './views/dashboard/modal.vue'
 
 import { createPinia } from 'pinia'
 import { library } from '@fortawesome/fontawesome-svg-core'
@@ -30,11 +31,10 @@ library.add(
 const pinia = createPinia()
 const app = createApp(App)
 
-// Set Font Awesome.
+// Set components.
 app.component('font-awesome-icon', FontAwesomeIcon)
-
-// Set notifications.
 app.component('notifications', Notifications)
+app.component('modal', Modal)
 
 // Set pinia.
 app.use(pinia)

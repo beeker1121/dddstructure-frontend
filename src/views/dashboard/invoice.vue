@@ -8,6 +8,7 @@ import Sidebar from '../../components/dashboard/sidebar.vue'
 import Money from '../../components/dashboard/money.vue'
 import { displayMoneyFormat, percentageFromInt, RoundingType } from '../../utils/currency'
 import { useNotificationsStore } from '../../stores/notifications'
+import { useModalStore } from '../../stores/modal'
 
 import VueDatePicker from '@vuepic/vue-datepicker';
 import '@vuepic/vue-datepicker/dist/main.css'
@@ -70,6 +71,7 @@ let dueDate = ref(new Date())
 
 // Stores.
 const notificationsStore = useNotificationsStore()
+const modalStore = useModalStore()
 
 // Mounted.
 onMounted(() => {
@@ -135,6 +137,11 @@ const create = () => {
     .then(res => res.json()).then(res => {
         // Handle errors.
         if (res.errors) {
+            if (res.errors.length === 1 && res.errors[0].status === 500) {
+                modalStore.modal('error', 'Error', 'Error creating invoice')
+                return
+            }
+
             return
         }
 
