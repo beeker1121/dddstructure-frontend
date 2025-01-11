@@ -42,7 +42,7 @@ onMounted(() => {})
 
 <style scoped>
 .notifications {
-    position: absolute;
+    position: fixed;
     left: 0;
     right: 0;
     margin: 0 auto;
