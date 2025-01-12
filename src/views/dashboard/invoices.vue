@@ -5,9 +5,10 @@ import { useRouter } from 'vue-router';
 import apiUser from '../../api-user'
 import Sidebar from '../../components/dashboard/sidebar.vue'
 import { useInvoicesStore } from '../../stores/invoices'
+import { useModalStore } from '../../stores/modal'
 import { displayMoneyFormat } from '../../utils/currency'
 
-import VueDatePicker from '@vuepic/vue-datepicker';
+import VueDatePicker from '@vuepic/vue-datepicker'
 import '@vuepic/vue-datepicker/dist/main.css'
 
 // Constants.
@@ -25,6 +26,7 @@ let dueDate = ref([new Date(Date.now()), new Date(Date.now())])
 
 // Stores.
 const invoicesStore = useInvoicesStore()
+const modalStore = useModalStore()
 
 // Mounted.
 onMounted(() => {
@@ -107,7 +109,8 @@ const deleteInvoice = (id: number) => {
 
         searchInvoices()
     }).catch((err) => {
-        console.log('error: ' + err)
+        modalStore.modal('error', 'Error', 'Error deleting invoice')
+        return
     })
 }
 

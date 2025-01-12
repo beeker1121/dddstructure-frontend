@@ -27,9 +27,7 @@ const errors = ref<any>([])
 const userStore = useUserStore()
 
 // Mounted.
-onMounted(() => {
-    console.log('mounted')
-})
+onMounted(() => {})
 
 // Computed.
 
@@ -64,7 +62,10 @@ const login = () => {
         // Redirect to dashboard.
         router.push({ name: 'Dashboard' })
     }).catch((err) => {
-        console.log('error: ' + err)
+        // Create single error.
+        errors.value = [{
+            detail: 'Error logging in, please contact support'
+        }]
     })
 }
 </script>

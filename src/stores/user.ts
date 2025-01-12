@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia'
 
 import apiUser from '../api-user'
+import { useModalStore } from './modal'
 
 export const useUserStore = defineStore('user', {
     state: () => {
@@ -21,7 +22,9 @@ export const useUserStore = defineStore('user', {
                 // Set user.
                 this.user = res.data
             }).catch((err) => {
-                console.log('error: ' + err)
+                const modalStore = useModalStore()
+                modalStore.modal('error', 'Error', 'Error getting user')
+                return
             })
         }
     }

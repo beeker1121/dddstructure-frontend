@@ -150,7 +150,8 @@ const create = () => {
         // Redirect to invoices.
         router.push({ name: 'Invoices' })
     }).catch((err) => {
-        console.log('error: ' + err)
+        modalStore.modal('error', 'Error', 'Error creating invoice')
+        return
     })
 }
 
@@ -174,6 +175,11 @@ const update = (id: number) => {
     .then(res => res.json()).then(res => {
         // Handle errors.
         if (res.errors) {
+            if (res.errors.length === 1 && res.errors[0].status === 500) {
+                modalStore.modal('error', 'Error', 'Error updating invoice')
+                return
+            }
+
             return
         }
 
@@ -182,7 +188,8 @@ const update = (id: number) => {
         // Redirect to invoices.
         router.push({ name: 'Invoices' })
     }).catch((err) => {
-        console.log('error: ' + err)
+        modalStore.modal('error', 'Error', 'Error updating invoice')
+        return
     })
 }
 
@@ -746,7 +753,7 @@ const sanitizeFloat = (field: string) => {
                 }
 
                 .add-item {
-                    margin: 16px 0 0 6px;
+                    margin: 16px 0 0 2px;
                     color: rgb(91, 144, 215);
                     font-size: 0.8em;
                     font-weight: 600;

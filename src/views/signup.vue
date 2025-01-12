@@ -5,8 +5,9 @@ import { useRouter } from 'vue-router';
 import api from '../api'
 import { setJWT } from '../helpers/auth'
 import Header from '../components/header.vue'
-import { getParamError } from '../helpers/errors';
-import { capitalize } from '../helpers/strings';
+import { useModalStore } from '../stores/modal'
+import { getParamError } from '../helpers/errors'
+import { capitalize } from '../helpers/strings'
 
 // Constants.
 const router = useRouter()
@@ -23,11 +24,10 @@ const password = ref<String>('')
 const errors = ref<any>([])
 
 // Stores.
+const modalStore = useModalStore()
 
 // Mounted.
-onMounted(() => {
-    console.log('mounted')
-})
+onMounted(() => {})
 
 // Computed.
 
@@ -59,7 +59,8 @@ const signup = () => {
         // Redirect to dashboard.
         router.push({ name: 'Dashboard' })
     }).catch((err) => {
-        console.log('error: ' + err)
+        modalStore.modal('error', 'Error', 'Error creating user')
+        return
     })
 }
 </script>

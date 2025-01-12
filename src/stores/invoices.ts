@@ -2,6 +2,7 @@ import { defineStore } from 'pinia'
 
 import { Invoice } from '../proto/invoice'
 import apiUser from '../api-user'
+import { useModalStore } from './modal'
 
 export interface getParamsCreatedAt {
     start_date: Date | null
@@ -78,7 +79,9 @@ export const useInvoicesStore = defineStore('invoices', {
                 this.invoices = res.data
                 this.totalCount = res.meta.total
             }).catch((err) => {
-                console.log('error: ' + err)
+                const modalStore = useModalStore()
+                modalStore.modal('error', 'Error', 'Error searching invoices')
+                return
             })
         }
     }

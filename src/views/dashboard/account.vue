@@ -3,9 +3,10 @@ import { ref, onMounted } from 'vue'
 
 import apiUser from '../../api-user'
 import Sidebar from '../../components/dashboard/sidebar.vue'
-import { getParamError } from '../../helpers/errors';
-import { capitalize } from '../../helpers/strings';
-import { useUserStore } from '../../stores/user';
+import { getParamError } from '../../helpers/errors'
+import { capitalize } from '../../helpers/strings'
+import { useUserStore } from '../../stores/user'
+import { useModalStore } from '../../stores/modal'
 
 // Constants.
 
@@ -19,6 +20,7 @@ const errors = ref<any>([])
 
 // Stores.
 const userStore = useUserStore()
+const modalStore = useModalStore()
 
 // Mounted.
 onMounted(() => {
@@ -59,7 +61,8 @@ const update = () => {
             return
         }
     }).catch((err) => {
-        console.log('error: ' + err)
+        modalStore.modal('error', 'Error', 'Error updating account')
+        return
     })
 }
 </script>
