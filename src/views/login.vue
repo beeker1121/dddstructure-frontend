@@ -27,7 +27,10 @@ const errors = ref<any>([])
 const userStore = useUserStore()
 
 // Mounted.
-onMounted(() => {})
+onMounted(() => {
+    // Reset errors.
+    errors.value = []
+})
 
 // Computed.
 

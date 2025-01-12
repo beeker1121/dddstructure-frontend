@@ -9,6 +9,8 @@ import Money from '../../components/dashboard/money.vue'
 import { displayMoneyFormat, percentageFromInt, RoundingType } from '../../utils/currency'
 import { useNotificationsStore } from '../../stores/notifications'
 import { useModalStore } from '../../stores/modal'
+import { getParamError } from '../../helpers/errors';
+import { capitalize } from '../../helpers/strings';
 
 import VueDatePicker from '@vuepic/vue-datepicker';
 import '@vuepic/vue-datepicker/dist/main.css'
@@ -69,12 +71,17 @@ let invoice = ref<Invoice>({
 
 let dueDate = ref(new Date())
 
+const errors = ref<any>([])
+
 // Stores.
 const notificationsStore = useNotificationsStore()
 const modalStore = useModalStore()
 
 // Mounted.
 onMounted(() => {
+    // Reset errors.
+    errors.value = []
+
     // Load invoice if editing.
     if (route.params.id) {
         apiUser.getInvoice(parseInt(route.params.id as string))
@@ -142,6 +149,7 @@ const create = () => {
                 return
             }
 
+            errors.value = res.errors
             return
         }
 
@@ -180,6 +188,7 @@ const update = (id: number) => {
                 return
             }
 
+            errors.value = res.errors
             return
         }
 
@@ -194,6 +203,9 @@ const update = (id: number) => {
 }
 
 const save = () => {
+    // Reset errors.
+    errors.value = []
+
     if (route.params.id) {
         update(parseInt(route.params.id as string))
         return
@@ -284,6 +296,9 @@ const sanitizeFloat = (field: string) => {
                                     <div class="field">
                                         <label for="bill-to-first-name">First Name</label>
                                         <input id="bill-to-first-name" type="text" placeholder="" v-model="invoice.bill_to.first_name" />
+                                        <span v-if="getParamError(errors, 'bill_to.first_name').detail" class="error">
+                                            {{ capitalize(getParamError(errors, 'bill_to.first_name').detail) }}
+                                        </span>
                                     </div>
 
                                     <div class="field">
