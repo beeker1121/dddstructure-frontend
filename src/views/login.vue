@@ -87,7 +87,7 @@ const login = () => {
                         <div class="field">
                             <label for="email">Email Address</label>
                             <input id="email" type="email" placeholder="email@example.com" v-model="email" />
-                            <span v-if="getParamError(errors, 'email')" class="error">
+                            <span v-if="getParamError(errors, 'email').detail" class="error">
                                 {{ capitalize(getParamError(errors, 'email').detail) }}
                             </span>
                         </div>
@@ -97,7 +97,7 @@ const login = () => {
                             <input id="password" type="password" placeholder="" v-model="password" />
                         </div>
 
-                        <span v-if="getSingleError(errors)" class="error">
+                        <span v-if="getSingleError(errors).detail" class="error">
                             {{ capitalize(getSingleError(errors).detail) }}
                         </span>
 

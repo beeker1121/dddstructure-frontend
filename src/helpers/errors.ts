@@ -7,7 +7,12 @@ export interface APIError {
 // getParamError handles getting a specific parameter error by name from an
 // error array.
 export const getParamError = (errors: APIError[], param: string): APIError => {
-    return errors.find((e: any) => e.param === param) as APIError
+    const ret = errors.find((e: any) => e.param === param)
+    if (ret) {
+        return ret
+    }
+
+    return {} as APIError
 }
 
 // getSingleError handles getting a single, non-parameter error from an error
