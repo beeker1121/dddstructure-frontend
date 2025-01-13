@@ -108,6 +108,8 @@ const getInvoice = () => {
                     </div>
 
                     <div class="message">Thank you for your business!</div>
+
+                    <div class="support">If you have any questions or issues, please contact support at email@example.com or call (555) 555-5555</div>
                 </div>
 
                 <div class="payment">
@@ -299,18 +301,25 @@ const getInvoice = () => {
                 }
 
                 .message {
-                    margin: 32px auto 8px auto;
+                    margin: 32px auto 0 auto;
                     max-width: 400px;
                     font-size: 0.88em;
                     font-weight: 600;
+                    text-align: center;
+                }
+
+                .support {
+                    margin: 24px auto 0 auto;
+                    max-width: 400px;
+                    font-size: 0.78em;
                     text-align: center;
                 }
             }
 
             .payment {
                 padding: 20px 24px;
-                max-width: 280px;
-                min-width: 280px;
+                max-width: 240px;
+                min-width: 240px;
                 background-color: #fff;
                 border-radius: 4px;
                 box-shadow: 2px 1px 3px 0 rgba(37, 37, 37, 0.2);
