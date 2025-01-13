@@ -200,7 +200,8 @@ button.blue-bg {
         svg {
             position: absolute;
             right: var(--spacing);
-            bottom: var(--spacing);
+            bottom: calc(var(--spacing) + 2px);
+            font-size: var(--font-size-small);
             opacity: 0.22;
         }
     }
