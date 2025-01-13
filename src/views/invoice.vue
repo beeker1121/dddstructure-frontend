@@ -113,6 +113,15 @@ const getInvoice = () => {
                 </div>
 
                 <div class="payment">
+                    <div class="invoice-po-num">
+                        <div class="invoice-number">
+                            <span>Invoice # </span> 00192837
+                        </div>
+                        <div class="po-number">
+                            <span>PO # </span> 3984
+                        </div>
+                    </div>
+
                     <div class="payment-method">
                         <h3>Payment Method</h3>
 
@@ -142,33 +151,33 @@ const getInvoice = () => {
                                 </div>
                             </div>
                         </div>
-
-                        <div class="totals">
-                            <h3>Totals</h3>
-
-                            <table>
-                                <tbody>
-                                    <tr>
-                                        <td>Subtotal</td>
-                                        <td>{{ displayMoneyFormat(123, 'USD') }} <span class="currency">{{ 'USD' }}</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Tax ({{ '1.25' }}%)</td>
-                                        <td>{{ displayMoneyFormat(10, 'USD') }} <span class="currency">{{ 'USD' }}</span></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-
-                            <hr />
-
-                            <div class="total">
-                                <div>Total</div>
-                                <div>{{ displayMoneyFormat(123, 'USD') }} <span class="currency">{{ 'USD' }}</span></div>
-                            </div>
-                        </div>
-
-                        <button class="green-bg" @click="pay">Pay Now</button>
                     </div>
+
+                    <div class="totals">
+                        <h3>Totals</h3>
+
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td>Subtotal</td>
+                                    <td>{{ displayMoneyFormat(123, 'USD') }} <span class="currency">{{ 'USD' }}</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Tax ({{ '1.25' }}%)</td>
+                                    <td>{{ displayMoneyFormat(10, 'USD') }} <span class="currency">{{ 'USD' }}</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <hr />
+
+                        <div class="total">
+                            <div>Total</div>
+                            <div>{{ displayMoneyFormat(123, 'USD') }} <span class="currency">{{ 'USD' }}</span></div>
+                        </div>
+                    </div>
+
+                    <button class="green-bg" @click="pay">Pay Now</button>
                 </div>
             </div>
         </div>
@@ -329,6 +338,21 @@ const getInvoice = () => {
                     padding: 0;
                     font-size: 1.2em;
                     font-weight: 600;
+                }
+
+                .invoice-po-num {
+                    display: flex;
+                    justify-content: space-between;
+                    margin: 0 0 16px 0;
+                    padding: 0 0 8px 0;
+                    font-size: 0.7em;
+                    font-weight: 500;
+                    border-bottom: 1px solid #ddd;
+
+                    span {
+                        font-weight: 700;
+                        text-transform: uppercase;
+                    }
                 }
 
                 .methods {
