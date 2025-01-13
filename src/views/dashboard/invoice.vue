@@ -9,12 +9,12 @@ import Money from '../../components/dashboard/money.vue'
 import { displayMoneyFormat, percentageFromInt, RoundingType } from '../../utils/currency'
 import { useNotificationsStore } from '../../stores/notifications'
 import { useModalStore } from '../../stores/modal'
-import { getParamError } from '../../helpers/errors';
-import { capitalize } from '../../helpers/strings';
-
-import VueDatePicker from '@vuepic/vue-datepicker';
-import '@vuepic/vue-datepicker/dist/main.css'
+import { getParamError } from '../../helpers/errors'
+import { capitalize } from '../../helpers/strings'
 import Maska from '../../components/dashboard/maska.vue'
+
+import VueDatePicker from '@vuepic/vue-datepicker'
+import '@vuepic/vue-datepicker/dist/main.css'
 
 // Constants.
 const router = useRouter()

@@ -9,6 +9,7 @@ import { getParamError, getSingleError } from '../helpers/errors';
 import { capitalize } from '../helpers/strings';
 import { useUserStore } from '../stores/user';
 import { displayMoneyFormat } from '../utils/currency'
+import Maska from '../components/dashboard/maska.vue';
 
 // Constants.
 const router = useRouter()
@@ -21,6 +22,7 @@ const router = useRouter()
 // Data.
 const paymentMethodType = ref('card')
 const paymentMethod = ref<any>({})
+const cardNumber = ref('')
 const errors = ref<any>([])
 
 // Stores.
@@ -158,7 +160,7 @@ const getInvoice = () => {
                             <div class="card">
                                 <div class="field icon-right">
                                     <label for="card-number">Card details</label>
-                                    <input id="card-number" type="text" placeholder="4141 4141 4141 4141" />
+                                    <Maska id="card-number" v-model="cardNumber" mask="#### #### #### ####" placeholder="4141 4141 4141 4141" valueFormat="unmasked" />
                                     <font-awesome-icon class="icon" icon="credit-card" />
                                 </div>
 

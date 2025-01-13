@@ -15,6 +15,15 @@ const props = defineProps({
     placeholder: {
         type: String,
         required: false
+    },
+    valueFormat: {
+        type: String,
+        required: false,
+        default: 'unmasked'
+    },
+    id: {
+        type: String,
+        required: false
     }
 });
 
@@ -26,9 +35,9 @@ const emit = defineEmits(['update:modelValue']);
 //       input was set to this before adding the
 //       computed model.
 // const maskedValue = ref(props.modelValue);
-const unmaskedValue = ref('');
+const value = ref('');
 
-defineExpose({ unmaskedValue });
+defineExpose({ value });
 
 // Mounted.
 
@@ -38,7 +47,7 @@ const model = computed({
     return props.modelValue
   },
   set () {
-    return emit('update:modelValue', unmaskedValue.value)
+    return emit('update:modelValue', value.value)
   }
 })
 
@@ -51,10 +60,22 @@ const model = computed({
 </script>
 
 <template>
-    <input
-        v-model="model"
-        v-maska:unmaskedValue.unmasked="props.mask"
-        type="text"
-        :placeholder="props.placeholder"
-    />
+    <div>
+        <input
+            v-if="props.valueFormat === 'unmasked'"
+            v-model="model"
+            v-maska:value.unmasked="props.mask"
+            :id="props.id"
+            type="text"
+            :placeholder="props.placeholder"
+        />
+        <input
+            v-if="props.valueFormat === 'masked'"
+            v-model="model"
+            v-maska:value.masked="props.mask"
+            :id="props.id"
+            type="text"
+            :placeholder="props.placeholder + '2928'"
+        />
+    </div>
 </template>
