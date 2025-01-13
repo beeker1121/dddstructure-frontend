@@ -102,6 +102,26 @@ const getInvoice = () => {
                                             Golang t-shirts with Golang Gopher, Men's, M, White
                                         </td>
                                     </tr>
+
+                                    <tr>
+                                        <td class="name">
+                                            Golang T-Shirt
+                                        </td>
+                                        <td class="quantity">
+                                            12
+                                        </td>
+                                        <td class="price">
+                                            {{ displayMoneyFormat(123, 'USD') }} <span class="currency">{{ 'USD' }}</span>
+                                        </td>
+                                        <td class="total">
+                                            {{ displayMoneyFormat(123, 'USD') }} <span class="currency">{{ 'USD' }}</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="description">
+                                            Golang t-shirts with Golang Gopher, Men's, M, White
+                                        </td>
+                                    </tr>
                                 </template>
                             </tbody>
                         </table>
@@ -195,12 +215,12 @@ const getInvoice = () => {
         display: flex;
         flex: 1 1 100%;
         padding: 28px 60px;
-        background: linear-gradient(45deg, #3371c6 0%,#72a2e1 100%);
+        background: var(--bg-gradient);
 
         h3 {
             padding: 0;
-            font-size: 1.2em;
-            font-weight: 600;
+            font-size: var(--font-size-h3);
+            font-weight: var(--font-weight-600);
         }
 
         .invoice-wrapper {
@@ -236,29 +256,29 @@ const getInvoice = () => {
                     flex: 1 1 auto;
 
                     h3 {
-                        margin: 0 0 8px 0;
+                        margin: 0 0 var(--spacing) 0;
                     }
 
                     .inner {
-                        font-size: 0.88em;
+                        font-size: var(--font-size-small);
                     }
                 }
 
                 .line-items {
-                    margin: 24px 0 0 0;
+                    margin: var(--spacing-three) 0 0 0;
 
                     .table-general {
                         tbody {
                             tr {
                                 td {
-                                    font-size: 0.88em;
+                                    font-size: var(--font-size-small);
                                     border-bottom: 0;
                                 }
 
                                 .name {
                                     padding: 8px 8px 0 0;
                                     width: 60%;
-                                    font-weight: 500;
+                                    font-weight: var(--font-weight-500);
                                 }
 
                                 .quantity {
@@ -277,7 +297,7 @@ const getInvoice = () => {
                                         position: relative;
                                         top: 4px;
                                         min-width: 70px;
-                                        font-size: 0.9em;
+                                        font-size: var(--font-size-small);
 
                                         .currency {
                                             display: block;
@@ -289,7 +309,7 @@ const getInvoice = () => {
 
                                 .description {
                                     padding: 4px 0 16px 0;
-                                    font-size: 0.78em;
+                                    font-size: var(--font-size-smaller);
                                     border-bottom: 1px solid #eee;
                                 }
                             }
@@ -310,17 +330,17 @@ const getInvoice = () => {
                 }
 
                 .message {
-                    margin: 32px auto 0 auto;
+                    margin: var(--spacing-four) auto 0 auto;
                     max-width: 400px;
-                    font-size: 0.88em;
-                    font-weight: 600;
+                    font-size: var(--font-size-small);
+                    font-weight: var(--font-weight-600);
                     text-align: center;
                 }
 
                 .support {
-                    margin: 24px auto 0 auto;
+                    margin: var(--spacing-three) auto 0 auto;
                     max-width: 400px;
-                    font-size: 0.78em;
+                    font-size: var(--font-size-smaller);
                     text-align: center;
                 }
             }
@@ -336,21 +356,21 @@ const getInvoice = () => {
                 h3 {
                     margin-top: 0;
                     padding: 0;
-                    font-size: 1.2em;
-                    font-weight: 600;
+                    font-size: var(--font-size-h3);
+                    font-weight: var(--font-weight-600);
                 }
 
                 .invoice-po-num {
                     display: flex;
                     justify-content: space-between;
-                    margin: 0 0 16px 0;
-                    padding: 0 0 8px 0;
-                    font-size: 0.7em;
-                    font-weight: 500;
+                    margin: 0 0 var(--spacing-two) 0;
+                    padding: 0 0 var(--spacing) 0;
+                    font-size: var(--font-size-invoice-pay-section-header);
+                    font-weight: var(--font-weight-500);
                     border-bottom: 1px solid #ddd;
 
                     span {
-                        font-weight: 700;
+                        font-weight: var(--font-weight-700);
                         text-transform: uppercase;
                     }
                 }
@@ -363,8 +383,8 @@ const getInvoice = () => {
                         padding: 0.6em 1.2em;
                         width: 100%;
                         color: #555;
-                        font-size: 1em;
-                        font-weight: 500;
+                        font-size: var(--font-size-normal);
+                        font-weight: var(--font-weight-500);
                         font-family: inherit;
                         background-color: rgb(236, 236, 236);
                         border-radius: 4px;
@@ -375,7 +395,7 @@ const getInvoice = () => {
                         user-select: none;
 
                         svg {
-                            margin: 0 8px 0 0;
+                            margin: 0 var(--spacing) 0 0;
                         }
 
                         &.selected {
@@ -388,7 +408,7 @@ const getInvoice = () => {
                 }
 
                 .form {
-                    margin: 16px 0 0 0;
+                    margin: var(--spacing-two) 0 0 0;
 
                     .card {
                         .exp-cvv {
@@ -400,7 +420,7 @@ const getInvoice = () => {
 
                 .totals {
                     h3 {
-                        margin: 16px 0 8px 0;
+                        margin: var(--spacing-two) 0 8px 0;
                     }
 
                     table {
@@ -421,23 +441,23 @@ const getInvoice = () => {
 
                         td:first-child {
                             color: #888;
-                            font-size: 0.78em;
-                            font-weight: 500;
+                            font-size: var(--font-size-smaller);
+                            font-weight: var(--font-weight-500);
                         }
 
                         td:last-child {
-                            font-size: 0.88em;
-                            font-weight: 600;
+                            font-size: var(--font-size-small);
+                            font-weight: var(--font-weight-600);
                             text-align: right;
                         }
 
                         .field {
-                            margin: 4px 0;
+                            margin: var(--spacing-half) 0;
                         }
 
                         .currency {
                             color: #bbb;
-                            font-size: 0.64em;
+                            font-size: var(--font-size-smallest);
                             font-weight: 400;
                         }
 
@@ -448,20 +468,20 @@ const getInvoice = () => {
                         }
 
                         .percentage {
-                            margin: 0 0 0 4px;
-                            font-size: 0.74em;
+                            margin: 0 0 0 var(--spacing-half);
+                            font-size: var(--font-size-invoice-tax-percentage);
                             font-weight: 400;
                         }
                     }
 
                     .currency {
                         color: #bbb;
-                        font-size: 0.64em;
+                        font-size: var(--font-size-smallest);
                         font-weight: 400;
                     }
 
                     hr {
-                        margin: 14px 0;
+                        margin: calc(var(--spacing-two) - 2px) 0;
                         border: 0;
                         border-top: 1px solid #e3e3e3;
                     }
@@ -471,13 +491,13 @@ const getInvoice = () => {
 
                         div:first-child {
                             flex: 1 1 auto;
-                            font-weight: 500;
+                            font-weight: var(--font-weight-500);
                         }
 
                         div:last-child {
                             padding: 0 0 0 8px;
                             color: #61a839;
-                            font-weight: 600;
+                            font-weight: var(--font-weight-600);
                             text-align: right;
                         }
                     }

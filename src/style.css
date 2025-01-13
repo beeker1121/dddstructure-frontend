@@ -5,9 +5,7 @@
 
 :root {
     color: #555;
-    font-family: "Figtree", sans-serif;
     font-optical-sizing: auto;
-    font-weight: 400;
 
     /* color-scheme: light dark;
     color: rgba(255, 255, 255, 0.87);
@@ -20,7 +18,7 @@
 }
   
 a {
-    font-weight: 500;
+    font-weight: var(--font-weight-500);
     color: #646cff;
     text-decoration: inherit;
 }
@@ -43,12 +41,12 @@ h1 {
 button {
     position: relative;
     top: 0;
-    margin: 16px 0 0 0;
+    margin: var(--spacing-two) 0 0 0;
     padding: 0.6em 1.2em;
     width: 100%;
     color: #555;
-    font-size: 1em;
-    font-weight: 500;
+    font-size: var(--font-size-normal);
+    font-weight: var(--font-weight-500);
     font-family: inherit;
     background-color: rgb(236, 236, 236);
     border-radius: 4px;
@@ -63,11 +61,10 @@ button:hover {
 }
 
 button.action {
-    margin: 0 6px 0 0;
+    margin: 0 var(--spacing-half) 0 0;
     padding: 0.3em 1em;
     width: auto;
-    font-size: 0.7em;
-    font-weight: 500;
+    font-weight: var(--font-weight-500);
     background-color: #fff;
     border: 1px solid #e3e3e3;
 }
@@ -100,12 +97,12 @@ button.blue-bg {
     border-spacing: 0;
 
     thead {
-        font-size: 0.78em;
+        font-size: var(--font-size-smaller);
 
         th {
             padding: 12px 0;
             color: #999;
-            font-weight: 500;
+            font-weight: var(--font-weight-500);
             border-bottom: 1px solid #e3e3e3;
         }
 
@@ -126,7 +123,7 @@ button.blue-bg {
 
             .currency {
                 color: #bbb;
-                font-size: 0.64em;
+                font-size: var(--font-size-smallest);
                 font-weight: 400;
             }
         }
@@ -142,14 +139,14 @@ button.blue-bg {
 }
 
 .field {
-    margin: 8px 0 0 0;
+    margin: var(--spacing) 0 0 0;
 
     label {
         display: block;
-        margin: 0 0 4px 0;
+        margin: 0 0 var(--spacing-half) 0;
         color: #888;
-        font-size: 0.78em;
-        font-weight: 500;
+        font-size: var(--font-size-smaller);
+        font-weight: var(--font-weight-500);
         /* text-transform: uppercase; */
     }
 
@@ -158,10 +155,10 @@ button.blue-bg {
         padding: 8px 8px;
         width: 100%;
         color: #555;
-        font-family: "Figtree", sans-serif;
+        font-family: var(--font-family);
         font-optical-sizing: auto;
-        font-size: 0.8em;
-        font-weight: 600;
+        font-size: var(--font-size-input);
+        font-weight: var(--font-weight-600);
         border: 1px solid #e3e3e3;
         border-radius: 4px;
         outline: 0;
@@ -177,9 +174,9 @@ button.blue-bg {
         padding: 8px 24px 8px 8px;
         width: 100%;
         color: #555;
-        font-family: "Figtree", sans-serif;
-        font-size: 0.8em;
-        font-weight: 600;
+        font-family: var(--font-family);
+        font-size: var(--font-size-input);
+        font-weight: var(--font-weight-600);
         -webkit-appearance: none;
         -moz-appearance: none;
         appearance: none;
@@ -195,9 +192,9 @@ button.blue-bg {
 }
 
 .field-datepicker {
-    margin: 8px 0 0 0;
-    --dp-font-family: "Figtree", sans-serif;
-    --dp-font-size: 0.8em;
+    margin: var(--spacing) 0 0 0;
+    --dp-font-family: var(--font-family);
+    --dp-font-size: var(--font-size-input);
     --dp-border-color: #e3e3e3;
     --dp-border-color-hover: #e3e3e3;
     --dp-border-color-focus: #e3e3e3;
@@ -206,15 +203,15 @@ button.blue-bg {
 
     label {
         display: block;
-        margin: 0 0 4px 0;
+        margin: 0 0 var(--spacing-half) 0;
         color: #888;
-        font-size: 0.78em;
-        font-weight: 500;
+        font-size: var(--font-size-smaller);
+        font-weight: var(--font-weight-500);
         /* text-transform: uppercase; */
     }
 
     input {
-        font-weight: 600;
+        font-weight: var(--font-weight-600);
     }
 
     svg {
@@ -244,9 +241,9 @@ button.blue-bg {
 
 .error {
     display: block;
-    margin: 3px 0 0 0;
+    margin: var(--spacing-error-margin-top) 0 0 0;
     color: #ff3e2b;
-    font-size: 0.66em;
+    font-size: var(--font-size-error);
     font-weight: 400;
 }
 
@@ -264,8 +261,7 @@ button.blue-bg {
     .content {
         display: flex;
         flex: 1 1 100%;
-        /* background: linear-gradient(45deg, #3583eb 0%,#6ba2ea 100%); */
-        background: linear-gradient(45deg, #3371c6 0%,#72a2e1 100%);
+        background: var(--bg-gradient);
     }
 }
 
@@ -279,8 +275,7 @@ button.blue-bg {
         display: flex;
         flex: 1 1 100%;
         padding: 28px 60px;
-        /* background: linear-gradient(45deg, #3583eb 0%,#6ba2ea 100%); */
-        background: linear-gradient(45deg, #3371c6 0%,#72a2e1 100%);
+        background: var(--bg-gradient);
     }
 }
   

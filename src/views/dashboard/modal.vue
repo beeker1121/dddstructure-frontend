@@ -67,19 +67,19 @@ const close = () => {
 
     .modal {
         margin: 0 auto;
-        padding: 12px 24px;
+        padding: 12px var(--spacing-three);
         max-width: 400px;
         min-width: 250px;
         background-color: #fff;
-        text-align: center;;
+        text-align: center;
         border-radius: 4px;
         box-shadow: 2px 1px 3px 0 rgba(37, 37, 37, 0.2);
         z-index: 3;
 
         .title {
-            margin: 0 0 8px 0;
-            font-size: 1.2em;
-            font-weight: 600;
+            margin: 0 0 var(--spacing) 0;
+            font-size: var(--font-size-h3);
+            font-weight: var(--font-weight-600);
         }
     }
 }

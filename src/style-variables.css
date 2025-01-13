@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100..900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap');
+
+:root {
+    /* Background */
+    --bg-color: rgb(91, 144, 215);
+    --bg-gradient: linear-gradient(45deg, #3371c6 0%,#72a2e1 100%);
+
+    /* Spacing */
+    --spacing-quarter: 2px;
+    --spacing-half: 4px;
+    --spacing: 8px;
+    --spacing-two: 16px;
+    --spacing-three: 24px;
+    --spacing-four: 32px;
+
+    --spacing-error-margin-top: 3px;
+
+    /* Font family */
+    --font-family: "Figtree", sans-serif;
+
+    /* Font size */
+    --font-size-normal: 1em;
+    --font-size-small: 0.88em;
+    --font-size-smaller: 0.78em;
+    --font-size-smallest: 0.64em;
+
+    --font-size-header: 1.8em;
+    --font-size-logo: 2.4em;
+    --font-size-logo-sidebar: 1.5em;
+    --font-size-h3: 1.2em;
+    --font-size-card-header: 0.82em;
+    --font-size-card-value: 1.8em;
+    --font-size-invoice-add-item: 0.8em;
+    --font-size-invoice-pay-section-header: 0.7em;
+    --font-size-invoice-tax-percentage: 0.74em;
+
+    --font-size-input: 0.8em;
+    --font-size-error: 0.66em;
+
+    /* Font weight */
+    --font-weight-normal: 400;
+    --font-weight-500: 500;
+    --font-weight-600: 600;
+    --font-weight-700: 700;
+
+    /* Site styles */
+    font-family: var(--font-family);
+    font-weight: var(--font-weight-normal);
+}

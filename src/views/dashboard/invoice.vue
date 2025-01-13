@@ -617,8 +617,8 @@ const sanitizeFloat = (field: string) => {
             margin: 0;
             padding: 0;
             color: #fff;
-            font-size: 1.8em;
-            font-weight: 500;
+            font-size: var(--font-size-header);
+            font-weight: var(--font-weight-500);
         }
 
         button {
@@ -634,7 +634,7 @@ const sanitizeFloat = (field: string) => {
 
         .invoice-form {
             flex: 1 1 auto;
-            padding: 20px 24px;
+            padding: 20px var(--spacing-three);
             background-color: #fff;
             border-radius: 4px;
             box-shadow: 2px 1px 3px 0 rgba(37, 37, 37, 0.2);
@@ -648,8 +648,8 @@ const sanitizeFloat = (field: string) => {
                 h3 {
                     margin: 0;
                     padding: 0;
-                    font-size: 1.2em;
-                    font-weight: 600;
+                    font-size: var(--font-size-h3);
+                    font-weight: var(--font-weight-600);
                 }
             }
 
@@ -696,7 +696,7 @@ const sanitizeFloat = (field: string) => {
             }
 
             .line-items {
-                margin: 24px 0 0 0;
+                margin: var(--spacing-three) 0 0 0;
 
                 .table-general {
                     tbody {
@@ -706,28 +706,28 @@ const sanitizeFloat = (field: string) => {
                             }
 
                             .name {
-                                padding: 8px 8px 0 0;
+                                padding: var(--spacing) var(--spacing) 0 0;
                                 width: 60%;
                             }
 
                             .quantity {
-                                padding: 8px 8px 0 0;
+                                padding: var(--spacing) var(--spacing) 0 0;
                             }
 
                             .price {
-                                padding: 8px 0 0 0;
+                                padding: var(--spacing) 0 0 0;
                             }
 
                             .total {
-                                padding: 0 0 0 8px;
-                                font-weight: 600;
+                                padding: 0 0 0 var(--spacing);
+                                font-weight: var(--font-weight-600);
                                 text-align: right;
 
                                 .field {
                                     position: relative;
                                     top: 4px;
                                     min-width: 70px;
-                                    font-size: 0.9em;
+                                    font-size: var(--font-size-small);
 
                                     .currency {
                                         display: block;
@@ -738,17 +738,17 @@ const sanitizeFloat = (field: string) => {
                             }
 
                             .description {
-                                padding: 0 0 16px 0;
+                                padding: 0 0 var(--spacing-two) 0;
                                 border-bottom: 1px solid #eee;
                             }
 
                             .remove {
-                                padding: 0 0 16px 8px;
+                                padding: 0 0 var(--spacing-two) var(--spacing);
                                 text-align: right;
                                 border-bottom: 1px solid #eee;
 
                                 button {
-                                    margin: 8px 0 0 0;
+                                    margin: var(--spacing) 0 0 0;
                                 }
                             }
                         }
@@ -760,7 +760,7 @@ const sanitizeFloat = (field: string) => {
                             }
 
                             .remove {
-                                padding: 0 0 0 8px;
+                                padding: 0 0 0 var(--spacing);
                                 border-bottom: 0;
                             }
                         }
@@ -768,21 +768,21 @@ const sanitizeFloat = (field: string) => {
                 }
 
                 .add-item {
-                    margin: 16px 0 0 2px;
+                    margin: var(--spacing-two) 0 0 2px;
                     color: rgb(91, 144, 215);
-                    font-size: 0.8em;
-                    font-weight: 600;
+                    font-size: var(--font-size-invoice-add-item);
+                    font-weight: var(--font-weight-600);
                     cursor: pointer;
                 }
             }
 
             .details {
-                margin: 24px 0 0 0;
+                margin: var(--spacing-three) 0 0 0;
             }
         }
 
         .details-totals {
-            padding: 20px 24px;
+            padding: 20px var(--spacing-three);
             max-width: 280px;
             min-width: 280px;
             background-color: #fff;
@@ -793,8 +793,8 @@ const sanitizeFloat = (field: string) => {
                 h3 {
                     margin: 0;
                     padding: 0;
-                    font-size: 1.2em;
-                    font-weight: 600;
+                    font-size: var(--font-size-h3);
+                    font-weight: var(--font-weight-600);
                 }
 
                 .invoice-po-number {
@@ -826,8 +826,8 @@ const sanitizeFloat = (field: string) => {
                         padding: 0.6em 1.2em;
                         width: 100%;
                         color: #555;
-                        font-size: 1em;
-                        font-weight: 500;
+                        font-size: var(--font-size-normal);
+                        font-weight: var(--font-weight-500);
                         font-family: inherit;
                         background-color: rgb(236, 236, 236);
                         border-radius: 4px;
@@ -838,7 +838,7 @@ const sanitizeFloat = (field: string) => {
                         user-select: none;
 
                         svg {
-                            margin: 0 8px 0 0;
+                            margin: 0 var(--spacing) 0 0;
                         }
 
                         &.selected {
@@ -863,30 +863,30 @@ const sanitizeFloat = (field: string) => {
                             margin: 0;
 
                             input {
-                                padding: 4px 8px;
+                                padding: var(--spacing-half) var(--spacing);
                             }
                         }
                     }
 
                     td:first-child {
                         color: #888;
-                        font-size: 0.78em;
-                        font-weight: 500;
+                        font-size: var(--font-size-smaller);
+                        font-weight: var(--font-weight-500);
                     }
 
                     td:last-child {
-                        font-size: 0.88em;
-                        font-weight: 600;
+                        font-size: var(--font-size-small);
+                        font-weight: var(--font-weight-600);
                         text-align: right;
                     }
 
                     .field {
-                        margin: 4px 0;
+                        margin: var(--spacing-half) 0;
                     }
 
                     .currency {
                         color: #bbb;
-                        font-size: 0.64em;
+                        font-size: var(--font-size-smallest);
                         font-weight: 400;
                     }
 
@@ -897,20 +897,20 @@ const sanitizeFloat = (field: string) => {
                     }
 
                     .percentage {
-                        margin: 0 0 0 4px;
-                        font-size: 0.74em;
+                        margin: 0 0 0 var(--spacing-half);
+                        font-size: var(--font-size-invoice-tax-percentage);
                         font-weight: 400;
                     }
                 }
 
                 .currency {
                     color: #bbb;
-                    font-size: 0.64em;
+                    font-size: var(--font-size-smallest);
                     font-weight: 400;
                 }
 
                 hr {
-                    margin: 14px 0;
+                    margin: calc(var(--spacing-two) - 2px) 0;
                     border: 0;
                     border-top: 1px solid #e3e3e3;
                 }
@@ -920,13 +920,13 @@ const sanitizeFloat = (field: string) => {
 
                     div:first-child {
                         flex: 1 1 auto;
-                        font-weight: 500;
+                        font-weight: var(--font-weight-500);
                     }
 
                     div:last-child {
-                        padding: 0 0 0 8px;
+                        padding: 0 0 0 var(--spacing);
                         color: #61a839;
-                        font-weight: 600;
+                        font-weight: var(--font-weight-600);
                         text-align: right;
                     }
                 }

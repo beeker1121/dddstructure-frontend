@@ -57,9 +57,9 @@ const logout = () => {
     z-index: 2;
 
     .logo {
-        margin: 24px 0 26px 0;
-        font-size: 1.5em;
-        font-weight: 600;
+        margin: var(--spacing-three) 0 26px 0;
+        font-size: var(--font-size-logo-sidebar);
+        font-weight: var(--font-weight-600);
         text-shadow: 2px 2px 0.7px #ddd;
 
         span {
@@ -69,20 +69,20 @@ const logout = () => {
 
     a {
         display: block;
-        margin: 14px 0;
+        margin: calc(var(--spacing-two) - 2px) 0;
         font-weight: 400;
         color: #555;
         opacity: 0.7;
 
         .icon {
-            margin: 0 12px 0 0;
+            margin: 0 calc(var(--spacing) + 4px) 0 0;
             color: rgb(53, 131, 235);
         }
     }
 
     a:hover,
     a.selected {
-        font-weight: 500;
+        font-weight: var(--font-weight-500);
         opacity: 1;
     }
 }

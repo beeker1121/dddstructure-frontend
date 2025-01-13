@@ -50,8 +50,8 @@ onMounted(() => {})
     z-index: 1;
 
     .notification {
-        margin: 8px 0 0 0;
-        padding: 8px 8px;
+        margin: var(--spacing) 0 0 0;
+        padding: var(--spacing);
         text-align: center;
         background-color: #fff;
         border-radius: 4px;
@@ -59,13 +59,13 @@ onMounted(() => {})
         /* animation: slide-down .5s; */
 
         .title {
-            margin: 0 0 8px 0;
-            font-weight: 600;
+            margin: 0 0 var(--spacing) 0;
+            font-weight: var(--font-weight-600);
         }
 
         .message {
-            font-size: 0.88em;
-            font-weight: 500;
+            font-size: var(--font-size-small);
+            font-weight: var(--font-weight-500);
         }
 
         &.success {

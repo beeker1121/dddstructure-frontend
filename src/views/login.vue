@@ -127,8 +127,8 @@ const login = () => {
 
         .logo {
             margin: 0;
-            font-size: 2.4em;
-            font-weight: 600;
+            font-size: var(--font-size-logo);
+            font-weight: var(--font-weight-600);
             text-shadow: 2px 2px 0.7px #ddd;
 
             span {
@@ -137,7 +137,7 @@ const login = () => {
         }
 
         hr {
-            margin: 14px 0;
+            margin: calc(var(--spacing-two) - 2px) 0;
             border: 0;
             border-top: 1px solid #ddd;
         }

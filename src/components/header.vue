@@ -13,7 +13,7 @@
 
     a {
         display: inline-block;
-        margin: 8px 20px;
+        margin: var(--spacing) 20px;
         font-weight: 300;
         color: #333;
     }

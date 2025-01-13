@@ -489,14 +489,14 @@ const getPages = (curPage: number, totalPages: number): Array<string> => {
         display: flex;
         justify-content: space-between;
         align-items: flex-end;
-        margin: -8px 0 20px 0;
+        margin: calc(-1 * var(--spacing)) 0 20px 0;
 
         h1 {
             margin: 0;
             padding: 0;
             color: #fff;
-            font-size: 1.8em;
-            font-weight: 500;
+            font-size: var(--font-size-header);
+            font-weight: var(--font-weight-500);
         }
 
         button {
@@ -506,14 +506,14 @@ const getPages = (curPage: number, totalPages: number): Array<string> => {
     }
 
     .invoices-list {
-        padding: 8px 26px;
+        padding: var(--spacing) calc(var(--spacing-three) + 2px);
         background-color: #fff;
         border-radius: 4px;
         box-shadow: 2px 1px 3px 0 rgba(37, 37, 37, 0.2);
 
         .search-wrapper {
             display: flex;
-            margin: 0 0 16px 0;
+            margin: 0 0 var(--spacing-two) 0;
             justify-content: flex-start;
             gap: 8px;
 
@@ -523,9 +523,9 @@ const getPages = (curPage: number, totalPages: number): Array<string> => {
 
             button {
                 flex: 0 1;
-                margin: 8px 0 0 0;
-                padding: 4px 8px;
-                font-size: 0.8em;
+                margin: var(--spacing) 0 0 0;
+                padding: var(--spacing-half) var(--spacing);
+                font-size: var(--font-size-input);
             }
         }
 
@@ -541,14 +541,14 @@ const getPages = (curPage: number, totalPages: number): Array<string> => {
             }
 
             tbody {
-                font-size: 0.88em;
+                font-size: var(--font-size-small);
 
                 td {
                     padding: 10px 0;
                 }
 
                 button.action {
-                    font-size: 0.88em;
+                    font-size: var(--font-size-small);
                 }
 
                 .bill-to-td, .pay-to-td {
@@ -561,11 +561,11 @@ const getPages = (curPage: number, totalPages: number): Array<string> => {
 
                     .company {
                         color: #999;
-                        font-size: 0.8em;
+                        font-size: var(--font-size-smaller);
                     }
 
                     .state-country {
-                        font-size: 0.8em;
+                        font-size: var(--font-size-smaller);
                     }
                 }
 
@@ -583,12 +583,12 @@ const getPages = (curPage: number, totalPages: number): Array<string> => {
             display: flex;
             justify-content: center;
             gap: 4px;
-            margin: 32px auto 16px auto;
+            margin: var(--spacing-four) auto var(--spacing-two) auto;
 
             div {
-                padding: 8px 16px;
-                font-size: 0.8em;
-                font-weight: 600;
+                padding: var(--spacing) var(--spacing-two);
+                font-size: var(--font-size-smaller);
+                font-weight: var(--font-weight-600);
                 background-color: #fff;
                 border: 1px solid #e3e3e3;
                 border-radius: 4px;
@@ -603,7 +603,7 @@ const getPages = (curPage: number, totalPages: number): Array<string> => {
                 }
 
                 &.ellipsis {
-                    padding: 8px 8px;
+                    padding: var(--spacing);
                     border: 0;
                     cursor: default;
                 }
@@ -617,7 +617,7 @@ const getPages = (curPage: number, totalPages: number): Array<string> => {
         }
 
         .no-invoices {
-            margin: 24px 0 0 0;
+            margin: var(--spacing-three) 0 0 0;
             flex: 1 1 auto;
             align-content: center;
             color: #555;

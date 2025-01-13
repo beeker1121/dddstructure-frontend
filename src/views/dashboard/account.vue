@@ -116,8 +116,8 @@ const update = () => {
             margin: 0;
             padding: 0;
             color: #fff;
-            font-size: 1.8em;
-            font-weight: 500;
+            font-size: var(--font-size-header);
+            font-weight: var(--font-weight-500);
         }
 
         button {
@@ -127,7 +127,7 @@ const update = () => {
     }
 
     .account-form {
-        padding: 20px 24px;
+        padding: 20px var(--spacing-three);
         background-color: #fff;
         border-radius: 4px;
         box-shadow: 2px 1px 3px 0 rgba(37, 37, 37, 0.2);

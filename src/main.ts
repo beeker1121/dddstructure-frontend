@@ -12,6 +12,7 @@ import App from './App.vue'
 import router from './router'
 
 // CSS.
+import './style-variables.css'
 import './style.css'
 
 // Handle Font Awesome.

@@ -38,8 +38,8 @@ import Sidebar from '../../components/dashboard/sidebar.vue'
             margin: 0;
             padding: 0;
             color: #fff;
-            font-size: 1.8em;
-            font-weight: 500;
+            font-size: var(--font-size-header);
+            font-weight: var(--font-weight-500);
         }
     }
 
@@ -59,7 +59,7 @@ import Sidebar from '../../components/dashboard/sidebar.vue'
             span:first-child {
                 display: block;
                 color: #555;
-                font-size: 0.82em;
+                font-size: var(--font-size-card-header);
                 font-weight: 300;
                 /* text-transform: uppercase; */
             }
@@ -67,8 +67,8 @@ import Sidebar from '../../components/dashboard/sidebar.vue'
             span:last-child {
                 display: block;
                 margin: 6px 0 0 0;
-                font-size: 1.8em;
-                font-weight: 600;
+                font-size: var(--font-size-card-value);
+                font-weight: var(--font-weight-600);
             }
         }
 
