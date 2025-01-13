@@ -109,7 +109,7 @@ const getInvoice = () => {
 
                     <div class="message">Thank you for your business!</div>
 
-                    <div class="support">If you have any questions or issues, please contact support at email@example.com or call (555) 555-5555</div>
+                    <div class="support">If you have any issues or questions, please contact support at email@example.com or call (555) 555-5555</div>
                 </div>
 
                 <div class="payment">
