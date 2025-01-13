@@ -273,6 +273,7 @@ const getInvoice = () => {
                             tr {
                                 td {
                                     font-size: var(--font-size-small);
+                                    border-top: 1px solid #eee;
                                     border-bottom: 0;
                                 }
 
@@ -311,19 +312,19 @@ const getInvoice = () => {
                                 .description {
                                     padding: 4px 0 16px 0;
                                     font-size: var(--font-size-smaller);
-                                    border-bottom: 1px solid #eee;
+                                    border-top: 0;
+                                }
+                            }
+
+                            tr:first-child {
+                                td {
+                                    border-top: 0;
                                 }
                             }
 
                             tr:last-child {
                                 .description {
                                     padding: 4px 0 0 0;
-                                    border-bottom: 0;
-                                }
-
-                                .remove {
-                                    padding: 0 0 0 8px;
-                                    border-bottom: 0;
                                 }
                             }
                         }
