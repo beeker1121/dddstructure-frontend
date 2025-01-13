@@ -189,6 +189,21 @@ button.blue-bg {
         border-radius: 4px;
         outline: 0;
     }
+
+    &.icon-right {
+        position: relative;
+
+        input {
+            padding: var(--spacing) var(--spacing-four) var(--spacing) var(--spacing);
+        }
+
+        svg {
+            position: absolute;
+            right: var(--spacing);
+            bottom: var(--spacing);
+            opacity: 0.22;
+        }
+    }
 }
 
 .field-datepicker {

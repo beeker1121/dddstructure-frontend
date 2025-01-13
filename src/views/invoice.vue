@@ -156,9 +156,10 @@ const getInvoice = () => {
 
                         <div class="form">
                             <div class="card">
-                                <div class="field">
+                                <div class="field icon-right">
                                     <label for="card-number">Card details</label>
                                     <input id="card-number" type="text" placeholder="4141 4141 4141 4141" />
+                                    <font-awesome-icon class="icon" icon="credit-card" />
                                 </div>
 
                                 <div class="exp-cvv">
