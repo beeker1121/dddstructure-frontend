@@ -94,6 +94,11 @@ const editInvoice = (id: number) => {
     router.push({ name: 'InvoiceEdit', params: { id } })
 }
 
+const viewInvoice = (hash: string) => {
+    // Open new tab/window to view invoice.
+    window.open('/invoice/' + hash, '_blank')
+}
+
 const deleteInvoice = (id: number) => {
     // Call the API.
     apiUser.deleteInvoice(id)
@@ -423,7 +428,7 @@ const getPages = (curPage: number, totalPages: number): Array<string> => {
                             <tr v-for="invoice in invoicesStore.invoices">
                                 <td>
                                     <button class="action" @click="editInvoice(invoice.id)">Edit</button>
-                                    <button class="action">View</button>
+                                    <button class="action" @click="viewInvoice(invoice.public_hash)">View</button>
                                     <button class="action red" @click="deleteInvoice(invoice.id)"><font-awesome-icon class="icon" icon="trash-can" /></button>
                                 </td>
                                 <td>{{ invoice.id }}</td>

@@ -36,6 +36,7 @@ export interface InvoiceLineItem {
 
 export interface Invoice {
     id: number
+    public_hash: string
     invoice_number: string
     po_number: string
     currency: string

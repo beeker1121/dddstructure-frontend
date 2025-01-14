@@ -32,6 +32,11 @@ const api = {
             }
         })
     },
+    getInvoiceByPublicHash: (hash: string) => {
+        return fetch(apiURL + '/public/invoice/' + hash, {
+            method: 'GET'
+        })
+    },
     updateInvoice: (id: number, payload: object) => {
         return fetch(apiURL + '/invoice/' + id, {
             method: 'POST',

@@ -1,18 +1,16 @@
 <script setup lang="ts">
 import { ref, onMounted, computed } from 'vue'
-import { useRouter } from 'vue-router';
+import { useRouter, useRoute } from 'vue-router';
 
-import api from '../api'
-import { setJWT } from '../helpers/auth'
-import Header from '../components/header.vue'
-import { getParamError, getSingleError } from '../helpers/errors';
-import { capitalize } from '../helpers/strings';
+import { Invoice } from '../proto/invoice'
+import apiUser from '../api-user'
 import { useUserStore } from '../stores/user';
 import { displayMoneyFormat } from '../utils/currency'
 import Maska from '../components/dashboard/maska.vue';
 
 // Constants.
 const router = useRouter()
+const route = useRoute()
 
 // Props.
 // const props = defineProps({
@@ -20,6 +18,8 @@ const router = useRouter()
 // })
 
 // Data.
+let invoice = ref<Invoice>({} as Invoice)
+
 const paymentMethodType = ref('card')
 const paymentMethod = ref<any>({})
 
@@ -36,6 +36,23 @@ const userStore = useUserStore()
 onMounted(() => {
     // Reset errors.
     errors.value = []
+
+    // Get the invoice.
+    if (route.params.public_hash) {
+        console.log('hash: ' + route.params.public_hash)
+        apiUser.getInvoiceByPublicHash(route.params.public_hash as string)
+        .then(res => res.json()).then(res => {
+            // Handle errors.
+            if (res.errors) {
+                router.push({ name: 'Login' })
+                return
+            }
+
+            invoice.value = res.data
+        }).catch((err) => {
+            router.push({ name: 'Login' })
+        })
+    }
 })
 
 // Computed.

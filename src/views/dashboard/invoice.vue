@@ -25,6 +25,7 @@ const route = useRoute()
 // Data.
 let invoice = ref<Invoice>({
     id: 0,
+    public_hash: "",
     invoice_number: "",
     po_number: "",
     currency: "USD",
@@ -284,6 +285,7 @@ const sanitizeFloat = (field: string) => {
             <div class="invoice">
                 <div class="header">
                     <h1>{{ route.params.id ? 'Update' : 'New' }} Invoice</h1>
+                    <span>{{ invoice.public_hash }}</span>
                 </div>
 
                 <div class="invoice-form-wrap">
