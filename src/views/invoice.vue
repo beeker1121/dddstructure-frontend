@@ -5,6 +5,8 @@ import { useRouter, useRoute } from 'vue-router';
 import { Invoice } from '../proto/invoice'
 import apiUser from '../api-user'
 import { useUserStore } from '../stores/user';
+import { useNotificationsStore } from '../stores/notifications'
+import { useModalStore } from '../stores/modal'
 import { displayMoneyFormat, percentageFromInt, RoundingType } from '../utils/currency'
 import Maska from '../components/dashboard/maska.vue';
 
@@ -32,6 +34,8 @@ const errors = ref<any>([])
 
 // Stores.
 const userStore = useUserStore()
+const notificationsStore = useNotificationsStore()
+const modalStore = useModalStore()
 
 // Mounted.
 onMounted(() => {
@@ -110,6 +114,35 @@ const cardNumberMask = computed((): string => {
 
 // Methods.
 const getInvoice = () => {
+}
+
+const pay = () => {
+    // Build the payload.
+    const payload = {
+        amount: totals.value.total
+    }
+
+    // Call the API.
+    apiUser.payInvoice(invoice.value.public_hash, payload)
+    .then(res => res.json()).then(res => {
+        // Handle errors.
+        if (res.errors) {
+            if (res.errors.length === 1 && res.errors[0].status === 500) {
+                modalStore.modal('error', 'Error', 'Error creating invoice')
+                return
+            }
+
+            notificationsStore.notify('error', 'Error', res.errors[0].detail)
+
+            errors.value = res.errors
+            return
+        }
+
+        notificationsStore.notify('success', 'Success!', 'Invoice paid!')
+    }).catch((err) => {
+        modalStore.modal('error', 'Error', 'Error paying invoice')
+        return
+    })
 }
 
 const displayFirstLastName = (address: any): string => {

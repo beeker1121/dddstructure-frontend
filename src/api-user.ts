@@ -55,6 +55,15 @@ const api = {
             }
         })
     },
+    payInvoice: (hash: string, payload: object) => {
+        return fetch(apiURL + '/public/invoice/' + hash + '/pay', {
+            method: 'POST',
+            body: JSON.stringify(payload),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+    },
 
     // User
     getUser: () => {
