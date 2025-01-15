@@ -31,7 +31,7 @@ onMounted(() => {})
     <div class="notifications">
         <TransitionGroup name="notification" tag="div">
             <template v-for="notification in notificationsStore.notifications" :key="notification">
-                <div :class="{'notification': true, 'success': notification.type === 'success'}">
+                <div :class="{'notification': true, 'success': notification.type === 'success', 'nerror': notification.type === 'error'}">
                     <div v-if="notification.title" class="title">{{ notification.title }}</div>
                     <div class="message">{{ notification.message }}</div>
                 </div>
@@ -71,6 +71,11 @@ onMounted(() => {})
         &.success {
             color: #fff;
             background-color: #61a839;
+        }
+
+        &.nerror {
+            color: #fff;
+            background-color: #ff1414;
         }
     }
 }

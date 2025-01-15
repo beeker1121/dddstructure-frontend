@@ -32,7 +32,7 @@ export const useNotificationsStore = defineStore('notifications', {
                 if (index !== -1) {
                     this.notifications.splice(0, 1)
                 }
-            }, 3000)
+            }, 3500)
         }
     }
 })

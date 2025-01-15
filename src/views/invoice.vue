@@ -9,6 +9,7 @@ import { useNotificationsStore } from '../stores/notifications'
 import { useModalStore } from '../stores/modal'
 import { displayMoneyFormat, percentageFromInt, RoundingType } from '../utils/currency'
 import Maska from '../components/dashboard/maska.vue';
+import { capitalize } from '../helpers/strings';
 
 // Constants.
 const router = useRouter()
@@ -132,7 +133,7 @@ const pay = () => {
                 return
             }
 
-            notificationsStore.notify('error', 'Error', res.errors[0].detail)
+            notificationsStore.notify('error', 'Error', capitalize(res.errors[0].detail))
 
             errors.value = res.errors
             return
@@ -313,7 +314,7 @@ const displayCityStatePostalCountry = (address: any): string => {
                 </div>
 
                 <div class="payment">
-                    <div class="invoice-po-num">
+                    <div v-if="invoice.invoice_number || invoice.po_number" class="invoice-po-num">
                         <div v-if="invoice.invoice_number" class="invoice-number">
                             <span>Invoice # </span>{{ invoice.invoice_number }}
                         </div>
