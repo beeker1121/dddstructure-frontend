@@ -5,7 +5,7 @@ import { useRouter, useRoute } from 'vue-router';
 import { Invoice } from '../proto/invoice'
 import apiUser from '../api-user'
 import { useUserStore } from '../stores/user';
-import { displayMoneyFormat } from '../utils/currency'
+import { displayMoneyFormat, percentageFromInt, RoundingType } from '../utils/currency'
 import Maska from '../components/dashboard/maska.vue';
 
 // Constants.
@@ -18,7 +18,8 @@ const route = useRoute()
 // })
 
 // Data.
-let invoice = ref<Invoice>({} as Invoice)
+const isLoaded = ref(false)
+const invoice = ref<Invoice>({} as Invoice)
 
 const paymentMethodType = ref('card')
 const paymentMethod = ref<any>({})
@@ -39,7 +40,6 @@ onMounted(() => {
 
     // Get the invoice.
     if (route.params.public_hash) {
-        console.log('hash: ' + route.params.public_hash)
         apiUser.getInvoiceByPublicHash(route.params.public_hash as string)
         .then(res => res.json()).then(res => {
             // Handle errors.
@@ -49,6 +49,7 @@ onMounted(() => {
             }
 
             invoice.value = res.data
+            isLoaded.value = true
         }).catch((err) => {
             router.push({ name: 'Login' })
         })
@@ -56,6 +57,29 @@ onMounted(() => {
 })
 
 // Computed.
+const totals = computed(() => {
+    let ret = {
+        subtotal: 0,
+        tax: 0,
+        total: 0
+    }
+
+    invoice.value.line_items.forEach((lineItem) => {
+        ret.subtotal += lineItem.quantity * lineItem.price
+    })
+
+    // Calculate tax.
+    const taxRate = parseFloat(invoice.value.tax_rate)
+    if (!isNaN(taxRate)) {
+        ret.tax = percentageFromInt(ret.subtotal, taxRate, 0, RoundingType.Bankers)
+    }
+
+    // Calculate total.
+    ret.total = ret.subtotal + ret.tax
+
+    return ret
+})
+
 const cardType = computed((): string => {
     const number = cardNumber.value
 
@@ -87,10 +111,90 @@ const cardNumberMask = computed((): string => {
 // Methods.
 const getInvoice = () => {
 }
+
+const displayFirstLastName = (address: any): string => {
+    let name = ''
+    if (address.first_name !== '') {
+        name = address.first_name
+    }
+
+    if (address.last_name !== '') {
+        if (name !== '') {
+            name += ' '
+        }
+
+        name += address.last_name
+    }
+
+    return name
+}
+
+const displayAddress = (address: any): string => {
+    let ret = ''
+    if (address.address_line_1 !== '') {
+        ret = address.address_line_1
+    }
+
+    if (address.address_line_2 !== '') {
+        if (ret !== '') {
+            ret += ' '
+        }
+
+        ret += address.address_line_2
+    }
+
+    return ret
+}
+
+const displayCityStatePostalCountry = (address: any): string => {
+    let ret = ''
+    let addedComma = false
+
+    if (address.city) {
+        ret = address.city
+    }
+
+    if (address.state) {
+        if (ret !== '') {
+            ret += ', '
+            addedComma = true
+        }
+
+        ret += address.state
+    }
+
+    if (address.postal_code) {
+        if (ret !== '') {
+            if (!addedComma) {
+                ret += ','
+                addedComma = true
+            }
+
+            ret += ' '
+        }
+
+        ret += address.postal_code
+    }
+
+    if (address.country) {
+        if (ret !== '') {
+            if (!addedComma) {
+                ret += ','
+                addedComma = true
+            }
+
+            ret += ' '
+        }
+
+        ret += address.country
+    }
+
+    return ret
+}
 </script>
 
 <template>
-    <div class="invoice-container">
+    <div v-if="isLoaded" class="invoice-container">
         <div class="content">
             <div class="invoice-wrapper">
                 <div class="invoice">
@@ -99,10 +203,17 @@ const getInvoice = () => {
                             <h3>Bill to</h3>
 
                             <div class="inner">
-                                <div class="name">John Doe</div>
-                                <div class="company">Widgets, Inc</div>
-                                <div class="address">123 Washington St Ste 4950</div>
-                                <div class="city-state-postal-country">Chicago, IL 60545 US</div>
+                                <div v-if="displayFirstLastName(invoice.bill_to) !== ''" class="name">
+                                    {{ displayFirstLastName(invoice.bill_to) }}
+                                </div>
+                                <div v-if="invoice.bill_to.company" class="company">{{ invoice.bill_to.company }}</div>
+                                <div v-if="displayAddress(invoice.bill_to) !== ''" class="address">
+                                    {{ displayAddress(invoice.bill_to) }}
+                                </div>
+                                <div v-if="displayCityStatePostalCountry(invoice.bill_to) !== ''"
+                                    class="city-state-postal-country">
+                                    {{ displayCityStatePostalCountry(invoice.bill_to) }}
+                                </div>
                             </div>
                         </div>
 
@@ -110,9 +221,17 @@ const getInvoice = () => {
                             <h3>Pay to</h3>
 
                             <div class="inner">
-                                <div class="name">Henry Smith</div>
-                                <div class="address">123 Washington St</div>
-                                <div class="city-state-postal-country">Chicago, IL 60545 US</div>
+                                <div v-if="displayFirstLastName(invoice.pay_to) !== ''" class="name">
+                                    {{ displayFirstLastName(invoice.pay_to) }}
+                                </div>
+                                <div v-if="invoice.pay_to.company" class="company">{{ invoice.pay_to.company }}</div>
+                                <div v-if="displayAddress(invoice.pay_to) !== ''" class="address">
+                                    {{ displayAddress(invoice.pay_to) }}
+                                </div>
+                                <div v-if="displayCityStatePostalCountry(invoice.pay_to) !== ''"
+                                    class="city-state-postal-country">
+                                    {{ displayCityStatePostalCountry(invoice.pay_to) }}
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -130,44 +249,24 @@ const getInvoice = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                <template v-for="(lineItem, index) in [1]">
+                                <template v-for="(lineItem, index) in invoice.line_items">
                                     <tr>
                                         <td class="name">
-                                            Golang T-Shirt
+                                            {{ lineItem.name }}
                                         </td>
                                         <td class="quantity">
-                                            12
+                                            {{ lineItem.quantity }}
                                         </td>
                                         <td class="price">
-                                            {{ displayMoneyFormat(123, 'USD') }} <span class="currency">{{ 'USD' }}</span>
+                                            {{ displayMoneyFormat(lineItem.price, invoice.currency) }} <span class="currency">{{ invoice.currency }}</span>
                                         </td>
                                         <td class="total">
-                                            {{ displayMoneyFormat(123, 'USD') }} <span class="currency">{{ 'USD' }}</span>
+                                            {{ displayMoneyFormat(lineItem.quantity * lineItem.price, invoice.currency) }} <span class="currency">{{ invoice.currency }}</span>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td class="description">
-                                            Golang t-shirts with Golang Gopher, Men's, M, White
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td class="name">
-                                            Golang T-Shirt
-                                        </td>
-                                        <td class="quantity">
-                                            12
-                                        </td>
-                                        <td class="price">
-                                            {{ displayMoneyFormat(123, 'USD') }} <span class="currency">{{ 'USD' }}</span>
-                                        </td>
-                                        <td class="total">
-                                            {{ displayMoneyFormat(123, 'USD') }} <span class="currency">{{ 'USD' }}</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="description">
-                                            Golang t-shirts with Golang Gopher, Men's, M, White
+                                            {{ lineItem.description }}
                                         </td>
                                     </tr>
                                 </template>
@@ -175,18 +274,18 @@ const getInvoice = () => {
                         </table>
                     </div>
 
-                    <div class="message">Thank you for your business!</div>
+                    <div v-if="invoice.message" class="message">{{ invoice.message }}</div>
 
-                    <div class="support">If you have any issues or questions, please contact support at email@example.com or call (555) 555-5555</div>
+                    <div class="support">If you have any issues or questions, please contact support at <a href="mailto:email@example.com">email@example.com</a> or call (555) 555-5555</div>
                 </div>
 
                 <div class="payment">
                     <div class="invoice-po-num">
-                        <div class="invoice-number">
-                            <span>Invoice # </span> 00192837
+                        <div v-if="invoice.invoice_number" class="invoice-number">
+                            <span>Invoice # </span>{{ invoice.invoice_number }}
                         </div>
-                        <div class="po-number">
-                            <span>PO # </span> 3984
+                        <div v-if="invoice.po_number" class="po-number">
+                            <span>PO # </span>{{ invoice.po_number }}
                         </div>
                     </div>
 
@@ -194,10 +293,14 @@ const getInvoice = () => {
                         <h3>Payment Method</h3>
 
                         <div class="methods">
-                            <div :class="{'method': true, 'card': true, 'selected': paymentMethodType === 'card'}" @click="toggleType('card')">
+                            <div v-if="invoice.payment_methods.includes('card')"
+                                :class="{'method': true, 'card': true, 'selected': paymentMethodType === 'card'}"
+                                @click="toggleType('card')">
                                 <font-awesome-icon class="icon" icon="credit-card" />Card
                             </div>
-                            <div :class="{'method': true, 'ach': true, 'selected': paymentMethodType === 'ach'}" @click="togglePaymentMethod('ach')">
+                            <div v-if="invoice.payment_methods.includes('ach')"
+                                :class="{'method': true, 'ach': true, 'selected': paymentMethodType === 'ach'}"
+                                @click="togglePaymentMethod('ach')">
                                 <font-awesome-icon class="icon" icon="building-columns" />ACH
                             </div>
                         </div>
@@ -249,11 +352,11 @@ const getInvoice = () => {
                             <tbody>
                                 <tr>
                                     <td>Subtotal</td>
-                                    <td>{{ displayMoneyFormat(123, 'USD') }} <span class="currency">{{ 'USD' }}</span></td>
+                                    <td>{{ displayMoneyFormat(totals.subtotal, invoice.currency) }} <span class="currency">{{ invoice.currency }}</span></td>
                                 </tr>
                                 <tr>
-                                    <td>Tax ({{ '1.25' }}%)</td>
-                                    <td>{{ displayMoneyFormat(10, 'USD') }} <span class="currency">{{ 'USD' }}</span></td>
+                                    <td>Tax ({{ invoice.tax_rate }}%)</td>
+                                    <td>{{ displayMoneyFormat(totals.tax, invoice.currency) }} <span class="currency">{{ invoice.currency }}</span></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -262,7 +365,7 @@ const getInvoice = () => {
 
                         <div class="total">
                             <div>Total</div>
-                            <div>{{ displayMoneyFormat(123, 'USD') }} <span class="currency">{{ 'USD' }}</span></div>
+                            <div>{{ displayMoneyFormat(totals.total, invoice.currency) }} <span class="currency">{{ invoice.currency }}</span></div>
                         </div>
                     </div>
 
@@ -549,7 +652,7 @@ const getInvoice = () => {
 
                         td:last-child {
                             font-size: var(--font-size-small);
-                            font-weight: var(--font-weight-600);
+                            font-weight: var(--font-weight-500);
                             text-align: right;
                         }
 
@@ -598,7 +701,6 @@ const getInvoice = () => {
 
                         div:last-child {
                             padding: 0 0 0 8px;
-                            color: #61a839;
                             font-weight: var(--font-weight-600);
                             text-align: right;
                         }

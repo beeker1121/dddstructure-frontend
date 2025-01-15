@@ -285,7 +285,6 @@ const sanitizeFloat = (field: string) => {
             <div class="invoice">
                 <div class="header">
                     <h1>{{ route.params.id ? 'Update' : 'New' }} Invoice</h1>
-                    <span>{{ invoice.public_hash }}</span>
                 </div>
 
                 <div class="invoice-form-wrap">
@@ -878,7 +877,7 @@ const sanitizeFloat = (field: string) => {
 
                     td:last-child {
                         font-size: var(--font-size-small);
-                        font-weight: var(--font-weight-600);
+                        font-weight: var(--font-weight-500);
                         text-align: right;
                     }
 
@@ -927,7 +926,6 @@ const sanitizeFloat = (field: string) => {
 
                     div:last-child {
                         padding: 0 0 0 var(--spacing);
-                        color: #61a839;
                         font-weight: var(--font-weight-600);
                         text-align: right;
                     }
