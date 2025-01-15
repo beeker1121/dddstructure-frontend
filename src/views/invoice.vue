@@ -651,7 +651,7 @@ const displayCityStatePostalCountry = (address: any): string => {
                         }
 
                         td:last-child {
-                            font-size: var(--font-size-small);
+                            font-size: var(--font-size-smaller);
                             font-weight: var(--font-weight-500);
                             text-align: right;
                         }
