@@ -721,7 +721,7 @@ const sanitizeFloat = (field: string) => {
 
                             .total {
                                 padding: 0 0 0 var(--spacing);
-                                font-weight: var(--font-weight-600);
+                                font-weight: var(--font-weight-500);
                                 text-align: right;
 
                                 .field {

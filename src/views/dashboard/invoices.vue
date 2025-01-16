@@ -5,6 +5,7 @@ import { useRouter } from 'vue-router';
 import apiUser from '../../api-user'
 import Sidebar from '../../components/dashboard/sidebar.vue'
 import { useInvoicesStore } from '../../stores/invoices'
+import { useNotificationsStore } from '../../stores/notifications';
 import { useModalStore } from '../../stores/modal'
 import { displayMoneyFormat } from '../../utils/currency'
 
@@ -26,6 +27,7 @@ let dueDate = ref([new Date(Date.now()), new Date(Date.now())])
 
 // Stores.
 const invoicesStore = useInvoicesStore()
+const notificationsStore = useNotificationsStore()
 const modalStore = useModalStore()
 
 // Mounted.
@@ -113,6 +115,7 @@ const deleteInvoice = (id: number) => {
         }
 
         searchInvoices()
+        notificationsStore.notify('success', 'Success!', 'Invoice deleted!')
     }).catch((err) => {
         modalStore.modal('error', 'Error', 'Error deleting invoice')
         return
@@ -585,6 +588,7 @@ const getPages = (curPage: number, totalPages: number): Array<string> => {
                         text-transform: uppercase;
                         border-radius: var(--border-radius);
                         background-color: var(--invoice-status-paid-bg-color);
+                        pointer-events: none;
                     }
 
                     .status-pending {
@@ -595,6 +599,7 @@ const getPages = (curPage: number, totalPages: number): Array<string> => {
                         text-transform: uppercase;
                         border-radius: var(--border-radius);
                         background-color: var(--invoice-status-pending-bg-color);
+                        pointer-events: none;
                     }
                 }
 

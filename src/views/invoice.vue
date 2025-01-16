@@ -44,21 +44,7 @@ onMounted(() => {
     errors.value = []
 
     // Get the invoice.
-    if (route.params.public_hash) {
-        apiUser.getInvoiceByPublicHash(route.params.public_hash as string)
-        .then(res => res.json()).then(res => {
-            // Handle errors.
-            if (res.errors) {
-                router.push({ name: 'Login' })
-                return
-            }
-
-            invoice.value = res.data
-            isLoaded.value = true
-        }).catch((err) => {
-            router.push({ name: 'Login' })
-        })
-    }
+    getInvoice()
 })
 
 // Computed.
@@ -115,6 +101,19 @@ const cardNumberMask = computed((): string => {
 
 // Methods.
 const getInvoice = () => {
+    apiUser.getInvoiceByPublicHash(route.params.public_hash as string)
+    .then(res => res.json()).then(res => {
+        // Handle errors.
+        if (res.errors) {
+            router.push({ name: 'Login' })
+            return
+        }
+
+        invoice.value = res.data
+        isLoaded.value = true
+    }).catch((err) => {
+        router.push({ name: 'Login' })
+    })
 }
 
 const pay = () => {
@@ -139,6 +138,7 @@ const pay = () => {
             return
         }
 
+        getInvoice()
         notificationsStore.notify('success', 'Success!', 'Invoice paid!')
     }).catch((err) => {
         modalStore.modal('error', 'Error', 'Error paying invoice')
@@ -475,6 +475,12 @@ const displayCityStatePostalCountry = (address: any): string => {
                     margin: var(--spacing-three) 0 0 0;
 
                     .table-general {
+                        thead {
+                            th:last-child {
+                                text-align: center;
+                            }
+                        }
+
                         tbody {
                             tr {
                                 td {
