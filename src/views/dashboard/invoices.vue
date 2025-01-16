@@ -420,6 +420,7 @@ const getPages = (curPage: number, totalPages: number): Array<string> => {
                                 <th>ID</th>
                                 <th>Bill To</th>
                                 <th>Pay To</th>
+                                <th>Status</th>
                                 <th class="amount-paid-header">Amount Paid</th>
                                 <th class="amount-due-header">Amount Due</th>
                             </tr>
@@ -450,6 +451,7 @@ const getPages = (curPage: number, totalPages: number): Array<string> => {
                                         <div v-if="displayStateCountry(invoice.pay_to) !== ''" class="state-country">{{ displayStateCountry(invoice.pay_to) }}</div>
                                     </div>
                                 </td>
+                                <td class="status"><span :class="'status-' + invoice.status">{{ invoice.status }}</span></td>
                                 <td class="amount-paid">{{ displayMoneyFormat(invoice.amount_paid, invoice.currency) }} <span class="currency">USD</span></td>
                                 <td class="amount-due">{{ displayMoneyFormat(invoice.amount_due, invoice.currency) }} <span class="currency">USD</span></td>
                             </tr>
@@ -571,6 +573,28 @@ const getPages = (curPage: number, totalPages: number): Array<string> => {
 
                     .state-country {
                         font-size: var(--font-size-smaller);
+                    }
+                }
+
+                .status {
+                    .status-paid {
+                        padding: var(--spacing-half) var(--spacing);
+                        color: #fff;
+                        font-size: var(--font-size-smallest);
+                        font-weight: var(--font-weight-400);
+                        text-transform: uppercase;
+                        border-radius: var(--border-radius);
+                        background-color: var(--invoice-status-paid-bg-color);
+                    }
+
+                    .status-pending {
+                        padding: var(--spacing-half) var(--spacing);
+                        color: #fff;
+                        font-size: var(--font-size-smallest);
+                        font-weight: var(--font-weight-400);
+                        text-transform: uppercase;
+                        border-radius: var(--border-radius);
+                        background-color: var(--invoice-status-pending-bg-color);
                     }
                 }
 
