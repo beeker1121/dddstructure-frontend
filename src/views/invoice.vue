@@ -323,7 +323,7 @@ const displayCityStatePostalCountry = (address: any): string => {
                         </div>
                     </div>
 
-                    <div class="payment-method">
+                    <div v-if="invoice.status === 'pending'" class="payment-method">
                         <h3>Payment Method</h3>
 
                         <div class="methods">
@@ -403,7 +403,8 @@ const displayCityStatePostalCountry = (address: any): string => {
                         </div>
                     </div>
 
-                    <button class="green-bg" @click="pay">Pay Now</button>
+                    <button v-if="invoice.status === 'pending'" class="green-bg" @click="pay">Pay Now</button>
+                    <div v-if="invoice.status === 'paid'" class="paid">Paid</div>
                 </div>
             </div>
         </div>
@@ -739,6 +740,15 @@ const displayCityStatePostalCountry = (address: any): string => {
                             text-align: right;
                         }
                     }
+                }
+
+                .paid {
+                    margin: var(--spacing-two) 0 0 0;
+                    color: var(--color-green);
+                    font-size: var(--font-size-header);
+                    font-weight: var(--font-weight-600);
+                    text-align: center;
+                    text-transform: uppercase;
                 }
             }
         }

@@ -49,4 +49,5 @@ export interface Invoice {
     tax_rate: string
     amount_due: number
     amount_paid: number
+    status: string
 }
