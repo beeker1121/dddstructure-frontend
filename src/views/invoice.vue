@@ -442,7 +442,7 @@ const displayCityStatePostalCountry = (address: any): string => {
             .invoice {
                 flex: 1 1 auto;
                 padding: 20px 24px;
-                max-width: 600px;
+                max-width: 700px;
                 background-color: #fff;
                 border-radius: 4px;
                 box-shadow: 2px 1px 3px 0 rgba(37, 37, 37, 0.2);
@@ -477,7 +477,7 @@ const displayCityStatePostalCountry = (address: any): string => {
                     .table-general {
                         thead {
                             th:last-child {
-                                text-align: center;
+                                text-align: right;
                             }
                         }
 
