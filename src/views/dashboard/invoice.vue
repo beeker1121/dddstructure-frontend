@@ -67,7 +67,8 @@ let invoice = ref<Invoice>({
     payment_methods: ['card'],
     tax_rate: "",
     amount_due: 0,
-    amount_paid: 0
+    amount_paid: 0,
+    status: ''
 })
 
 let dueDate = ref(new Date())
@@ -331,12 +332,12 @@ const sanitizeFloat = (field: string) => {
                                         <input id="bill-to-city" type="text" placeholder="" v-model="invoice.bill_to.city" />
                                     </div>
 
-                                    <div class="field">
+                                    <div class="field state">
                                         <label for="bill-to-state">State</label>
-                                        <input id="bill-to-state" type="text" placeholder="" v-model="invoice.bill_to.state" />
+                                        <input id="bill-to-state" type="text" maxlength="2" placeholder="" v-model="invoice.bill_to.state" />
                                     </div>
 
-                                    <div class="field">
+                                    <div class="field postal-code">
                                         <label for="bill-to-postal-code">Postal Code</label>
                                         <input id="bill-to-postal-code" type="text" placeholder="" v-model="invoice.bill_to.postal_code" />
                                     </div>
@@ -402,12 +403,12 @@ const sanitizeFloat = (field: string) => {
                                         <input id="pay-to-city" type="text" placeholder="" v-model="invoice.pay_to.city" />
                                     </div>
 
-                                    <div class="field">
+                                    <div class="field state">
                                         <label for="pay-to-state">State</label>
-                                        <input id="pay-to-state" type="text" placeholder="" v-model="invoice.pay_to.state" />
+                                        <input id="pay-to-state" type="text" maxlength="2" placeholder="" v-model="invoice.pay_to.state" />
                                     </div>
 
-                                    <div class="field">
+                                    <div class="field postal-code">
                                         <label for="pay-to-postal-code">Postal Code</label>
                                         <input id="pay-to-postal-code" type="text" placeholder="" v-model="invoice.pay_to.postal_code" />
                                     </div>
@@ -683,6 +684,16 @@ const sanitizeFloat = (field: string) => {
 
                     .field {
                         flex: 1 1 auto;
+                    }
+
+                    .state input,
+                    .state input {
+                        max-width: 50px;
+                    }
+
+                    .postal-code input,
+                    .postal-code input {
+                        max-width: 100px;
                     }
                 }
 
