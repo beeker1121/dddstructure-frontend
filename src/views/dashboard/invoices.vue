@@ -572,7 +572,6 @@ const getPages = (curPage: number, totalPages: number): Array<string> => {
                     text-align: center;
 
                     .company {
-                        color: #999;
                         font-size: var(--font-size-smaller);
                     }
 
