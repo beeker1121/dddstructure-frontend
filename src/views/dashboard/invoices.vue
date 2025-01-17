@@ -492,7 +492,9 @@ const getPages = (curPage: number, totalPages: number): Array<string> => {
 .invoices {
     display: flex;
     flex-direction: column;
+    margin: 0 auto;
     width: 100%;
+    max-width: 1024px;
 
     .header {
         flex: 0 1 auto;

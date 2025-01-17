@@ -16,10 +16,10 @@ Learn more about the recommended Project Setup and IDE Support in the [Vue Docs 
 - :heavy_check_mark: Subtotal calculation for line items.
 - Total calculations for overall invoice.
 - Invoice public payment page.
-  - Accepts payments.
-  - Updates invoice status.
+  - :heavy_check_mark: Accepts payments.
+  - :heavy_check_mark: Updates invoice status.
   - Mobile friendly.
-- Status on invoices search page.
+- :heavy_check_mark: Status on invoices search page.
 - Finish invoices search page.
   - Need search filters.
   - :heavy_check_mark: Need pagination.
