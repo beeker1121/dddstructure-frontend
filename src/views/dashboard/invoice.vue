@@ -9,7 +9,7 @@ import Money from '../../components/dashboard/money.vue'
 import { displayMoneyFormat, percentageFromInt, RoundingType } from '../../utils/currency'
 import { useNotificationsStore } from '../../stores/notifications'
 import { useModalStore } from '../../stores/modal'
-import { getParamError } from '../../helpers/errors'
+import { getParamError, getSingleError } from '../../helpers/errors'
 import { capitalize } from '../../helpers/strings'
 import Maska from '../../components/dashboard/maska.vue'
 
@@ -146,16 +146,20 @@ const create = () => {
     .then(res => res.json()).then(res => {
         // Handle errors.
         if (res.errors) {
-            if (res.errors.length === 1 && res.errors[0].status === 500) {
-                modalStore.modal('error', 'Error', 'Error creating invoice')
+            if (getSingleError(res.errors)) {
+                const err = getSingleError(res.errors)
+                if (err?.status === 500) {
+                    modalStore.modal('error', 'Error', err?.detail)
+                    return
+                }
+
+                notificationsStore.notify('error', 'Error', capitalize(err?.detail as string))
                 return
             }
 
             errors.value = res.errors
             return
         }
-
-        notificationsStore.notify('success', 'Success!', 'Invoice created!')
 
         // Redirect to invoices.
         router.push({ name: 'Invoices' })
@@ -185,16 +189,20 @@ const update = (id: number) => {
     .then(res => res.json()).then(res => {
         // Handle errors.
         if (res.errors) {
-            if (res.errors.length === 1 && res.errors[0].status === 500) {
-                modalStore.modal('error', 'Error', 'Error updating invoice')
+            if (getSingleError(res.errors)) {
+                const err = getSingleError(res.errors)
+                if (err?.status === 500) {
+                    modalStore.modal('error', 'Error', err?.detail)
+                    return
+                }
+
+                notificationsStore.notify('error', 'Error', capitalize(err?.detail as string))
                 return
             }
 
             errors.value = res.errors
             return
         }
-
-        notificationsStore.notify('success', 'Success!', 'Invoice updated!')
 
         // Redirect to invoices.
         router.push({ name: 'Invoices' })
@@ -512,6 +520,10 @@ const sanitizeFloat = (field: string) => {
                                 </div>
                             </div> -->
 
+                            <span v-if="getParamError(errors, 'line_items').detail" class="error">
+                                {{ capitalize(getParamError(errors, 'line_items').detail) }}
+                            </span>
+
                             <div class="add-item" @click="addItem">+ Add Item</div>
                         </div>
                     </div>
@@ -776,6 +788,10 @@ const sanitizeFloat = (field: string) => {
                             }
                         }
                     }
+                }
+
+                .error {
+                    margin: var(--spacing) 0 0 0;
                 }
 
                 .add-item {
