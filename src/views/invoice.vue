@@ -10,6 +10,7 @@ import { useModalStore } from '../stores/modal'
 import { displayMoneyFormat, percentageFromInt, RoundingType } from '../utils/currency'
 import Maska from '../components/dashboard/maska.vue';
 import { capitalize } from '../helpers/strings';
+import { getSingleError } from '../helpers/errors';
 
 // Constants.
 const router = useRouter()
@@ -127,12 +128,16 @@ const pay = () => {
     .then(res => res.json()).then(res => {
         // Handle errors.
         if (res.errors) {
-            if (res.errors.length === 1 && res.errors[0].status === 500) {
-                modalStore.modal('error', 'Error', 'Error creating invoice')
+            if (getSingleError(res.errors)) {
+                const err = getSingleError(res.errors)
+                if (err?.status === 500) {
+                    modalStore.modal('error', 'Error', err?.detail)
+                    return
+                }
+
+                notificationsStore.notify('error', 'Error', capitalize(err?.detail as string))
                 return
             }
-
-            notificationsStore.notify('error', 'Error', capitalize(res.errors[0].detail))
 
             errors.value = res.errors
             return

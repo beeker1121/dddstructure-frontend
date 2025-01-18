@@ -17,18 +17,18 @@ export const getParamError = (errors: APIError[], param: string): APIError => {
 
 // getSingleError handles getting a single, non-parameter error from an error
 // array.
-export const getSingleError = (errors: APIError[]): APIError => {
+export const getSingleError = (errors: APIError[]): APIError | null => {
     if (!errors.length) {
-        return {} as APIError
+        return null
     }
 
     if (errors.length === 1) {
         if (errors[0].param) {
-            return {} as APIError
+            return null
         }
 
         return errors[0]
     }
 
-    return {} as APIError
+    return null
 }

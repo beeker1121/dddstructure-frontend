@@ -100,8 +100,8 @@ const login = () => {
                             <input id="password" type="password" placeholder="" v-model="password" />
                         </div>
 
-                        <span v-if="getSingleError(errors).detail" class="error">
-                            {{ capitalize(getSingleError(errors).detail) }}
+                        <span v-if="getSingleError(errors)" class="error">
+                            {{ capitalize(getSingleError(errors)!.detail) }}
                         </span>
 
                         <button class="submit blue-bg" @click="login">Login</button>
