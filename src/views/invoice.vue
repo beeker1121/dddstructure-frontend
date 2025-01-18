@@ -450,7 +450,7 @@ const displayCityStatePostalCountry = (address: any): string => {
                 max-width: 700px;
                 background-color: #fff;
                 border-radius: 4px;
-                box-shadow: 2px 1px 3px 0 rgba(37, 37, 37, 0.2);
+                box-shadow: var(--box-shadow-container);
 
                 h3 {
                     margin: 0;
@@ -570,7 +570,7 @@ const displayCityStatePostalCountry = (address: any): string => {
                 min-width: 240px;
                 background-color: #fff;
                 border-radius: 4px;
-                box-shadow: 2px 1px 3px 0 rgba(37, 37, 37, 0.2);
+                box-shadow: var(--box-shadow-container);
 
                 h3 {
                     margin-top: 0;
@@ -620,7 +620,7 @@ const displayCityStatePostalCountry = (address: any): string => {
                         &.selected {
                             color: #fff;
                             background-color: #61a839;
-                            box-shadow: 0px 1px 2px 0px rgba(34, 34, 34, 0.16);
+                            box-shadow: var(--box-shadow-button);
                             opacity: 1;
                         }
                     }

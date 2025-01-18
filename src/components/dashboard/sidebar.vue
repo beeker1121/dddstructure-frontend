@@ -53,7 +53,7 @@ const logout = () => {
 <style scoped>
 .sidebar {
     padding: 5px 28px;
-    box-shadow: 2px 0 3px 0 rgb(37, 37, 37, 0.2);
+    box-shadow: var(--box-shadow-container);
     z-index: 2;
 
     .logo {

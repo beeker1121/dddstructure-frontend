@@ -116,7 +116,7 @@ const signup = () => {
         margin: 0 auto;
         padding: 14px 42px 26px 42px;
         background-color: #fff;
-        box-shadow: 0px 0px 8px 1px rgba(37, 37, 37, 0.17);
+        box-shadow: var(--box-shadow-container);
         border-radius: 4px;
 
         .logo {

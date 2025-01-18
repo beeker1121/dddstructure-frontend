@@ -73,7 +73,7 @@ const close = () => {
         background-color: #fff;
         text-align: center;
         border-radius: 4px;
-        box-shadow: 2px 1px 3px 0 rgba(37, 37, 37, 0.2);
+        box-shadow: var(--box-shadow-container);
         z-index: 3;
 
         .title {

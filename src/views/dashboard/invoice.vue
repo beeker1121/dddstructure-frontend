@@ -638,7 +638,7 @@ const sanitizeFloat = (field: string) => {
             padding: 20px var(--spacing-three);
             background-color: #fff;
             border-radius: 4px;
-            box-shadow: 2px 1px 3px 0 rgba(37, 37, 37, 0.2);
+            box-shadow: var(--box-shadow-container);
 
             .two-columns {
                 display: flex;
@@ -798,7 +798,7 @@ const sanitizeFloat = (field: string) => {
             min-width: 280px;
             background-color: #fff;
             border-radius: 4px;
-            box-shadow: 2px 1px 3px 0 rgba(37, 37, 37, 0.2);
+            box-shadow: var(--box-shadow-container);
 
             .details {
                 h3 {
@@ -855,7 +855,7 @@ const sanitizeFloat = (field: string) => {
                         &.selected {
                             color: #fff;
                             background-color: #61a839;
-                            box-shadow: 0px 1px 2px 0px rgba(34, 34, 34, 0.16);
+                            box-shadow: var(--box-shadow-button);
                             opacity: 1;
                         }
                     }

@@ -520,7 +520,7 @@ const getPages = (curPage: number, totalPages: number): Array<string> => {
         padding: var(--spacing) calc(var(--spacing-three) + 2px);
         background-color: #fff;
         border-radius: 4px;
-        box-shadow: 2px 1px 3px 0 rgba(37, 37, 37, 0.2);
+        box-shadow: var(--box-shadow-container);
 
         .search-wrapper {
             display: flex;
