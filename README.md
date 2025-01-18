@@ -14,7 +14,8 @@ Learn more about the recommended Project Setup and IDE Support in the [Vue Docs 
 - :heavy_check_mark: Money input and masking.
 - :heavy_check_mark: Phone input masking.
 - :heavy_check_mark: Subtotal calculation for line items.
-- Total calculations for overall invoice.
+- :heavy_check_mark: Total calculations for overall invoice.
+  - :heavy_check_mark: Very simple implementation, should maybe store subtotal on line items instead of calculating on payment page.
 - Invoice public payment page.
   - :heavy_check_mark: Accepts payments.
   - :heavy_check_mark: Updates invoice status.
