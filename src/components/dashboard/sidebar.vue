@@ -38,7 +38,7 @@ const logout = () => {
         <router-link to="/dashboard" :class="{'selected': $route.name === 'Dashboard'}">
             <font-awesome-icon class="icon" icon="chart-simple" />Dashboard
         </router-link>
-        <router-link to="/dashboard/invoices" :class="{'selected': $route.name === 'Invoices' || $route.name === 'Invoice'}">
+        <router-link to="/dashboard/invoices" :class="{'selected': $route.name === 'Invoices' || $route.name === 'Invoice' || $route.name === 'InvoiceEdit'}">
             <font-awesome-icon class="icon" icon="file-invoice-dollar" />Invoices
         </router-link>
         <router-link to="/dashboard/account" :class="{'selected': $route.name === 'Account'}">
