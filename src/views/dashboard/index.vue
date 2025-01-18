@@ -37,7 +37,6 @@ import Sidebar from '../../components/dashboard/sidebar.vue'
         h1 {
             margin: 0;
             padding: 0;
-            color: #fff;
             font-size: var(--font-size-header);
             font-weight: var(--font-weight-500);
         }

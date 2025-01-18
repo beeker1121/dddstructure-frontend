@@ -76,7 +76,7 @@ const logout = () => {
 
         .icon {
             margin: 0 calc(var(--spacing) + 4px) 0 0;
-            color: rgb(53, 131, 235);
+            opacity: 0.5;
         }
     }
 
@@ -84,6 +84,11 @@ const logout = () => {
     a.selected {
         font-weight: var(--font-weight-500);
         opacity: 1;
+
+        .icon {
+            color: rgb(53, 131, 235);
+            opacity: 1;
+        }
     }
 }
 </style>

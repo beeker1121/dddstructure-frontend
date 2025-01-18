@@ -4,10 +4,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap');
 
 :root {
-    /* Background */
-    --bg-color: rgb(91, 144, 215);
-    --bg-gradient: linear-gradient(45deg, #3371c6 0%,#72a2e1 100%);
-
     /* Spacing */
     --spacing-quarter: 2px;
     --spacing-half: 4px;
@@ -19,7 +15,9 @@
     --spacing-error-margin-top: 3px;
 
     /* Color */
+    --color: #555;
     --color-green: #61a839;
+    --header-color: var(--color);
 
     /* Font family */
     --font-family: "Figtree", sans-serif;
@@ -49,6 +47,11 @@
     --font-weight-600: 600;
     --font-weight-700: 700;
 
+    /* Background */
+    --bg-color: rgb(91, 144, 215);
+    /* --bg-gradient: linear-gradient(45deg, #3371c6 0%,#72a2e1 100%); */
+    --bg-gradient: #eee;
+
     /* Border */
     --border-radius: 4px;
 
@@ -57,6 +60,7 @@
     --invoice-status-pending-bg-color: #ffaf5a;
 
     /* Site styles */
+    color: var(--color);
     font-family: var(--font-family);
     font-weight: var(--font-weight-normal);
 }
