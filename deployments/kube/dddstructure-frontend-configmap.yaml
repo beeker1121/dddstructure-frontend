@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: dddstructure-frontend-configmap
+data:
+  api-host: dddstructure-api-service
+  api-port: '8080'

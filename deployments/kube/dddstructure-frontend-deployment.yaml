@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dddstructure-frontend-deployment
+  labels:
+    app: dddstructure-frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dddstructure-frontend
+  template:
+    metadata:
+      labels:
+        app: dddstructure-frontend
+    spec:
+      containers:
+      - name: dddstructure-frontend
+        image: dddstructure-frontend:v1.0.0
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 5173
+        env:
+        - name: API_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: dddstructure-frontend-configmap
+              key: api-host
+        - name: API_PORT
+          valueFrom:
+            configMapKeyRef:
+              name: dddstructure-frontend-configmap
+              key: api-port

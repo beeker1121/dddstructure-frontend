@@ -230,6 +230,12 @@ const displayCityStatePostalCountry = (address: any): string => {
 
     return ret
 }
+
+const toggleType = (method: string) => {
+}
+
+const togglePaymentMethod = (method: string) => {
+}
 </script>
 
 <template>
